@@ -1,0 +1,486 @@
+/*
+**
+** $Id: fonts_colours.css,v 1.119 2005/08/28 19:32:53 neuro Exp $
+**
+** fonts_colours.css - evolt.org Colours and fonts. We may well split this later...
+** contains *no* layout definitions. Do *NOT* add any :-)
+*/
+
+
+
+/* ELEMENT DEFAULTS */
+
+body {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 80%;
+  color: #000000;
+  background-color: #d6d7b6;
+}
+ 
+a:link {
+  color: #3474fc;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #336699; 
+  text-decoration: none;
+}
+
+a:hover {
+  color: #3474fc;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #888;
+  text-decoration: none;
+}
+
+code {
+  font-size: 1.2em;
+}
+
+pre {
+  font-family : Courier, "Courier New", fixed-width, monospace ;
+  font-size : 100% ;
+  line-height : 140% ;
+  border-color: #5470b1 ; 
+  color: #5470b1; 
+ }
+						
+q {
+	font-style: italic;
+	}
+
+blockquote {
+	background: #e5e9f3;
+	background-image:url(/images/quotes.png);
+	background-position: 5px 10px;
+	background-repeat:no-repeat;
+	color: #5470b1;
+	font-style: italic;
+}	
+
+/* DEFAULT HEADLINE CLASSES */
+
+h1 {
+  color: #000;
+  font-size: 1.5em;
+  font-weight: normal;
+}
+
+
+h2 {
+	color: #000;
+	font-size: 1.2em;
+/*	border-color : #000;
+  font-weight: bold;  */
+}
+
+
+h3 {
+	color: #888;
+	font-size: 1.1em;
+/*  font-weight: bold; */
+
+}
+
+h4 {
+  color: #000;
+  font-size: 1.1em;
+/*  font-weight: bold;*/
+}
+
+
+/*********************************/
+/* SECTIONS HEADER */
+
+div#header {
+/* container around header */
+  color: #ffffff;
+  background-color: #000000;
+}
+
+  div#header ul#sections {
+  /* list of evolt.org section */
+    list-style-type: none;
+    color: #848484;
+    font-weight: normal;
+    font-size: 0.9em;
+   }
+
+  div#header ul#sections li {
+  }
+
+  div#header ul#sections li a {
+    font-weight: bold;
+  }
+
+  div#header ul#sections li a:link {
+    color: #fff;
+  }
+  
+  div#header ul#sections li a:visited {
+    color: #fff;
+  }
+  
+  div#header ul#sections li#sectionwork {
+    background: transparent url(/images/bluecube.gif) no-repeat;
+  }
+
+  div#header ul#sections li#sectiontest {
+    background: transparent url(/images/redcube.gif) no-repeat;
+  }
+
+  div#header ul#sections li#sectiondonate {
+    background: transparent url(/images/goldcube.gif) no-repeat;
+  }
+
+  div#header ul#sections li p {
+    font-weight: normal;
+    font-size: 0.95em;
+  }
+
+
+/* LOGIN / SEARCH PANEL */
+
+form#login {
+/* login bar */
+  background-color: transparent;
+  color: black;
+  font-size: .85em;
+  font-weight: bold;
+}
+
+  form#login label {
+    color: #000000;
+    border-right-color: #c4c3a5;
+  }
+
+  form#login input#login-name, form#login input#login-pass, form#searchform #searchbox {
+    background-color: white; 
+    color: black;
+    font-size: 1em; 
+/*    border-color: #848484;*/
+  }
+
+  form#login a:link {
+    color: #000000;
+  } 
+  form#login .form-submit, form#searchform #searchevolt {
+    background-color: #bcec8c;
+    color: black;
+    font-size: 1em; 
+/*    border-right-color: #444; 
+    border-bottom-color: #444; 	
+    border-left-color: #999; 
+    border-top-color: #999;*/
+}
+
+#user-register {
+  background-color: transparent;
+  color: black;
+  font-size: .85em;
+}
+
+  #user-register a, #user-register a:visited {
+    background-color: #d6d7b6;
+    font-weight: bold;
+    color: black;
+}
+
+  #user-register a:hover, #user-register a:active {
+    background-color: #d6d7b6;
+    color: black;
+}
+
+form#searchform {
+  background-color: transparent;
+  font-size: .92em;
+}
+
+
+/*********************************/
+/* MAIN CONTENT AREA */
+
+/*  BASIC DEFINITIONS  */
+
+div#content {
+/* container around main content area */
+  background-color: #ffffff;
+}
+
+div#footer {
+/* container for footer */
+  color: #ffffff;
+  background-color: #000000;
+}
+
+/* SECTION PANEL - SECONDARY LINKS */
+
+div#channel {
+/* secondary menu atop main content */
+  list-style-type: none;
+  background-color: #2C4F9F;
+  color: white;
+  font-size: 0.9em;
+}
+
+  div#channel a {
+    background-color: transparent;
+    color: #ffffff;
+  }
+
+  .work-title {
+    font-weight: bold;
+    background: #2c4f9f url(./workcube.gif) no-repeat;
+    color: white;
+    font-size: 1.1em;
+    line-height: 1.5em;
+  }
+
+  ul#secondary, ul#secondary-constants {
+  /* secondary menu atop main content */
+    list-style-type: none;
+    line-height: 1.5em;
+  }
+
+div#test-channel {
+/* secondary menu atop main content */
+  list-style-type: none;
+  background-color: #2C4F9F;
+  color: white;
+  font-size: 0.9em;
+}
+
+  div#test-channel a {
+    background-color: transparent;
+    color: #ffffff;
+  }
+
+  .test-title {
+    font-weight: bold;
+    background: #2c4f9f url(./workcube.gif) no-repeat;
+    color: white;
+    font-size: 1.1em;
+    line-height: 1.5em;
+  }
+
+  ul#secondary, ul#secondary-constants {
+  /* secondary menu atop main content */
+    list-style-type: none;
+    line-height: 1.5em;
+  }
+
+
+/*  SIDEBAR RELATED ITEMS */
+
+.sidebar {
+  font-size: 0.85em;
+}
+
+.sidebar h4 {
+  font-size: 1.0em;
+}
+
+.sidebar a.active {
+  font-weight: bold;
+}
+
+
+.sidebar a {
+  font-weight: bold;
+  background-color: transparent;
+  color: #3474fc;
+}
+
+#content ul li, #content .item-list ul li {
+  list-style-type: square;
+  list-style-image: url(./square-bullet-default.gif)
+}
+
+#content ul li.collapsed {
+  list-style-type: square;
+  list-style-image: url(./menu-collapsed.png);
+}
+
+
+/* ARTICLE META DATA */
+
+.postinfo, #meta-data, #authorbox p {
+  color: #999;
+  background-color: transparent;
+  font-size: 0.85em;
+}
+
+#metadata {
+  border-top-color: #888;
+}
+
+div#want-more {
+	font-size: 1em;
+	}
+
+#want-more h4 {
+	font-weight: bold;
+	}
+
+#want-more a {
+	font-weight: bold;
+	}
+
+div.postinfo-story {  
+  border-right-color: #888;
+}
+
+div#authorbox, #authorbox .portrait {
+  font-size: 1em;
+	background: #fff;
+	border-color: #888;
+}
+
+#authorbox h4, #meta-data h4 {
+  font-size: 1.0em;
+}
+
+
+/* MISC CLASSES */
+
+div.articlesynopsis {
+/* container around article listing */
+}
+	
+.node {
+	line-height: 1.5em;
+	font-size: 0.85em;
+	}
+
+  .node h2 {
+  	font-size: 1em;
+  	font-weight: bold;
+  	color: black;
+  	}
+
+  .node h2 a:link, .node h2 a:visited { /*NB mockup shows sticky title as blue */
+    background-color: transparent;
+    color: #000;
+  }
+
+.node-sticky h2 a {
+	line-height: 1.2em;
+}
+
+  .node p {
+    line-height: 2em;
+  }
+
+  .node ul, .node ol {
+    line-height: 2em;
+  }
+
+.node-summary {
+    font-size: 1em;
+    color: black;
+    line-height: 1.5em
+  }
+
+.node-sticky .node-summary {
+    line-height: 1.5em
+  }
+
+.node-content {
+  font-size: 1em;
+  color: black;
+  line-height: 2em
+}
+
+  .node-content h2 {
+  	font-size: 1.2em;
+  	border-color: #000;
+  	}	
+
+.node-links {
+  font-size: 1em;
+}
+
+.node-sticky {
+  line-height: 1.2em;
+  font-size: 1em;
+}
+
+#pager {
+  border-top: #ddd;
+}
+
+
+.comment {
+  font-size: 0.85em;
+  line-height: 2em;
+}
+
+.comment h4 {
+	background: #e5e9f3;
+	}
+
+.comment h4 a:link, .comment h4 a:visited {
+  color: black;
+}
+	
+	
+div.messages {
+    background-color: #ffce7b;
+    border-color: #ffa500;
+    color: Black;
+    font-size: 85%;
+    font-weight: bold;
+}
+
+.testing {
+	border: 1px solid red;
+	background-color: #ffe8e8;
+}
+
+.side		{	
+	background: #e5e9f3;
+	color: #5470b1;
+	font-size: 0.85em;
+	text-align: left;
+}
+
+div#authorbio {
+	background: #e5e9f3;
+	border-color: #5470b1;
+}
+
+tr.dark {
+  font-weight: bold;
+}
+
+tr.dark {
+  font-size: 0.9em;
+}
+
+/* DONATION BLOCK */
+#donation {
+/*	background-color: #fe6; */
+	background-color: #ffee80; /* Toned down a bit */
+}
+
+#donation h3 {
+	color: white;
+  background: black url(./donatecube.gif) no-repeat 0.5em 0.3em;
+  font-size: 1em;
+  }
+
+#donation h3 a:link, #donation h3 a:visited {
+	color: white;
+}
+
+#donation ul li{
+	list-style-image: none;
+}
+
+#donation li a:link, #donation li a:visited {
+	color: black;
+}

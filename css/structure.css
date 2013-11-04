@@ -1,0 +1,1137 @@
+/*
+
+**
+
+** $Id: structure.css,v 1.213 2005/03/27 21:13:28 emkay Exp $
+
+**
+
+** structure.css - evolt.org main css file
+
+**
+
+*/
+
+
+
+
+
+
+
+/* 
+
+** PLEASE NOTE THAT FONT AND COLOUR DEFINITIONS ARE IN A DIFFERENT CSS DOCUMENT 
+
+** AND THAT THIS DOCUMENT CONTAINS *ALL* MARGIN, PADDING and BORDER WIDTHS and STYLES 
+
+** (Border colours are in the other file) 
+
+**
+
+** Browser fixes are labelled in comments with the browser version:
+
+** IE6, IE5.5, IE5, and Gecko
+
+*/
+
+/*********************************/
+
+/* ELEMENT DEFAULTS */
+
+
+
+body {
+
+  margin: 0 0 0 0;
+
+  padding: 0 0 0 0;
+
+}
+
+
+
+* body * { /*peekaboo fix - the initial star should ensure it's IE only... */
+
+  /*position: relative;*/ 
+
+  }
+
+
+
+label {
+
+  display: block;
+
+}
+
+
+
+fieldset {
+
+  margin: 0 0 0 0;
+
+  padding: 0 0 0 0;
+
+  border: none;
+
+}
+
+
+
+
+
+legend {
+
+  display: block;
+
+}
+
+
+
+#login legend, #searchform legend {
+
+	display: none;
+
+	} 
+
+
+
+a img {
+
+  border: none;
+
+}
+
+
+
+/* DEFAULT HEADLINE CLASSES */
+
+   /* if structural properties will be added at any time */
+
+
+
+
+
+
+
+/*********************************/
+
+/* SECTIONS HEADER */
+
+
+
+div#header {
+
+/* container around header */
+
+  height: 50px;
+
+  margin: 0 0 1.2em 0;
+
+  padding: .5em 0;
+
+}
+
+
+
+  div#header img#logo {
+
+    margin: 5px 78px 0 35px;
+
+    float: left;
+
+  }
+
+  
+
+  div#header ul#sections {
+
+  /* list of evolt.org sections */
+
+    margin: 1em 0 0 0;
+
+    padding: 0 0 0 0;
+
+    list-style-type: none;
+
+    float: left;
+
+   }
+
+
+
+  div#header ul#sections li {
+
+    height: 33px;
+
+    margin: 0 2em 0 0;
+
+    padding: 0 1em 0 3em;
+
+    float: left;
+
+  }
+
+
+
+  div#header ul#sections li p {
+
+    margin: 0 0 0 0;
+
+    padding: 0 0 0 0;
+
+  }
+
+
+
+/* PRINT ONLY HEADER */
+
+div#printheader {
+
+  display: none;
+
+}
+
+
+
+
+
+/* LOGIN / SEARCH PANEL */
+
+
+
+form#login {
+
+  margin: 0 10px 0 0;
+
+  padding: 0 0 0.9em 1.7em;
+
+  float: left;
+
+}
+
+
+
+  form#login label, form#searchform label {
+
+/*    margin: 0 1.5em 0 0;
+
+    padding-right: 1.5em;
+
+    border-right: solid 1px;*/
+
+    display: inline;
+
+	margin-right: 0.5em;
+
+
+
+  }
+
+  
+
+#login label.faux-legend {
+
+    margin: 0 1.5em 0 0;
+
+    padding-right: 1.5em;
+
+    border-right: solid 1px;
+
+  } 
+
+  
+
+#searchform label.faux-legend {
+
+    margin: 0 0 0 0;
+
+	padding-left: 1.5em;
+
+	border-left: solid 1px;
+
+	}
+
+
+
+  form#login input#login-name, form#login input#login-pass, form#searchform #searchbox {
+
+    padding: 2px;
+
+    margin: 0 5px 0 0;
+
+    display: inline;
+
+  }
+
+
+
+  form#login .form-submit, form#searchform #searchevolt {
+
+    padding: 2px 5px;
+
+    margin: 0px 0px 0px 5px;
+
+    display: inline;
+
+}
+
+
+
+/*
+
+form#searchform #searchevolt, form#searchform #searchbox {
+
+    margin-bottom: 1em;
+
+}
+
+*/
+
+
+
+form#searchform {
+
+  margin: 0 1.5em 0 0;
+
+  padding: 0 0 0 0;
+
+  float: right;
+
+  width: 20em;
+
+  text-align: right;
+
+}
+
+
+
+
+
+/*********************************/
+
+/* MAIN CONTENT AREA */
+
+
+
+/*  BASIC DEFINITIONS  */
+
+
+
+div#content {
+
+  clear: both;
+
+  margin: 1.2em 1.5em 0 1.5em;
+
+  padding: 0em 0em 1em 0em;
+
+}
+
+
+
+div.main-content, div.main-content-node {
+
+  margin: 1.8em 0 0 0;
+
+  padding: 0; 
+
+}
+
+
+
+div#sidebar-left {
+
+   clear: both;
+
+  float: left;
+
+  width: 180px;
+
+  margin: 0 0 0 0;
+
+  padding: 0 0 0 0.5em;
+
+  border: 0px solid white; /* For IE5.5 */
+
+}
+
+
+
+div#sidebar-right {
+
+  float: right;
+
+  margin: 0 0 0 0;
+
+  padding: 0 0.5em 0 0;
+
+  width: 180px;
+
+  border: 0px solid white; /* For IE5.5 */
+
+}
+
+
+
+#content-left {
+
+  margin-left: 200px;
+
+  margin-right: 1.5em;
+
+}
+
+
+
+#content-right {
+
+  margin-right: 200px;
+
+  margin-left: 1.5em;
+
+}
+
+
+
+#content-both {
+
+  margin-right: 200px;
+
+  margin-left: 200px;
+
+}
+
+
+
+div#footer {
+
+  margin: 0 1.5em 1.2em 1.5em;
+
+  padding: 0.5em 1em 0.5em 1em;
+
+  clear: both;
+
+}
+
+
+
+
+
+/* SECTION PANEL - SECONDARY LINKS */
+
+
+
+div#channel {
+
+/* secondary menu atop main content */
+
+  margin: 0;
+
+  padding: 0;
+
+  height: 3em;
+
+}
+
+
+
+  .work-title {
+
+    margin: 0.6em 125px 0.5em 10px;
+
+    padding: 0 0 0.5em 20px;
+
+    float: left;
+
+  }
+
+
+
+  ul#secondary {
+
+    list-style-type: none;
+
+    float: left;
+
+    margin: 0.7em 0;
+
+    padding: 0;
+
+  }
+
+
+
+  ul#secondary-constants {
+
+    list-style-type: none;
+
+    float: right;
+
+    margin: 0.7em;
+
+    padding: 0;
+
+  }
+
+
+
+  ul#secondary li, ul#secondary-constants li {
+
+    display: inline;
+
+    margin: 0.5em;
+
+  }
+
+
+
+
+
+/*  SIDEBAR RELATED ITEMS */
+
+
+
+.sidebar h4 {
+
+  margin: .5em 0 .5em 0em; /* IE5, IE5.5 */
+
+  padding: 0;
+
+}
+
+
+
+#sidebar-left h4 {
+
+  margin-left: 2em; /* IE5, IE5.5 */
+
+  marg\in-left: 0em; /* IE6, Gecko */
+
+}
+
+
+
+.block {
+
+  border-top: solid 1px;
+
+  margin: .25em 0;
+
+  padding: .5em 0 0 0;
+
+  border: none;
+
+}
+
+
+
+.block ul li {
+
+  margin: 0 0 0 1.2em;
+
+}
+
+
+
+* html .block ul li { /* ie only fix for sidebar lists */ 
+
+	margin-left: 1em;
+
+	}
+
+	
+
+.block .item-list ul li {
+
+  margin: 0 0 0.25em 2.25em;
+
+}
+
+
+
+
+
+/* ARTICLE META DATA */
+
+
+
+div.postinfo {
+
+  margin: 1em 0 0 0;
+
+}
+
+
+
+#meta-data {
+
+  clear: right;
+
+  margin: 1em 0;
+
+  padding: 0 0 0 0;
+
+/*  height: 10em;*/
+
+  border-top: 1px solid;
+
+}
+
+
+
+  #meta-data h4 {
+
+   margin: 0; 
+
+  }
+
+
+
+  #meta-data p {  
+
+    margin: 0;
+
+    padding: 0;
+
+  }
+
+
+
+  #meta-data ul {
+
+    margin: 0 0 1em 0;
+
+    padding: 0.5em;
+
+  }
+
+
+
+  #meta-data ul li {
+
+    margin: 0 0 0 1em;
+
+    padding: 0 0 0 0.5em;
+
+  }
+
+
+
+div.postinfo-story {  
+
+/* different layout on pure article pages */
+
+  float: left;
+
+  margin: 1em 0;
+
+  margin-right: 1em;
+
+  padding-right: 3em;
+
+  border-right: 1px solid;
+
+}
+
+
+
+#participate {
+
+  float: left;
+
+  margin: 1em 0;
+
+  padding-left: 2em;
+
+}
+
+
+
+#want-more {
+
+  width: 195px;
+
+  margin: 1em 0;
+
+  margin-left: 3em;
+
+  float: right;
+
+}
+
+
+
+#authorbox {
+
+  clear: right;
+
+  float: right;
+
+/*  border-style: solid none none solid;
+
+  border-width: 1px;
+
+  text-align: center;*/
+
+  margin: 0 0 3em 3em;
+
+  padding: 1em;
+
+  width: 195px;
+
+  text-align: left;
+
+}
+
+
+
+  #authorbox .portrait {
+
+    display: block;
+
+    border: 1px solid;
+
+    margin: auto;
+
+    margin-top: 0.5em;
+
+    margin-bottom: 0.5em;
+
+	text-align: left;
+
+  }
+
+
+
+  #authorbox h4 {
+
+    margin: 0;
+
+  }
+
+
+
+
+
+.side		{	
+
+	padding: 0.5em;
+
+	margin: 1em;
+
+
+
+}
+
+
+
+.side img {
+
+	border: 1px solid;
+
+	padding: 0;
+
+	margin: 0.5em 1em 1em 1em;
+
+	float: right;
+
+	}
+
+
+
+div#authorbio {
+
+	margin: 0 0 1em 0;
+
+	padding: 1em;
+
+	border: 1px solid;
+
+}
+
+
+
+
+
+
+
+/* MISC CLASSES */
+
+
+
+div.visualClear {
+
+	clear: both;
+
+	}
+
+div.visualClearRight {
+
+	clear: right;
+
+	}
+
+
+
+div.articlesynopsis {
+
+/* container around article listing */
+
+}
+
+
+
+.main-content-node ul.primary {
+
+  float: right;
+
+}
+
+
+
+#pager {
+
+  border-top: solid 1px;
+
+  padding: 1em 0 0 0;
+
+}
+
+
+
+.main-content-node h1.content-title {
+
+  margin: 0;
+
+  padding: 0;
+
+/*  float: left;*/
+
+}
+
+
+
+.main-content-node label {
+
+	display: inline;
+
+}
+
+
+
+.main-content-node legend {
+
+	display: block;
+
+}
+
+
+
+.node-form .standard {
+
+	clear: both;
+
+	float: left;
+
+}
+
+  
+
+.node {
+
+  margin: 0 0 2em 0;
+
+}
+
+
+
+.node-sticky {
+
+/*	height: 17em;
+
+  margin: 0 0 0 -195px;
+
+  padding-left: 195px;*/
+
+  border-bottom: 1px solid;
+
+  padding-bottom: 2em;
+
+}
+
+    
+
+  .node p {
+
+    margin: 0 0 1em 0;
+
+    max-width: 85em;
+
+  }
+
+
+
+  .node ul, .node ol {
+
+    margin-top: 1em;
+
+    max-width: 85em;
+
+  }
+
+
+
+  .node-sticky h2 {
+
+    margin: 0 0 0 0;
+
+    padding: 0.3em 0 0.3em 0;
+
+  }  
+
+  
+
+  .node h2 {
+
+  	display: inline;
+
+	padding: 0;
+
+	margin: 0;
+
+	}
+
+
+
+  .node-summary {
+
+    margin: 0;
+
+    display: inline;
+
+  }
+
+
+
+  .node-content {
+
+    margin: 0;
+
+    clear: none;
+
+  }
+
+
+
+  .node-content img {
+
+  	margin: 2em;
+
+	}
+
+	
+
+  .node-content li {
+
+    margin-bottom: 0.5em;
+
+    margin-top: 0.5em;
+
+  }  
+
+  
+
+  .node-content h2 {
+
+    margin: 0 0.5em 1em 0;
+
+    padding: 0 0 0.2em 0;
+
+/*    border-style : none none solid none;
+
+    border-width : 1px;  */
+
+    /*    width: 98%;*/
+
+  }  
+
+
+
+.node-sticky img {
+
+  float: right;
+
+	margin: 0.5em 2em 0.5em 2em;
+
+  border: 1px solid;
+
+}
+
+
+
+.node-sticky .postinfo {
+
+  margin: 0;
+
+}
+
+
+
+.node-form .standard, .profile { /* overriding drupal.css - it makes large chunks of forms drop below the left nav */
+
+	clear: none;
+
+	}
+
+  
+
+/* ACCESSIBILITY-SUPPORTING STYLES */
+
+
+
+.access, .offLeft {
+
+    position: absolute;
+
+    left: -1000px;
+
+    width: 100px;
+
+	top: 0;
+
+ }
+
+ 
+
+div.messages {
+
+/*	clear: both;*/
+
+	border: 1px solid;
+
+    margin: 2em 0em 1em 0em;
+
+    padding: 0.5em 1em;
+
+    vertical-align: middle;
+
+	width: 98%;
+
+} 
+
+
+
+blockquote {
+
+	padding: 15px 10px 10px 38px;
+
+	margin: 0 0.5em 15px 0;
+
+	/*width: 80%;*/
+
+}
+
+
+
+pre {
+
+  clear : both ;
+
+  overflow : auto ;
+
+  width : 98% ;
+
+  padding : 5px 5px 25px 5px ;
+
+  border : 1px dashed;  
+
+ }	
+
+ 
+
+.comment h4 {
+
+	padding: 0.3em 0 0.3em 0;
+
+	}
+
+	
+
+tr.light {
+
+  padding-left: 2em;
+
+}
+
+
+
+/* DONATION BLOCK */
+
+
+
+#donation {
+
+	margin-top: 1em;
+
+	border-width: 1px 1px 5px 1px;
+
+	border-style: solid;
+
+	margin-left: 0.5em;
+
+	padding-bottom: 5px;
+
+}
+
+
+
+  .block > #donation { /* ignored by ie, lifts box up just a smidge elsewhere */
+
+	  margin-top: 0.5em;
+
+	  }
+
+
+
+  #donation h3 {
+
+    margin: 0;
+
+    padding: 0.5em 0.5em 0.5em 2em;
+
+  }
+
+
+
+  #donation p {
+
+    margin: 1em;
+
+  }
+
+
+
+  #donation ul {
+
+    padding: 0 1em 1em 1em;
+
+  }
+
+
+
+  #donation li {
+
+    margin: 0.5em 0 0 1em;
+
+  }
+
+
+
+  #donation form {
+
+    text-align: center;
+
+  }
+
+  

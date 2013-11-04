@@ -1,0 +1,41 @@
+/*
+**
+** $Id: structure_ie.css,v 1.10 2005/03/23 00:23:20 martin Exp $
+**
+** structure.css - evolt.org main css file
+**
+*/
+
+
+/* 
+** PLEASE NOTE THAT FONT AND COLOUR DEFINITIONS ARE IN A DIFFERENT CSS DOCUMENT 
+** AND THAT THIS DOCUMENT CONTAINS *ALL* MARGIN, PADDING and BORDER WIDTHS and STYLES 
+** (Border colours are in the other file) 
+**
+** Browser fixes are labelled in comments with the browser version:
+** IE6, IE5.5, IE5, and Gecko
+*/
+/*********************************/
+/* ELEMENT DEFAULTS */
+
+
+body * { /*peekaboo fix - the initial star should ensure it's IE only... */
+  position: relative;
+  }
+
+.node ul, .node ol {
+    margin-left: 4em;
+  }
+  
+ form#searchform {
+  width: 25em;
+}
+
+	
+#meta-data, #want-more { /* peekaboo fix */
+	position: relative; 
+	}
+
+#meta-data {
+	width: 99%;
+	}

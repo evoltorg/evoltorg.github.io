@@ -1,0 +1,30 @@
+/*
+**
+** $Id: print.css,v 1.7 2005/03/23 09:46:42 martin Exp $
+**
+** style.css - evolt.org main css file
+**
+*/
+
+/*@import url("./fonts_colours.css"); */
+/* fonts_colours.css already imported in style.css which is media: all */
+
+@import url("./print_structure.css");
+
+/* stuff from here on in should only override definitions in fonts_colours.css */
+
+body {
+	background-color: #fff;
+	}
+
+pre {
+	overflow: visible;
+	}
+
+ blockquote {
+	background-color : #fff;
+}
+
+div#authorbox {
+	background-color: #fff;
+	}

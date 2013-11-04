@@ -1,0 +1,10 @@
+/*
+**
+** $Id: style.css,v 1.87 2005/02/02 17:12:34 elfur Exp $
+**
+** style.css - evolt.org main css file
+**
+*/
+
+@import url("./structure.css");
+@import url("./fonts_colours.css");
