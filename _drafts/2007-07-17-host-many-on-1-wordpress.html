@@ -1,0 +1,13 @@
+---
+layout: post
+permalink: node/60811
+ratings: 0
+avgrate: 
+user: maxbear
+real_name: "Maxbear"
+user_since: 2007-07-17
+avatar: ""
+article_count: 1
+excerpt: "Install multiple websites on one wordpress installation."
+---
+<p>Do you manage more than 1 wordpress? Do you install wordpress on every of your sites? If you doing in this way, you will have a lot of databases and wordpress installations. How about the future update? If you have 100 sites, you need to manage 100 updates. There is something you can do to have many websites on 1 installation only.</p></p><p><p>All you have to do is upload the wordpress files as usual. Don't install your site at the first place. Then change the following following code in your wp-config.php.</p></p><p><code></p>< ?php</p>// ** MySQL settings ** //</p>define('DB_NAME', ''); // The name of the database</p>define('DB_USER', ''); // Your MySQL username</p>define('DB_PASSWORD', ''); // ...and password</p>define('DB_HOST', 'localhost'); // 99% chance you won't need to change this value</p><p>// table prefix, for hosting multiple intalltaions in the same db.</p>$table_prefix = ereg_replace('^(www\.)', '', $_SERVER['HTTP_HOST']);</p>$table_prefix = ereg_replace('\.', '', $table_prefix);</p>$table_prefix = ereg_replace(’\-’, ”, $table_prefix);</p>$table_prefix = $table_prefix . '_';</p><p>// Change this to localize WordPress. A corresponding MO file for the</p>// chosen language must be installed to wp-includes/languages.</p>// For example, install de.mo to wp-includes/languages and set WPLANG to 'de'</p>// to enable German language support.</p>define ('WPLANG', '');</p><p>/* Stop editing */</p><p>define('ABSPATH', dirname(__FILE__).'/');</p>require_once(ABSPATH.'wp-settings.php');</p>?></p></code></p><p><p>Every domain (or sub-domain) you have pointing at this WordPress installation will use a different prefix for it’s tables in the database. So easy :-) </p></p><p><p>If you want to add more domains, just setup the domain in your server, then go to that domain and start the standard installation. </p></p>

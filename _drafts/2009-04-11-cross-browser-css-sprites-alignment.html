@@ -1,0 +1,13 @@
+---
+layout: post
+permalink: node/62048
+ratings: 0
+avgrate: 
+user: milan1980
+real_name: "Milan Adamovsky"
+user_since: 2009-04-11
+avatar: ""
+article_count: 1
+excerpt: "If you are like me and you try to avoid having to maintain one CSS file for IE and another for non-IE, here is a new little trick I figured out that may be helpful in regards to sprites.  For this article to make sense you must have a preliminary understanding of CSS sprites, furthermore I've only t"
+---
+If you are like me and you try to avoid having to maintain one CSS file for IE and another for non-IE, here is a new little trick I figured out that may be helpful in regards to sprites.  For this article to make sense you must have a preliminary understanding of CSS sprites, furthermore I've only tested it in IE7 and FF3.</p><br /><br /></p>The challenge is to have an image in a sprite to get positioned equally on IE and and FireFox let's say.  Normally the dirty solution would be to code an exception.  The one problem is that the <i>!important</i> is not recognized in some IE7 versions.  So while it is easy to trick the browser in IE6 with <i>!important</i>, no such luck in IE7.  The other constraint is that we want to minimize maintenance cost, so we want to try to keep only one CSS file.</p><br /><br /></p>Let's examine the problem by example.</p><br /><br /></p><code></p>  .class {</p>          background: white url('/images/sprite.gif') no-repeat;</p>          background-position: 0px -82px !important;</p>          background-position: 0px -79px;</p>         }</p></code></p><br /></p>The above is what we would normally be inclined of doing.  We might even want to replace the dimensions to <i>em</i> with same undesired results.  Using two CSS files would make the situation even more messy. </p><br /><br /></p>The solution is quite simple actually:  We change the dimensions to a <b>percentage</b>!</p><br /><br /></p>That's right, we will simply have to change the unit to <i>%</i> and surprisingly it yields same results in both browsers.  The only caveat is that positive percentage moves the image up, and negative percentage moves the image down - in other words the opposite to the usual behavior when <i>px</i> or <i>em</i> is used.</p><br /><br /></p>A look at the new code would look something like:</p><br /><br /></p><code></p>  .class {</p>          background: white url('/images/sprite.gif') no-repeat;</p>          background-position: 0px 105%;</p>         }</p></code></p><br /></p>I hope this will prove helpful as it has helped me.</p>
