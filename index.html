@@ -9,7 +9,10 @@ title: evolt.org
     {% for post in paginator.posts %}
 
     <div class="node-sticky">
-        <img class="portrait" src="{{ post.avatar }}" alt="Picture of {{ post.user }}"  />      <div class="postinfo">{{ post.date | date_to_long_string }}</div>
+        {% if post.avatar %}
+        <img class="portrait" src="{{ post.avatar }}" alt="Picture of {{ post.user }}" />
+        {% endif %}
+        <div class="postinfo">{{ post.date | date_to_long_string }}</div>
         <div class="postinfo"><a href="commentary_and_society">{{ post.category }}</a> | {{ post.real_name }}</div>
         <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
         <div class="node-summary">
