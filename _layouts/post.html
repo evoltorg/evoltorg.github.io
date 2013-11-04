@@ -1,7 +1,34 @@
 ---
 layout: default
 ---
-<h2>{{ page.title }}</h2>
+<h1 class="content-title">{{ page.title }}</h1>
+
+<div id="meta-data">
+    <div class="postinfo-story">
+        <p>Posted on <strong>{{ page.date | date_to_string }}</strong></p>
+        <p>in <strong><a href="commentary_and_society">Commentary &amp; Society</a></strong></p>
+        <p>by <strong>Adrian Roselli</strong> (<a href="user/88" title="View user profile.">aardvark</a>)</p>
+    </div>
+    <div id="participate">
+        <p>Rated <strong>4.21 (Ratings: 2)</strong> (<a href="FoodPhotos#node-actions">Add your rating</a>)</p>
+        <!-- Defered until post launch
+          <p><a href="/node/63566/print">Print this article</a></p>
+          <p><a href="">Email to a friend</a></p>
+        -->
+        <p>
+            <a href="user">Log in</a> to add a comment<br />
+            (1 comment so far)</p>
+    </div>
+    <div id="want-more">
+        <h4>Want more?</h4>
+        <ul>
+            <li>More articles in <a href="commentary_and_society">Commentary &amp; Society</a></li>
+            <li>More articles by <a href="user/88" title="View user profile.">aardvark</a></li>
+        </ul>
+    </div>
+    <div class="visualClearRight">&nbsp;</div>
+</div>
+
 <p class="meta">{{ page.date | date_to_string }}</p>
 
 <div class="post">
