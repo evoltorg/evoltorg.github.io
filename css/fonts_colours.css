@@ -234,7 +234,7 @@ div#channel {
 
   .work-title {
     font-weight: bold;
-    background: #2c4f9f url(./workcube.gif) no-repeat;
+    background: #2c4f9f url(/images/workcube.gif) no-repeat;
     color: white;
     font-size: 1.1em;
     line-height: 1.5em;
@@ -261,7 +261,7 @@ div#test-channel {
 
   .test-title {
     font-weight: bold;
-    background: #2c4f9f url(./workcube.gif) no-repeat;
+    background: #2c4f9f url(/images/workcube.gif) no-repeat;
     color: white;
     font-size: 1.1em;
     line-height: 1.5em;
@@ -297,12 +297,12 @@ div#test-channel {
 
 #content ul li, #content .item-list ul li {
   list-style-type: square;
-  list-style-image: url(./square-bullet-default.gif)
+  list-style-image: url(/images/square-bullet-default.gif)
 }
 
 #content ul li.collapsed {
   list-style-type: square;
-  list-style-image: url(./menu-collapsed.png);
+  list-style-image: url(/images/menu-collapsed.png);
 }
 
 
@@ -469,7 +469,7 @@ tr.dark {
 
 #donation h3 {
 	color: white;
-  background: black url(./donatecube.gif) no-repeat 0.5em 0.3em;
+  background: black url(/images/donatecube.gif) no-repeat 0.5em 0.3em;
   font-size: 1em;
   }
 
