@@ -87,6 +87,17 @@
         </fieldset>
     </form>
 
+    <form action="user/login" method="post" id="login">
+        <fieldset>
+            <legend>evolt.org login:</legend>
+            <label for="login-name" class="faux-legend"><!-- evolt.org -->login:</label><input type="text" maxlength="64" class="form-text" name="edit[name]" id="login-name" size="15" value="username" accesskey="3" onFocus="if(this.value && this.value == 'username') { this.value = ''; this.form.password.value = ''; } else { this.select(); }" />
+            <label for="login-pass">password:</label><input type="password" class="form-password" maxlength="64" name="edit[pass]" id="login-pass" size="15" value="password" onFocus="this.select()" />
+            <input type="hidden" name="edit[destination]" value="user" />
+            <input type="submit" class="form-submit" name="op" value="Log in"  />
+            or <a href="user/register">register</a>
+        </fieldset>
+    </form>
+
         <div class="site">
           <div class="header">
             <h1 class="title"><a href="/">{{ site.name }}</a></h1>
