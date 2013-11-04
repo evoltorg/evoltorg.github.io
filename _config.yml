@@ -1,4 +1,4 @@
 name: evolt.org
 markdown: redcarpet
 pygments: true
-paginate: 5
+paginate: 10
