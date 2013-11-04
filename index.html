@@ -4,17 +4,19 @@ title: evolt.org
 ---
 
 <div id="home">
-  <h1>Blog Posts</h1>
 
     <!-- This loops through the paginated posts -->
     {% for post in paginator.posts %}
-    <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-    <p class="author">
-        <span class="date">{{ post.date }}</span>
-    </p>
-    <div class="content">
-        {{ post.excerpt }}
+
+    <div class="node-sticky">
+        <img class="portrait" src="{{ post.avatar }}" alt="Picture of {{ post.user }}"  />      <div class="postinfo">{{ post.date | date_to_long_string }}</div>
+        <div class="postinfo"><a href="commentary_and_society">{{ post.category }}</a> | {{ post.real_name }}</div>
+        <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+        <div class="node-summary">
+            {{ post.excerpt }}
+        </div>
     </div>
+
     {% endfor %}
 
     <!-- Pagination links -->
