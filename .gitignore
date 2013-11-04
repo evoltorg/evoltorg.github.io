@@ -1,1 +1,4 @@
-_site
+# ignore and unignore specifically for category pages
+!_site/
+_site/*
+!_site/categories
