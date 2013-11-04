@@ -7,7 +7,7 @@ layout: default
     <div class="postinfo-story">
         <p>Posted on <strong>{{ page.date | date_to_string }}</strong></p>
         <p>in <strong><a href="commentary_and_society">{{ page.category }}</a></strong></p>
-        <p>by <strong>{{ page.real_name }}</strong> (<a href="" title="View user profile.">{{ page.user }}</a>)</p>
+        <p>by <strong>{{ page.real_name }}</strong> ({{ page.user }})</p>
     </div>
     <div id="participate">
         <p>Rated <strong>4.21 (Ratings: {{ page.ratings }})</strong> <!--(<a href="FoodPhotos#node-actions">Add your rating</a>)--></p>
