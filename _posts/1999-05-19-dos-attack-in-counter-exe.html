@@ -1,5 +1,13 @@
 ---
 layout: post
 permalink: node/100
+ratings: 1
+avgrate: 4.0000
+user: djc
+real_name: "Daniel Cody"
+user_since: 1998-12-14
+avatar: ""
+article_count: 146
+excerpt: "A denial of service exists in counter.exe version 2.70, a fairly popular webhit counter used on the Win32 platform with web servers such as IIS and</p>WebSite Pro. </p><p>1) When someone requests :</p>http:/"
 ---
-A denial of service exists in counter.exe version 2.70, a fairly popular webhit counter used on the Win32 platform with web servers such as IIS and\nWebSite Pro. <P></p><p>1) When someone requests :\nhttp://no-such-server-really/scripts/counter.exe?%0A this will create an\nentry in counter.log of a blank line then a ",1" . If the person then\nrefreshes their browser and requests it again you get an Access Violation in\ncounter.exe - the instruction at 0x00414c0a referenced memory at 0x00000000.</p><p>2) When someone requests:\nhttp://no-such-server-really/scripts/counter.exe?AAAAAover-2200-As you get a\nsimilar problem - though not a buffer overrun.</p><p>Whilst in a state of "hanging" all other vaild requests for counter are\nqueued and not dealt with until someone goes to the console and okays the AV\nmessages. Added to this memory can be consumed if the page is continuosly\nrequested.</p><p>Thanks to David Litchfield for the heads up
+A denial of service exists in counter.exe version 2.70, a fairly popular webhit counter used on the Win32 platform with web servers such as IIS and</p>WebSite Pro. <P></p><p>1) When someone requests :</p>http://no-such-server-really/scripts/counter.exe?%0A this will create an</p>entry in counter.log of a blank line then a ",1" . If the person then</p>refreshes their browser and requests it again you get an Access Violation in</p>counter.exe - the instruction at 0x00414c0a referenced memory at 0x00000000.</p><p>2) When someone requests:</p>http://no-such-server-really/scripts/counter.exe?AAAAAover-2200-As you get a</p>similar problem - though not a buffer overrun.</p><p>Whilst in a state of "hanging" all other vaild requests for counter are</p>queued and not dealt with until someone goes to the console and okays the AV</p>messages. Added to this memory can be consumed if the page is continuosly</p>requested.</p><p>Thanks to David Litchfield for the heads up
