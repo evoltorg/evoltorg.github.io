@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Describing Document Text For Accessibility</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Describing Document Text For Accessibility</h2>
+<p class="meta">18 Aug 2002</p>
+
+<div class="post">
+<p>\nA key focus of accessible web site design is providing equivalent \n  alternatives to auditory and visual content. This is normally the task of providing \n  alternative text for images, sounds and any client-side scripts that appear \n  in the content. One of the reasons for this focus is to assist screen-reading \n  software to render the content in a coherent format. This enables a variety \n  of users who cannot rely on visual presentation alone, better access to the \n  content of your site. \n  </p>\n<p>\nHowever, because it is generally assumed that the raw text in a web document \n  literally speaks for itself, it is often overlooked in accessibility checks. \n  Although it is not dangerous to assume your text will be fine, it is worthwhile \n  going the extra mile and adding a few behind the scenes touches that will enhance \n  your site's accessibility. \n  </p></p><p><h2>The Document Title</h2>\n<p>\nThe title tag in <acronym title="Hypertext Markup Language.">HTML</acronym>, is often not used to its full capability. A well implemented document title not only adds to its accessibility, but also the usability and promotion of the site. A good format for a document title is: \n</p>\n<p>\n<code>Site Name: A tag line about your site.</code>\n</p>\n<p>\nThe first thing a screen-reader often does is read aloud the document title. Using \n  special symbols, a meaningless combination of characters to create a pretty \n  title bar or writing something abstract can only serve to confuse the user. \n  A good yet simple tag line also helps the user identify your document purpose. \n  Tell people what your document (or site) is about clearly and concisely. \n</p>\n<p>\nA site title should also begin with the name of your site. When your site is book \n  marked it is added to the users list alphabetically. If your title begins with \n  the actual name of your site, a user will be able to locate by scanning a list \n  of bookmarks much quicker. It also helps to instill your identity. Avoid using \n  words such as &quot;Welcome to&quot; or &quot;The&quot;. Look at The MSN site for an example of \n  a bad title (MSN filed under &quot;W&quot;).</p><p><h2>Document Language</h2>\n<p>Defining the natural language of a document is a requirement of <acronym title="Web Accessibility Initiative"><a href="http://www.w3.org/WAI/">WAI</a></acronym> \n  AAA compliance. The html tag can take a <code>lang</code> attribute which defines \n  the main language of the document. The attribute value takes the value of a \n  two letter language code. Here is an example of a document declared as English \n  language: \n </p>\n<p>\n<code>&lt;html lang="EN"&gt;</code>\n</p>\nThere are several reasons for specifying the language of a document, but from \n  an accessibility view it assists speech software in accent and pronunciation \n  of the document. A document's natural language may also change momentarily, \n  and because of this the <code>lang</code> attribute is also available for just \n  about all elements in <acronym title="Hypertext Markup Language 4.0">HTML4.0</acronym> \n  / <acronym title="Extensible Hypertext Markup Language 1.0">XHTML1.0</acronym> \n  tags. An example of a change in a document's language could be a quote (use \n  the <code>lang</code> attribute in the <code>blockquote</code>) or a more common \n  incidence would be the use of a foreign phrase that has crept into the english \n  language like so: \n  </p>\n<p>\n<code>So I said to her, &quot;&lt;span lang="FR"&gt;C'est la vie&lt;span&gt</code>&quot;. \n  </p>\n<p>\n<a href="http://www.oasis-open.org/cover/iso639a.html">Comprehensive list of <acronym title="The International Organization for Standardization">ISO</acronym> 639 language codes.</a></p><p><h2>Dealing with Acronyms and Abbreviations.</h2>\n<p>\nAcronyms and abbreviations can create problems for a screen reader's pronunciation, \n  dyslexics and anybody who hasn't got clue what they stand for. When they released \n  <acronym title="Hypertext Markup Language 4.0">HTML4.0</acronym>, the W3 Consortium \n  sought to remedy this with the introduction of special and ingeniously named \n  <code>acronym</code> and <code>abbr</code> tags. These tags are used along with \n  the <code>title</code> attribute: \n</p>\n<p>\n<code> &lt;acronym title="Automobile Association"&gt;AA&lt;acronym&gt<br>\n&lt;abbr title="Constant"&gt;Const.&lt;abbr&gt</code><br>\n</p>\n<p>\nIf you are using Internet Explorer, hold your mouse cursor over the following \n  acronym to see the meaning manifested: <acronym title="Web Accessibility Initiative">WAI</acronym>. \n  You can also try it on other acronyms that appear throughout this page. To a \n  screen reader, the letters would be ignored and the whole meaning would be read \n  out. \n</p>\n<h2>A Final Word: On Words.</h2>\n<p>\nAs with most of the things you need to describe in your web documents, try to keep your writing as crisp and concise as possible. Read your document out aloud and note how it flows, or even better test it with a screen-reader browser such as <a href="http://www.soundlinks.com/pwgen.htm">pwWebSpeak</a>, or <a href="http://www-3.ibm.com/able/hpr.html"><acronym title="International Business Machines">IBM's</acronym> Home Page Reader</a>.\n</p>\n<p>\nHowever, don't stifle your style. If your document is meant to be creatively verbose, then so be it. Take notice of other styles on the web. Note the differences between news sites, web-logs, technical articles or whatever you read. Note what makes them difficult to understand and what makes them better. To a disabled person, little details like these can make all the difference.\n</p>\n  <p>Writing is a very personal thing and can only be cultivated with practice, \n    but most of the things I have written about in this article can enhance the \n    accessibility of any type of textual content.</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

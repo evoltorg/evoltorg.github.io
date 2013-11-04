@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Formatting Numbers For Currency Display And More</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Formatting Numbers For Currency Display And More</h2>
+<p class="meta">18 Mar 2004</p>
+
+<div class="post">
+<h2>Formatting numbers for currency display and more.</h2>\n    <p>Formatting numbers so they conform to a specific format can be \n    deceivingly tricky. For example, one of the most common tasks is to format a \n    number for currency display- an integer followed by two decimals. There are \n    more subtitles in such a task than many might think. In this tutorial, I'll \n    discuss formatting numbers in JavaScript, such as number rounding, \n    formatting a number for currency display, and more.</p>\n<h3>Number rounding in JavaScript</h3>\n<p>Lets first talk about number rounding in JavaScript. JavaScript \naccomplishes this with the following method:</p>\n<p><code>Math.round(x)</code></p>\n<p>Using it, any supplied argument is rounded off to the <strong>nearest \ninteger</strong>, and using the &quot;.5&quot; up rule. For example:</p>\n  <pre>Math.round(25.9) //returns 26\nMath.round(25.2) //returns 25\nMath.round(-2.58) //returns -3</pre>\n<p>If purging numbers of decimals is all that you require, class \ndismissed!</p>\n<h3>Taking things a few decimal further</h3>\n<p>Formatting numbers to specific decimal points still entails\nMath.round(), but padded with a little \nmultiplication and division. See if you can identify the magic formula involved, \nwith the below examples:</p>\n<pre>var original=28.453\n1) //round &quot;original&quot; to two decimals\nvar result=Math.round(original*100)/100&nbsp; //returns 28.45\n2) // round &quot;original&quot; to 1 decimal\nvar result=Math.round(original*10)/10&nbsp; //returns 28.5\n3) //round 8.111111 to 3 decimals\nvar result=Math.round(8.111111*1000)/1000&nbsp; //returns 8.111</pre>\n<p>In case you haven't picked up on it, the formula to round any \nnumber to <strong>x</strong> decimal points is:</p>\n<p>1) Multiple the original number by 10^x (10 to the power of x)<br>\n2) Apply Math.round() to the result<br>\n3) Divide result by 10^x</p>\n<h3>Formatting numbers for currency display</h3>\n    <p>Now, lets move on to formatting numbers for currency display in \n    JavaScript. You may be tempted to simply use number rounding to first shift \n    the number's decimal places (via multiplication), round it, then shift the \n    decimal back (via division) to pound the number into your hard earned \n    dollar, though that won't work in many cases. For example, consider the \n    number 120. Number rounding certainly won't get you to 120.00.</p>\n<p>To easily format numbers for a specific number of trailing decimals or \n    total digits (aka padding), JavaScript 1.5 introduces the below two nifty \n    methods:</p>\n    <table cellspacing="0" cellpadding="0" width="95%" border="0">\n      <tr>\n        <th width="25%">Methods</th>\n        <th width="75%">Description</th>\n      </tr>\n      <tr>\n        <td width="25%">Number.toFixed(x)</td>\n        <td width="75%">Formats any number for &quot;x&quot; number of \n        trailing decimals. The number is rounded up, and &quot;0&quot;s are used after the \n        decimal point if needed to create the desired decimal length.</td>\n      </tr>\n      <tr>\n        <td width="25%">Number.toPrecision(x)</td>\n        <td width="75%">Formats any number so it is of &quot;x&quot; length. \n        Also called significant digits. A decimal point and &quot;0&quot;s are used if \n        needed to create the desired length.</td>\n      </tr>\n    </table>\n    <h3>Number.toFixed()</h3>\n    <p>The best way to see all the subtleties of \n    toFixed() is to see it in action:</p>\n    <pre>var profits=2489.8237\nprofits.toFixed(3) //returns 2489.824 (round up)\nprofits.toFixed(2) //returns 2489.82\nprofits.toFixed(7) //returns 2489.8237000 (padding)</pre>\n    <p>Displaying any number in currency format can't get any easier!</p>\n    <h3><b>Number.toPrecision()</b></h3>\n    <p>To toPrecision() now:</p>\n    <pre>var anumber=123.45\nanumber.toPrecision(6) //returns 123.450 (padding)\nanumber.toPrecision(4) //returns 123.5 (round up)\nanumber.toPrecision(2) //returns 1.2e+2 (you figure it out!)</pre>\n    <p>toPrecision() is useful if your \n    number must be of a certain length.</p>\n    <h3> Browser considerations </h3>\n    <p>Now, as noted, the last two methods above are JavaScript 1.5 methods. What this \n    means is that they'll only work in IE5.5+ and NS6+. The issue of legacy \n    browsers not performing the desired formatting operation not withstanding, \n    how do you ensure that these two methods at least degrade well? Well, by \n    using method detection in your code. For example:</p>\n    <pre>var profits=2489.8237\nif (profits.toFixed) //if browser supports toFixed() method\nprofits.toFixed(2)</pre>\n    <p>For those of you who also need to ensure legacy browsers such as IE5 also \n    perform the desired number formatting operation, well, then it's time to \n    roll your own function.</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

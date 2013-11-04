@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>What Goes On Under The Hood Of The Internet</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>What Goes On Under The Hood Of The Internet</h2>
+<p class="meta">08 Sep 2000</p>
+
+<div class="post">
+<p>Like so many articles do, this one has origins in a thread on <a href="http://lists.evolt.org" target="foo">thelist</a>. Having a few spare moments, and the experience of esplaining this before    , here you go. My take on "What goes on under the hood of the Internet?"</P>\n<p>\nDown at the data level, and at email and WWW levels, a Cafe model\nworks here. Yup. Let's check it out:<br>\n<dl>\n<dt><b>1) You connect to your ISP</b></dt>\n<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Out through your phone line, your computer is joining a table at a cafe. Sitting at this table are possibly hundreds of other people connected through their phone lines. Now, considering there is no way the cafe could\never have a table big enough for everyone at this table, there is a limit to the number of seats. So when you 'sit down,' you're sitting in a chair someone else might have had not ten minutes ago. --This is your dynamic IP\naddress; <b>your designated seat (IP) at this table (ISP) in this cafe\n(Internet).</b></dd></p><p><dt><b>2) How traffic gets out</b></dt>\n<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All of the tables in our cafe are connected via 'magic seats' (for lack of a better term, I should just call them routers --that's what they are). As you are talking at the table, everything you say (packet) has attached to it your table+seat number (IP address), and the table+seat\nnumber you want to talk to. Talking to a seat at your table is <b>like placing the mustard on a lazy susan</b> and spinning it. The correct seat will pick it up when it comes by. As it spins, you pick up anything that has your seat\nnumber on it. --Though you <i>could</i> 'see' what others at your table are passing\naround, you ignore it. (Someone who eavesdrops is called a packet sniffer).<br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If the seat happens to be at another table, the 'magic seat' at your table passes your mustard along to the next. He also keeps an eye on the next table's lazy susan looking for anything that belongs at your table. Here is\nwhere classic routing algorithms come into play, as each table (ISP) can be connected to multiple other tables. <b>The 'magic seats' (routers) maintain intelligent information to determine which table to send your mustard to.</b>\nYou pass something, and it gets passed table-by-table to the right seat, where a reply is created and it comes back (more or less) the same way. <b>Slow tables happen ;).</b><br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Since your table+seat number is attached to everything you pass around, the other tables know how to find you. --Its like a return address on a piece of mail. Performing a 'ping' tests how fast the table+seat you want to talk to can get back to you; 'traceroute' shows which tables are used and how fast they can pass things along.</dd></p><p><dt><b>3) Email & WWW</b></dt>\n<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Some seats at your table have specific duties. When you say "email my mom at table 23" to the email chair (server) at your table, it asks where 'table 23' is, and the email chair it needs to talk to. This is by asking the \nDNS chair, who converts 'table 23' into a table+seat number. Then <b>it tries to send your email to\nthe email chair at table 23.</b> If he's swamped with other email, or your email server has a hard time finding out where table 23 is (did they move it out to the patio??), <b>it holds on to your message and tries again multiple times</b> over certain intervals (this is human configurable, a common setting is to retry for 48 hrs). When the email is delivered, the email server at table 23 holds onto it until your mom asks it if she has any new mail.<br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;More information is contained on the email envelope (email headers) than what is sent out above (packets). Your table+seat number for sure, but also information the email chairs use to talk amongst themselves, like "this came from Peter at table 1423," and "the email chair at table 56 was used to pass\nit along at 2:53pm."<br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When you want to talk to a www chair (server), you ask for the\ntable+seat number (IP address), and then <b>send a kind request for information</b> (I'll call this the URL, though technically a URL encompasses the IP address). While you are waiting, your request is being passed along to the\nwww server at the far table. <b>The www chair looks at your request, packages an answer, and sends it back. He's very curt, and has a bad case of amnesia.</b><br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;He has to be able to handle lots of requests from lots of seats, so he only replies back with what you asked for, ends the conversation, and instantly forgets he talked to you. You have to ask him again if you want more, but trust me, he's forgotten all about you and you have to ask very specifically\nand remind him who you are each time. Such is stateless communication.<br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>If he likes you, he'll want to remember you by sending you some cookies.</b> Sending\nthem back triggers his memory and he's not so forgetful anymore. What he wants to remember about you determines what kind of cookies you get. Not everybody likes cookies, though. ;)</dt></p><p><dt><b>4) You disconnect from your ISP</b>\n<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple; you <b>get up and leave the table</b> (hang up the line). If\nthere's anything left on the lazy susan for you, it eventually gets thrown away because its been there too long.</dd>\n</dl>\n
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

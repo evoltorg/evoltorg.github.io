@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Coldfusion Strings Masks And Filters</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Coldfusion Strings Masks And Filters</h2>
+<p class="meta">22 Apr 2001</p>
+
+<div class="post">
+<p>Purpose: Applies generic masks to filtered strings<br>\nMethod: brute force</p>\n<h5>Attributes:</h5>\n<ul>\n<li><code>value</code> - the value to which we apply the mask</li>\n<li><code>result</code> - variable in which to store the answer, defaults to "out"</li>\n<li><code>mask</code> - mask to apply to the value</li>\n<li><code>filter</code> - prefilter of value</li>\n</ul></p><p><p>No parameters are required, though not specifying anything is boring.</p>\n<p><code>filter</code> accepts "alpha", "numeric", "alphanumeric" and is a prefilter to the string. For example, the string "a1b2-c3c4" would be processed as the following with the different filters:</p></p><p><ul>\n<li><code>none</code>: "a1b2-c3d4"</li>\n<li><code>alpha</code>: "abcd"</li>\n<li><code>numeric</code>: "1234"</li>\n<li><code>alphanumeric</code>: "a1b2c3d4"</li>\n</ul></p><p><p>The filtered string would *then* be applied to the mask. The mask\nentities are as follows:</p></p><p><ul>\n<li><code>_</code> character unchanged</li>\n<li><code>0</code> character is unchanged for numerics and forced to zero for all others</li>\n<li><code>9</code> character is unchanged for numerics and forced to empty for all others</li>\n<li><code>a</code> character is forced to lower case, all others are left as is</li>\n<li><code>A</code> character is forced to upper case, all others are left as is</li>\n<li><code>b</code> character is forced to lower case, numerics are forces to empty</li>\n<li><code>B</code> character is forced to upper case, numerics are forces to empty</li>\n<li><code>\</code> following character is literal</li>\n</ul></p><p><p>Usage:</p>\n<p><code>&lt;cf_filtermask value="123abc" mask="___ ___" <br>result="license_plate"&gt;</code><br>\nreturns: 123 abc</p></p><p><p><code>&lt;cf_filtermask value="ab 1sf 2 sd 3 s 45" mask="\_0+\0b999999" <br>filter="numeric"&gt;</code><br>\nreturns: _1+0345</p></p><p><p><code>&lt;cf_filtermask value="APPL9E" mask="Bbbbbb \B"&gt;</code><br>\nreturns: Apple B</p></p><p><p><code>&lt;cf_filtermask value="706-555-1212ext123" mask="(___)___-____"<br>\nfilter="numeric"&gt;</code><br>\nand<br>\n<code>&lt;cf_filtermask value="7065551212" mask="(___)___-____" <br>filter="numeric"&gt;</code><br>\nreturn: (706)555-1212<br>&nbsp;</p></p><p><p>The last example is why I made it in the first place.</p></p><p><pre>\n&#60;cfsilent&#62;\n&#60;cfparam name=&#34;attributes.value&#34; default=&#34;&#34;&#62;\n&#60;cfparam name=&#34;attributes.result&#34; default=&#34;out&#34;&#62;\n&#60;cfparam name=&#34;attributes.mask&#34; default=&#34;&#34;&#62;\n&#60;cfparam name=&#34;attributes.filter&#34; default=&#34;&#34;&#62;</p><p>&#60;cfset mask = attributes.mask&#62;\n&#60;cfset t_value = attributes.value&#62;</p><p>&#60;cfif attributes.filter IS &#34;numeric&#34;&#62;\n  &#60;cfset t_value = REReplace(t_value, &#34;[^[:digit:]]&#34;, &#34;&#34;, &#34;ALL&#34;)&#62;\n&#60;/cfif&#62;</p><p>&#60;cfif attributes.filter IS &#34;alpha&#34;&#62;\n  &#60;cfset t_value = REReplace(t_value, &#34;[^[:alpha:]]&#34;, &#34;&#34;, &#34;ALL&#34;)&#62;\n&#60;/cfif&#62;</p><p>&#60;cfif attributes.filter IS &#34;alphanumeric&#34;&#62;\n  &#60;cfset t_value = REReplace(t_value, &#34;[^[:alnum:]]&#34;, &#34;&#34;, &#34;ALL&#34;)&#62;\n&#60;/cfif&#62;</p><p>&#60;cfset value = &#34;&#34;&#62;\n&#60;cfset pos = &#34;1&#34;&#62;\n&#60;cfset literal = &#34;0&#34;&#62;\n&#60;cfloop index=&#34;i&#34; from=&#34;1&#34; to=&#34;#Len(mask)#&#34;&#62;\n  &#60;cfset character = Mid(mask, i, 1)&#62;\n  &#60;cfif literal&#62;\n    &#60;cfset value = value &#38; character&#62;\n    &#60;cfset literal = &#34;0&#34;&#62;\n  &#60;cfelse&#62;\n    &#60;cfif Len(t_value) GTE pos&#62;\n      &#60;cfset char_at_pos = Mid(t_value, pos, 1)&#62;\n    &#60;cfelse&#62;\n      &#60;cfset char_at_pos = &#34;&#34;&#62;\n    &#60;/cfif&#62;\n    &#60;cfif character IS &#34;9&#34;&#62;\n      &#60;cfif isNumeric(char_at_pos)&#62;\n        &#60;cfset value = value &#38; Val(char_at_pos)&#62;\n      &#60;/cfif&#62;\n      &#60;cfset pos = pos + &#34;1&#34;&#62;\n    &#60;cfelseif character IS &#34;0&#34;&#62;\n      &#60;cfset value = value &#38; Val(char_at_pos)&#62;\n      &#60;cfset pos = pos + &#34;1&#34;&#62;\n    &#60;cfelseif character IS &#34;_&#34;&#62;\n      &#60;cfset value = value &#38; char_at_pos&#62;\n      &#60;cfset pos = pos + &#34;1&#34;&#62;\n    &#60;cfelseif Find(&#34;A&#34;, character)&#62;\n      &#60;cfset value = value &#38; UCase(char_at_pos)&#62;\n      &#60;cfset pos = pos + &#34;1&#34;&#62;\n    &#60;cfelseif Find(&#34;a&#34;, character)&#62;\n      &#60;cfset value = value &#38; LCase(char_at_pos)&#62;\n      &#60;cfset pos = pos + &#34;1&#34;&#62;\n    &#60;cfelseif Find(&#34;b&#34;, character)&#62;\n      &#60;cfif NOT isNumeric(char_at_pos)&#62;\n        &#60;cfset value = value &#38; LCase(char_at_pos)&#62;\n      &#60;/cfif&#62;\n      &#60;cfset pos = pos + &#34;1&#34;&#62;\n    &#60;cfelseif Find(&#34;B&#34;, character)&#62;\n      &#60;cfif NOT isNumeric(char_at_pos)&#62;\n        &#60;cfset value = value &#38; UCase(char_at_pos)&#62;\n      &#60;/cfif&#62;\n      &#60;cfset pos = pos + &#34;1&#34;&#62;\n    &#60;cfelseif Find(&#34;\&#34;, character)&#62;\n      &#60;cfset literal = &#34;1&#34;&#62;\n    &#60;cfelse&#62;\n      &#60;cfset value = value &#38; character&#62;\n    &#60;/cfif&#62;\n  &#60;/cfif&#62; &#60;!--- if literal ---&#62;\n&#60;/cfloop&#62;</p><p>&#60;cfset t = SetVariable(&#34;caller.#attributes.result#&#34;, value)&#62;\n&#60;/cfsilent&#62;\n</pre>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

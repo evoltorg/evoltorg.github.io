@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>A Touch Of Class</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>A Touch Of Class</h2>
+<p class="meta">06 Jul 2002</p>
+
+<div class="post">
+<p>Cascading style sheets give site authors a lot of power to play around with. Unfortunately, with that extra power comes the opportunity to abuse markup if you&#8217;re not careful. The <acronym title="World Wide Web Consortium"><a href="http://w3.org/">W3C</a></acronym> say so themselves:</p></p><p><blockquote cite="http://www.w3.org/TR/REC-CSS2/selector.html#class-html">\nNote. CSS gives so much power to the "class" attribute, that \nauthors could conceivably design their own "document language" based \non elements with almost no associated presentation (such as DIV and \nSPAN in HTML) and assigning style information through the <q>class</q> \nattribute. Authors should avoid this practice since the structural \nelements of a document language often have recognized and accepted \nmeanings and author-defined classes may not.\n</blockquote></p><p><p>So when is it right to use classes?</p></p><p><h2>The short answer</h2></p><p><p>The short answer is, not much of the time. Use classes when you can&#8217;t find anything else at all that will let you select the elements a different way.</p></p><p><h2>The long(er) answer</h2></p><p><p>Before you go and use a class you should check to make sure that none of the following would work instead:</p></p><p><ul>\n<li>Is the element you&#8217;re wanting to style unique on the page? If so, use an <code>id</code>. An <code>id</code> atribute can be applied to any element on the page, and must be a unique identifier which can&#8217;t begin with a number. After you&#8217;ve applied an <code>id</code> to an element you can select it for styling by using the selector #id. For example, to select a div with an <code>id</code> of monkey you would use the selector #monkey.</li>\n<li>Are the elements you want to style the only of their type within a uniquely identified object? For example, if you had a list of links that was the only list of links within a div with an <code>id</code> of menu, then you should select them using that.</li>\n<li>Is there an existing <acronym title="Hypertext Markup Language">HTML</acronym> tag that you can use on the items you want to style, and is the display you want to use typical of how all elements with that tag would be displayed? If so, just use and style that tag. For example, using the <code>&lt;q&gt;</code> tag for marking up quotations, or the <code>&lt;code&gt;</code> tag for marking up fragments of code. HTML includes many of these <a href="http://www.w3.org/TR/html4/struct/text.html" title="List of semantic text markup elements at the W3C site. Opens in new window." target="_blank">semantic markup tags</a>.</li>\n<li>Is there an existing selector you could use to identify just these types of tags, for example the <code>href</code> starting off with <q>http://</q> to select external links? Use that instead. (Of course this one might vary, depending on browser support for the selector and how necessary it is for everyone to be able to see the effect. If you do find yourself having to use a class in this situation, you should use the other selector too, so that in the future you can yank the class out and it&#8217;ll still work.)</li>\n<li>So on&#8230;</li>\n</ul></p><p><h2>Wrap-up</h2></p><p><p>If you can think logically through the problem and find some other way of selecting the element using semantic markup, you should always use that. Markup already defined is useful to non-human processes (such as a search engine spidering your page) as well, since it already has a defined meaning, as opposed to your classes, which machines wouldn&#8217;t have a clue about. If you go through your code and think about other ways to select your items, I would be extremely surprised if you needed more than 2 or 3 classes.</p></p><p><p>The only situation I can think of which would need a lot of classes would be marking up something HTML wasn&#8217;t designed for, in which case you should probably be using your own <acronym title="eXtensible Markup Language">XML</acronym>-based language instead.</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

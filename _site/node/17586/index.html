@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Css Image Border Rollovers</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Css Image Border Rollovers</h2>
+<p class="meta">20 Nov 2001</p>
+
+<div class="post">
+<h2>CSS Image Border Rollovers</h2></p><p><p>The prevalence of CSS2 enabled browsers has opened up a variety of methods and techniques for the visual enhancement of HTML pages. Used correctly, it can also enhance page useability, and improve download times. Using a simple CSS structure, inline images can benefit from the same &quot;mouseover&quot; effects that have struck text links over the past couple of years.</p></p><p><p>As the <strong>:link, :hover, :active</strong> and <strong>:visited</strong> selectors have been applied to text hyperlinks, these can also be extended to hyperlink &lt;IMG&gt; tags. At their most basic level, we can provide a visual confirmation of a link, and that this link is active, by changing the border color of the required image.</p></p><p><p>Apply a class of (for example, as I first used this technique on a photogallery) <strong>fotgal</strong> to an image that is used as a hyperlink:</p></p><p><pre><a href="javascript:void(0)"><img class="fotgal" src="http://www.carbonchip.com/evolt1/evolt_test_image.gif" width="121" height="43" border="0"></a></pre></p><p><p>Apply the CSS classes:</p></p><p><pre>.fotgal {border:1px; border-thickness: 1px; border-color: #000; border-style: solid;}</pre></p><p><p>This firstly establishes any element <strong>with a class of fotgal</strong> with a 1 pixel black border.</p></p><p><p>Then compound this with:</p></p><p><pre>A:hover, A:active {color: #fff}<br>\nA:hover .fotgal, A:active .fotgal {border:1px; border-thickness: 1px; border-color: #fff; border-style: solid}</pre></p><p><p>This, in a nutshell, will instruct the browser to change the border colour of the element, upon hover or active.</p>\n<p>Here's the full source code:<br>\n<pre>\n<html>\n<head>\n<style type='text/css'>\n<!--\n.fotgal {border:1px; border-thickness: 1px; border-color: #000;\nborder-style: solid;}\nA:hover, A:active {color: #fff}\nA:hover .fotgal, A:active .fotgal {border:1px; border-thickness: 1px;\nborder-color: #fff; border-style: solid}\n-->\n</style>\n</head></p><p><body bgcolor="#777777"></p><p><a href="#"><img class="fotgal"\nsrc="http://www.carbonchip.com/evolt1/evolt_test_image.gif" width="121"\nheight="43" border="0" vspace="2"></a><br>\n<a href="#"><img class="fotgal"\nsrc="http://www.carbonchip.com/evolt1/evolt_test_image.gif" width="121"\nheight="43" border="0" vspace="2"></a><br>\n<a href="#"><img class="fotgal"\nsrc="http://www.carbonchip.com/evolt1/evolt_test_image.gif" width="121"\nheight="43" border="0" vspace="2"></a><br>\n<a href="#"><img class="fotgal"\nsrc="http://www.carbonchip.com/evolt1/evolt_test_image.gif" width="121"\nheight="43" border="0" vspace="2"></a><br></p><p></body>\n</html>\n</pre></p><p>Or, you can download it <a href="http://www.carbonchip.com/evolt1" target="_blank">here</a>.</p></p><p><p>My first real-world example of this can be seen <a href="http://www.c1ukpowerboat.com/photos.html" target="_blank">here</a>.</p></p><p><p>Reasons for using this method???\n<ul>\n<li>Avoid the use of bandwidth-heavy javascript rollovers (only 1 image download instead of two).\n<li>Performs well under IE4+, degrades very gracefully under other browsers.\n<li>Provides a clear visual connection between hyperlink and active area.\n</ul></p><p><p>Aside from just changing the border colour, this can be extended to using IE filters (alpha etc), although this does not have the near-immediate feedback/response that the border-colour change has. A variety of effects can be exploited with this technique.</p></p><p><p>I'd welcome seeing other uses/variations of this technique, email me at <a href="mailto:banrett@carbonchip.com">banrett@carbonchip.com</a></p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

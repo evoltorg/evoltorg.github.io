@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Malicious Html Tags</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Malicious Html Tags</h2>
+<p class="meta">02 Feb 2000</p>
+
+<div class="post">
+A CERT Advisory says that all Web browsers, and all Web servers dynamically  generating pages based on unvalidated input, can be affected by malicious HTML  code, or abused by those posting it. <P>\nTags that can be used for these purposes include: SCRIPT, OBJECT, APPLET, FORM,  and EMBED.  <P>\nYou can find the advisory <a  href="http://www.cert.org/advisories/CA-2000-02.html">here</a>. It suggests  wariness when browsing untrusted links, and also that Web developers work to  recode their dynamic sites to validate output - ensuring that undesirable tags  (for example, posted to message boards) are blocked. <P>\nSecurity information for servers from the following vendors will be posted at the  URLs linked below: <P>\n<ul> <li><a href="http://www.apache.org/info/css-security/">Apache</a></li> <li><a href="http://www.microsoft.com/security/">Microsoft</a></li> <li><a  href="http://sun.com/software/jwebserver/faq/jwsca-2000-02.html">Sun</a></li> </ul> <P>\n Is anyone aware of how safe existing popular applications (major message boards,  etc) are? Personally, it seems to me that this is a problem that many have been  aware of for a long time, but maybe attackers are using new methods? The advisory  mentions a number of different situations: <P>\n<ul> <li>Malicious code provided by one client for another client</li> <li>Malicious code sent inadvertently by a client for itself</li> <li>Abuse of Other Tags</li> <li>Abuse of Trust</li> </ul> <P>\nand effects: <P>\n<ul> <li>SSL-Encrypted Connections May Be Exposed</li> <li>Attacks May Be Persistent Through Poisoned Cookies</li> <li>Attacker May Access Restricted Web Sites from the Client</li> <li>Domain Based Security Policies May Be Violated</li> <li>Use of Less-Common Character Sets May Present Additional Risk</li> <li>Attacker May Alter the Behavior of Forms</li> </ul> <P>\nHow do you ensure that your dynamic sites are safe from malicious code? <P>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

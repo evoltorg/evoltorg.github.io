@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Javascript Debugging Part 1 Of 3</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Javascript Debugging Part 1 Of 3</h2>
+<p class="meta">02 Oct 1999</p>
+
+<div class="post">
+<p>\nUndoubtedly, when writing a new script or trying to tweak a once-working script to suit your needs better, you've run into instances where your attempts have gone up in a fiery ball of flames; maybe you misspelled a variable, were trying to reference an object that didn't yet exist, or were using a reserved word.  Whatever the problem, the quickest way to finding out where the problem lies is to see the errors your script produced.  Using the information in the error, you can locate it easier and understand better what you need to fix.  There are different ways of going about determining the errors depending on the browser you're using.  I will attempt to cover all the tricks you'll need to get this working in Netscape Navigator 4.06/4.5+ (The JavaScript Console was introduced with JavaScript 1.3 in Netscape Navigator 4.06 & 4.5) and Internet Explorer 4+ to suit your needs and particular working style.\n</p>\n<p>\nBy default, the JavaScript console/alerts aren't displayed in either of the browsers we're covering, unlike earlier versions of Internet Explorer and Netscape Navigator 4.  While this makes for a smoother viewing experience, it will make your development process very frustrating.  The only clue you'll have that an error occurred is an error warning in the status bar (see below).  However, if you prefer to have the errors automatically displayed, there are four easy ways in Netscape Navigator and two easy ways in Internet Explorer to view JavaScript errors. \n</p>\n<div align="center">\n<img src="http://members.evolt.org/jeff/images/nn_js_error_status.gif" width="450" height="25" border="0" alt="Netscape Navigator JavaScript Error Warning"><br>\n<strong>Netscape Navigator JavaScript Error Warning</strong>\n<br><br>\n<img src="http://members.evolt.org/jeff/images/ie_js_error_status.gif" width="450" height="27" border="0" alt="Internet Explorer JavaScript Error Warning"><br>\n<strong>Internet Explorer JavaScript Error Warning</strong>\n</div>\n<h2>Using Netscape 4+</h2>\n<p>\n<ol type="1">\n  <li>Type <code>JavaScript:</code> into the location bar of your browser.</li><br /><br />\n  <li>Drag the link below to your Personal toolbar.  To see any errors, simply click the <strong>Display Errors</strong> button on your Personal toolbar.</li>\n  <ol type="a">\n    <li><a href="JavaScript:">Display Errors</a></li>\n  </ol>\n  <br />\n  <li>Edit your preferences so the new JavaScript console automatically opens when an error occurs.</li>\n  <ol type="a">\n    <li>Quit Communicator before doing this, otherwise your changes will be lost.</li>\n    <li>Open your Navigator preferences file (prefs.js), normally located in whichever folder your user profile is stored.</li>\n    <li>Add the following line to the file:<br />\n    <code>user_pref("javascript.console.open_on_error",true);</code></li>\n    <li>Save and restart Communicator.</li>\n  </ol>\n  <br />\n  <li>Edit your preferences so the traditional JavaScript alert window automatically opens when an error occurs.</li>\n  <ol type="a">\n    <li>Quit Communicator before doing this, otherwise your changes will be lost.</li>\n    <li>Open your Navigator preferences file (prefs.js), normally located in whichever folder your user profile is stored.</li>\n    <li>Add the following line to the file:<br /><code>user_pref("javascript.classic.error_alerts",true);</code></li>\n   <li>Save and restart Communicator.</li>\n  </ol>\n</ol>\n</p></p><p><h2>Using Internet Explorer 4+</h2>\n<p>\n<ol type="1">\n  <li>You can double click the status bar to find out what the error was and what line it occurred on if you notice one of the messages below and a warning icon as illustrated above.</li>\n  <ol type="a">\n    <li><code>Done</code></li>\n    <li><code>Error on page</code></li>\n    <li><code>Done, but with errors on page</code></li>\n  </ol>\n  <br />\n  <li>If you'd prefer to get notification of every error, then turn error notification on.</li>\n  <ol type="a">\n    <li>Make sure <code>Display a notification about every script error</code> under the Advanced tab of your Internet Options is checked.</li>\n    <li>Make sure <code>Disable Script Debugging</code> under the Advanced tab of your Internet Options is <em>un</em>checked.</li>\n  </ol>\n</ol>\n</p>\n<p>\nThat's all for this installment, however, in the near future I will be posting two more articles about debugging JavaScript.  The next article will cover the different types of JavaScript errors and common coding mistakes.  The third article in this series will be an advanced JavaScript debugging article, which will discuss suppressing errors for all users, catching errors, and hidden error reporting.\n</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

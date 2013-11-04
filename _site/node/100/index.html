@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Dos Attack In Counter Exe</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Dos Attack In Counter Exe</h2>
+<p class="meta">19 May 1999</p>
+
+<div class="post">
+A denial of service exists in counter.exe version 2.70, a fairly popular webhit counter used on the Win32 platform with web servers such as IIS and\nWebSite Pro. <P></p><p>1) When someone requests :\nhttp://no-such-server-really/scripts/counter.exe?%0A this will create an\nentry in counter.log of a blank line then a ",1" . If the person then\nrefreshes their browser and requests it again you get an Access Violation in\ncounter.exe - the instruction at 0x00414c0a referenced memory at 0x00000000.</p><p>2) When someone requests:\nhttp://no-such-server-really/scripts/counter.exe?AAAAAover-2200-As you get a\nsimilar problem - though not a buffer overrun.</p><p>Whilst in a state of "hanging" all other vaild requests for counter are\nqueued and not dealt with until someone goes to the console and okays the AV\nmessages. Added to this memory can be consumed if the page is continuosly\nrequested.</p><p>Thanks to David Litchfield for the heads up
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

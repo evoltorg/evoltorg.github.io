@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Successful Inline Lists In Netscape 4</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Successful Inline Lists In Netscape 4</h2>
+<p class="meta">23 Jul 2003</p>
+
+<div class="post">
+<p>One of the still (fairly) recent innovations in coding is the horizontal inline list. That is, a list (typically a <code>ul</code>) whose rendering is changed via <abbr title="Cascading Style Sheets">CSS</abbr> to display as a non-bulleted, horizontal line of text. It has come into vogue as a means for rendering horizontal navigation bars while maintaining semantically correct coding. <cite>Taming Lists</cite> gives <a title="This link opens in a new browser window." href="http://www.alistapart.com/stories/taminglists/" target="_blank">a solid rundown of the basics of the inline list technique</a>.</p>\n      <p>The technique simply uses the CSS rule <code>display : inline</code> applied to the <code>li</code> tags to make the bullet list render without bullets and horizontally. Up until now (as far as I know) no one was using this with Netscape 4 because of its infamous buggy CSS support. A typical example renders like this:</p>\n      <p><img src="images/3465/60192/broken_testcase.gif" width="520" height="185" alt="The technique fails because Netscape 4 keeps the bullet in front of the item, overlapping the text." title="" /></p>\n      <p>Compliant browsers when they render this CSS remove the bullet since the <code>li</code> is no longer being displayed as a <code>list-item</code>.</p>\n      <p>But by accident, I found a solution. As an exercise, I was recoding the <a title="This link opens in a new browser window." href="http://www.mozilla.org/" target="_blank">new mozilla.org/Mozilla Foundation home page</a> as a CSS-driven layout instead of a <code>table</code>-driven one. In <a title="This link opens in a new browser window." href="http://www.accessibleinter.net/portfolio/mozilla/" target="_blank">my revision</a>, I did the upper horizontal navigation bar (above the Google search field) as an inline list. All well and good.</p>\n      <p>I started playing with the code since it just bugged me that Netscape 4 couldn't get a clean horizonal layout minus the bullets. Then I hit on a technique for clean Netscape 4 inline lists. It renders like so:</p>\n      <p><img src="images/3465/60192/working_testcase.gif" width="528" height="198" alt="This time, the items have no bullets remaining that overlap the text." title="" /></p>\n      <p>The code to accomplish this is as follows:</p>\n<pre>li {\n  display : inline;\n  /*/*//*/\n  display : none;\n  /* */\n}\n</pre>\n      <p>(Here's <a title="This link opens in a new browser window."  href="files/3465/60192/testcase.html" target="_blank">a testcase</a> to view as well. Note that in my rebuilt mozila.org page, the navigation is at the page bottom due to some other issues with the CSS as it applies to Netscape 4.)</p>\n      <p>Using <code>display : none</code>, in Netscape 4's twisted way of rendering, removes the bullets but not the textual content. Of course, we can't let compliant browsers act on the <code>display : none</code> or they will just hide everything. So <a title="A comment hack for showing CSS only to Netscape 4. This link opens in a new browser window." href="http://centricle.com/ref/css/filters/tests/fabrice/" target="_blank">Fabrice's Inversion</a> is used to hide this code from the compliant browsers.</p>\n      <p>And there you have a basic inline list in Netscape 4! It even works in the really old 4.08 version without crashing. (Note too that my mozilla.org page will crash Netscape 4.0x because of other CSS that I'm not concerned with debugging, frankly.)</p>\n      <p>I don't know how much styling you could apply to the <code>li</code> to pretty it up without causing new problems in Netscape 4. It's an exercise for the reader. But at least where you have a nice-looked tabbed horizional navigation or the like, you can let it degrade it down to a basic horizontal bar in Netscape 4.</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Linux Kernel Source Code Screensaver</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Linux Kernel Source Code Screensaver</h2>
+<p class="meta">01 Feb 2008</p>
+
+<div class="post">
+On Ubuntu, here’s how you install the phosphor screensaver:</p><p>sudo apt-get install xscreensaver-data-extra</p><p>Next we need to make sure that the Linux source code is installed on our system. Chances are your kernel source code will be installed in the /usr/src directory. If it’s not installed there, check with whoever maintains your distribution of Linux to find out where they keep it. Here’s how to install the source package on Ubuntu:</p><p>cd /usr/src\nsudo apt-get install linux-source\nsudo tar -xpjf linux-source-2.6.22.tar.bz2\nsudo ln -sf linux-source-2.6.22 linux-source</p><p>Now, we need to feed the source code into phosphor. It was quite simple to write a command to fetch the code: cat `find /usr/src/linux-source/ -name ‘*.c’` The problem was it was giving me the same code in exactly the same order every time. I needed a way to get the find command to give me the files in a completely random order so that the screensaver was different every time. After extensive research, I discovered that find does not have an option for this. I could not find any command line utility for doing this either. So, I wrote one myself. It’s really simple and I plan on expanding it in the future, but it works perfectly for this project. It’s called Argument Shuffle. Just follow the instructions on that page for installing it.</p><p>Now we’re ready to put it all together. Go into your screensaver preferences, and go into the phosphor setup. You can set up the speed, scale and fade settings however you like. The important part is the “text program” box. Here’s the command:</p><p>cat `find /usr/src/linux-source/ -name ‘*.c’   argshuf`</p><p>Note the backquotes! That command will find all of the files in the Linux kernel source directory which end in .c, and it will then pick one of those files at random and dump its contents into phosphor. This command is pretty tweakable, if you want to mess around with it. If you want to display .c files and .h files, then change it to: cat `find /usr/src/linux-source/ -name ‘*.c’ -or -name ‘*.h’   argshuf`. If you wanted to display only .c files that are bigger than 100k, change it to: cat `find /usr/src/linux-source/ -name ‘*.c’ -size +100k   argshuf`. You get the idea. Read more about find if you want to do something specific. Enjoy!</p><p>Mirrored: http://www.ezlinuxadmin.com/?p=19
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

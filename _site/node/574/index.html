@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Some Helpful Table Tricks</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Some Helpful Table Tricks</h2>
+<p class="meta">17 Nov 1999</p>
+
+<div class="post">
+<p>Although tables were never meant to be used for layout purposes, many will agree that they are one of the most useful tools in our web design arsenal - at least, until stylesheets take over and become universally accepted.  Even then, tables will still be useful for certain applications.\n</p></p><p><p>\nHere are a number of useful tricks found while working with tables:\n</p></p><p><h2>Use TR to save extra code</h2></p><p><p>\nFirst of all, you don't need to declare certain attributes in all of your &lt;TD&gt; tags.  Instead, just put it in your &lt;TR&gt; tag and all of the cells within that &lt;TR&gt; tag will inherit those attributes. For example:\n</p></p><p><pre>\n&lt;TR VALIGN=&quot;top&quot; ALIGN=&quot;center&quot; BGCOLOR=&quot;white&quot;&gt;\n&lt;TD&gt;Cell 1&lt;/TD&gt;\n&lt;TD&gt;Cell 2&lt;/TD&gt;\n&lt;/TR&gt;\n</pre></p><p><p>\nis the same as:\n</p></p><p><pre>\n&lt;TR&gt;\n&lt;TD VALIGN=&quot;top&quot; ALIGN=&quot;center&quot; BGCOLOR=&quot;white&quot;&gt;Cell 1&lt;/TD&gt;\n&lt;TD VALIGN=&quot;top&quot; ALIGN=&quot;center&quot; BGCOLOR=&quot;white&quot;&gt;Cell 2&lt;/TD&gt;\n&lt;/TR&gt;\n</pre></p><p><h2>Width inheritance</h2></p><p><p>\nYou don't need to declare widths for all of your cells, either.  This one is a little more tricky, since Netscape and MSIE render tables slightly differently.  I'd suggest only doing this for absolute width tables, where you're declaring widths in pixels. For example:\n</p></p><p><pre>\n&lt;TABLE WIDTH=&quot;200&quot;&gt;\n&lt;TR&gt;\n&lt;TD WIDTH=&quot;100&quot;&gt;Cell 1&lt;/TD&gt;\n&lt;TD WIDTH=&quot;100&quot;&gt;Cell 2&lt;/TD&gt;\n&lt;/TR&gt;\n&lt;TR&gt;\n&lt;TD&gt;Cell 3&lt;/TD&gt;\n&lt;TD&gt;Cell 4&lt;/TD&gt;\n&lt;/TR&gt;\n&lt;/TABLE&gt;\n</pre></p><p><p>\nis the same as:\n</p></p><p><pre>\n&lt;TABLE WIDTH=&quot;200&quot;&gt;\n&lt;TR&gt;\n&lt;TD WIDTH=&quot;100&quot;&gt;Cell 1&lt;/TD&gt;\n&lt;TD WIDTH=&quot;100&quot;&gt;Cell 2&lt;/TD&gt;\n&lt;/TR&gt;\n&lt;TR&gt;\n&lt;TD WIDTH=&quot;100&quot;&gt;Cell 3&lt;/TD&gt;\n&lt;TD WIDTH=&quot;100&quot;&gt;Cell 4&lt;/TD&gt;\n&lt;/TR&gt;\n&lt;/TABLE&gt;\n</pre></p><p><p>\nIf your cell widths aren't working out correctly, just throw in a transparent .gif set to the needed width, and it will force the cell open.\n</p></p><p><h2>Don't ignore the defaults</h2></p><p><p>\nThe normal defaults are: ALIGN=left, VALIGN=middle, BGCOLOR=the background color of the page.  In other words, there's no need to put ALIGN="left" in your &lt;TD&gt; tag, since it will default to that. Don't waste your time and the users' with unnecessary code.\n</p></p><p><h2>Watch it with the nested tables!</h2></p><p><p>\nAvoid nesting more than 3 tables.  Of course, this number depends on the complexity and size of each of the tables, but the more nested tables you have, the longer it'll take the browser to render the table; not to mention the fact that all of that code will be harder to read.  Also, if you're nested tables aren't rendering, it's a safe bet that you're missing a closing tag somewhere (eg, Netscape won't render a table at all if you forgot the &lt;/table&gt;.  If a browser can't render an internal table, it can't render the surrounding tables and you'll just get a messed up layout.\n</p></p><p><h2>Right aligned text in a cell</h2></p><p><p>\nIf you've got text aligned right within a &lt;TD&gt; tag, and you notice a little space after the last character, just add a &lt;br&gt; tag.  this will force a carriage return and make the text flush right.\n</p></p><p><p>\nTables are the chief cause of bloat in most HTML documents, simply because a lot of people think you need to declare everything, when you don't have to.  If your pages are taking a long time to render, check them and see if you can take out some of the unneeded code.  This is why it pays to code pages by hand, because all of the HTML editors I've worked with will insert _every_ single tag and attribute.\n</p></p><p><p>\nIf you have any more table tips, please add a comment below. :)\n</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

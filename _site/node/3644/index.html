@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Unlocking Ms Access Mdb Files</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Unlocking Ms Access Mdb Files</h2>
+<p class="meta">01 Nov 2000</p>
+
+<div class="post">
+<p>As a ColdFusion newbie about a year ago, I can distinctly recall the frustration of dealing with Microsoft Access database files which had been "locked" by the ColdFusion Application Server accessing them. I can remember being unable to delete or overwrite older database files, and trying stupid workarounds like uploading newly named databases (and having to change the resulting ODBC System DSN).\n</p>\n<p>\nThe solution is incredibly simple, as will be this article. The trick to unlocking the hold on the MDB file is to simply throw it a query that will cause an error. The easiest way to do that is to attempt a select from a table that doesn't exist. Code like this should do the trick (unless you're really strange and actually have a table named "whereveryoucanfindthem" and a field named "cutemeerkats"). ;)\n</p></p><p><code>\n<cfquery name="unlockmdb" datasource="dbnamegoeshere">\n  SELECT cutemeerkats\n  FROM whereveryoucanfindthem\n</cfquery>\n</code></p><p><p>\nPlace this snippet into a file (I call mine die.cfm), and then run it whenever you need to unlock the database. It could even be extended to accept a datasource name via the query string and unlock any database on your machine, but I'll leave that to anyone who wants to try it as an experiment (my goal here is for simplicity).\n</p>\n<p>\nHopefully anyone new to CF and databases who has struggled with this issue in the past will have to suffer no longer. I encourage anyone with questions or information relevant to this article to comment below. If you've got alternate solutions or warnings, be sure to pass them on.\n</p>\n<p>\n<a href="mailto:isaac@triplezero.com.au">isaac</a></p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

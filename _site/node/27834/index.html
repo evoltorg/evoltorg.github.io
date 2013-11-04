@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Show Your Attributes</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Show Your Attributes</h2>
+<p class="meta">24 May 2002</p>
+
+<div class="post">
+<p>Through the <abbr title="World Wide Web Consortium">W3C</abbr>'s <a href="http://www.w3.org/TR/DOM-Level-2-Core/" title="The DOM Level 2 Core Specification" target="_blank">Document Object Model</a> (DOM), normally invisible parts of a Web page can be easily made a part of the visible page. The <acronym title="Document Object Model">DOM</acronym>, for example, can be used to reveal the information contained within things like the <a href="http://www.w3.org/TR/html401/struct/global.html#adef-title" title="HTML 4.0 Recommendation on the 'title attribute'" target="_blank"><code>title</code></a> attribute in most modern browsers. (This can easily be accomplished <a href="http://www.saila.com/usage/attributes/cssattribute.html" title="Demonstration: writing the attributes using CSS"  target="_blank"\n   onclick="window.open(this.href);return false;">using <abbr title="Cascading Style Sheets">CSS</abbr></a>, but not in Internet Explorer on Windows.)</p></p><p><p>To see how this works, let's assume there's a page with a bulleted list of news items. Each <code>LI</code> has the date the item was posted in the element's <code>title</code>:</p></p><p><pre>&#60;div id="news"&#62;\n&#160; &#60;ul&#62;\n&#160; &#160; &#60;li title="January 1, 2002"&#62;Happy New Year's&#60;/li&#62;\n&#160; &#160; &#60;li title="March 17, 2002"&#62;Happy St. Patrick's Day&#60;/li&#62;\n&#160; &#160; &#60;li title="April 1, 2002"&#62;April Fool's&#60;/li&#62;\n&#160; &#60;/ul&#62;\n&#60;/div&#62;</pre></p><p><p>Before attempting to access the content, it's important to check the browser's higher-level <acronym title="Document Object Model">DOM</acronym> support:<br>\n<code>if((document.createElement) && (document.createTextNode))</code></p>\n<p>(This should be true for <abbr title="Internet Explorer">IE</abbr>5+,  Konqueror, Netscape 6.<em>x</em>, Mozilla, and other Gecko-based browsers. Opera 5 and 6 should test false.)</p></p><p><h2>Finding the right elements</h2></p><p><p>With the appropriate browsers selected, it's time to collect references to the various <code>LI</code>s.</p> </p><p><p>The page may contain a number of <code>LI</code>s, but, for this example, only ones within the <code>DIV</code> called &#8220;news&#8221; are needed, so that element, and its contents, are isolated:<br>\n<code>var sObj = document.<strong>getElementById('news')</strong></code></p></p><p><p>This associates the <code>DIV</code> containing the <code>LI</code>s with the variable <code>sObj</code>. With that variable, the <code>LI</code>s can be gathered into an array:<br>\n<code>var tag = sObj.<strong>getElementsByTagName('LI')</strong></code></p></p><p><h2>Collecting the information</h2></p><p><p>The next step is to cycle through each <code>LI</code> in the array, creating a new text object filled with the  content from the element's <code>title</code>:<br>\n<code>for(x=0;x&#60;tag.length;x++) var value = document.<strong>createTextNode(tag[x].title)</strong></code></p></p><p><p>(An alternate to <code>tag[x].title</code> would be <code>tag[x].getAttribute('title')</code>.)</p></p><p><h2>Displaying the content</h2></p><p><p>A new <code>SPAN</code> element will be created to hold the <code>title</code>'s content:<br>\n<code>var wrap = document.<strong>createElement('SPAN')</strong></code></p></p><p><p>That content, held in the <code>value</code> variable filled earlier, is placed within the newly created element using <code>appendChild</code>:<br>\n<code>wrap.<strong>appendChild(value)</strong></code></p></p><p><p>Finally, this new node is placed within the appropriate <code>LI</code>:<br>\n<code>tag[x].<strong>appendChild(wrap)</strong></code></p></p><p><h2>Styling the content</h2></p><p><p>Like the other elements on the page, this newly created node can be styled by setting the <code>style</code> attribute:<br>\n<code>wrap.<strong>setAttribute('style','color: #F00;')</strong></code></p></p><p><p>Unfortunately Internet Explorer on Windows doesn't recognize styles created using <code>setAttribute</code> so, for that browser, a Microsoft-specific <acronym title="Document Object Model">DOM</acronym> method must be used:</p></p><p><pre>var agt = navigator.userAgent.toLowerCase();\nif((agt.indexOf('msie')!=-1) && (agt.indexOf('win')!=-1)){\n&#160; document.styleSheets[0].addRule('#news LI SPAN','color: #F00;')\n} else { wrap.setAttribute('style','color: #F00;') }</pre></p><p><p>If you have a browser that supports these methods, you can <a href="http://www.saila.com/usage/attributes/writeattribute.html" title="Demonstration: writeAttribute"  target="_blank">see this script in action</a>.</p></p><p><h2>One generic script</h2></p><p><p>Since this script could be used to pull <em>any</em> attribute information from <em>any</em> element, it makes sense to make the script more universal. So, the previous steps have been combined, with minor alterations, into one generic function.</p></p><p><p>Here are the variables used in the function (called &#8220;writeAttribute&#8221;) mapped to the values from this example:</p></p><p><table border="1" cellspacing="0"  class="data">\n<thead>\n<tr><th width="25%">Variable</th>\n    <th width="50%">Description</th>\n    <th width="25%">Example</th></tr></thead>\n<tbody>\n<tr><td><code>i</code></td>\n    <td>element's <code>id</code></td>\n    <td><code>news</code></td></tr>\n<tr><td><code>sT</code></td>\n    <td>source tag</td>\n    <td><code>LI</code></td></tr>\n<tr><td><code>sA</code></td>\n    <td>source attribute</td>\n    <td><code>title</code></td></tr>\n<tr><td><code>nT</code></td>\n    <td>new, created tag</td>\n    <td><code>SPAN</code></td></tr>\n<tr><td><code>nA</code></td>\n    <td>new, created attribute</td>\n    <td><code>style</code></td></tr>\n<tr><td><code>nAv</code></td>\n    <td>value for the new attribute</td>\n    <td><code>color: #F00;</code></td></tr>\n</tbody></table></p><p><h3>The full script with alterations</h3></p><p><p>One note: the last <code>else if</code> is for Opera 5 and 6 only, and can be safely deleted. The section writes a style rule so Opera can use <abbr title="Cascading Style Sheets">CSS</abbr> to duplicate what the script does with the <acronym title="Document Object Model">DOM</acronym>. This additionally functionality will only work in Opera if the new, created attribute (<code>nA</code>) has a value of <code>style</code>.</p></p><p><pre>function writeAttribute(i,sT,sA,nT,nA,nAv){\n&#160; var d = document;\n&#160; var agt = navigator.userAgent.toLowerCase();\n&#160; if((d.createElement) &amp;&amp; (d.createTextNode)){\n&#160; &#160; var sObj = d.getElementById(i); \n&#160; &#160; var tag = sObj.getElementsByTagName(sT);\n&#160; &#160; for(x=0;x&#60;tag.length;x++){ \n&#160; &#160; &#160; var value = d.createTextNode(' '+tag[x].getAttribute(sA));\n&#160; &#160; &#160; var wrap = d.createElement(nT);\n&#160; &#160; &#160; wrap.appendChild(value);\n&#160; &#160; &#160; tag[x].appendChild(wrap);\n&#160; &#160; &#160; if((nA='style') && (agt.indexOf('msie')!=-1) && (agt.indexOf('win')!=-1) && (parseInt(navigator.appVersion)==4)) d.styleSheets[0].addRule('#'+i+' '+sT+' '+nT,nAv);\n&#160; &#160; &#160; else wrap.setAttribute(nA,nAv);\n&#160; &#160; }\n&#160; } else if((agt.indexOf("opera")!=-1) && (nA="style")){\n&#160; &#160; d.write("&#60;style type=\"text\/css\" media=\"screen\"&#62;"+\n&#160; &#160; "#"+i+" "+sT+"["+sA+"]:after { content: ' 'attr("+sA+")''; "+nAv+"; }"+\n&#160; &#160; "&#60;/style&#62;")\n&#160; }\n} </pre></p><p><h3>Putting <code>writeAttribute</code> to work</h3></p><p><p>Because the function reads the elements within the document, it can't be called from within the <code>head</code>. To keep the page organized, place the <code>writeAttribute</code> call immediately after the elements you want to access, and fill in the relevant variables:</p></p><p><pre>&#60;div id="news"&#62;\n...\n&#60;/div&#62;\n&#60;script type="text/javascript"&#62;\n&#60;!--\n&#160; writeAttribute('news','LI','title','SPAN','style','color: #F00')\n//--&#62;\n&#60;/script&#62;</pre></p><p><h2>Growing the code</h2></p><p><p>This is just one example of how the <acronym title="Document Object Model">DOM</acronym> can be used to access previously unavailable elements of a Web page. With some imagination, the <code>writeAttribute</code> function could be used to add images or create <a href="http://www.meyerweb.com/eric/css/edge/popups/demo.html" title="Eric Meyer's Pure CSS Popups" target="_blank"><abbr title="Cascading Style Sheets">CSS</abbr>-based rollover effects</a> using the information already contained within a page.</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

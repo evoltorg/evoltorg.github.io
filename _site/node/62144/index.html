@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Resolving Error 8904 In Sql Server</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Resolving Error 8904 In Sql Server</h2>
+<p class="meta">15 Jul 2009</p>
+
+<div class="post">
+In SQL Server database, there are few types of pages that are used to store allocation structures. A GAM (Global Allocation Map) page is the one that has an individual bit for each extent included in the file interval that GAM page maps. Whereas, SGAM (Shared GAM) has similar structure as of GAM but has little dissimilarity like in SGAM, each of set bits corresponds to an extent, where each of the pages is independently allocated to IAM pages for different indexes. An IAM page also retains the similar structure as of GAM page, but has one dedicated bit for an extent that is allocated to the index (here, the discussed index is the one of which IAM page is a part). But sometimes, you get table corruption errors that show that two different IAM pages have been allocated the same extent. In such situations, you are recommended to immediately restore your data from backup or use third-party <a href="http://www.mssqldatabaserecovery.com/">SQL recovery</a>applications to scan and repair such databases.</p><p>You might receive the below error with your SQL Server database:</p><p>Server: Msg 8904, Level 16, State 2\nExtent E_ID in database ID DB_ID is allocated to more than one allocation object.\nYou might also get error 8913 explaining the details of indexes involved. \nCause\nThe above error signifies that the bits are in state 2 in the specified table, but with two different IAM pages while the same extent is allocated to both of them. These conditions usually arise due to hardware failure reasons. \nSolution \n•	It is suggested to first check your system for hardware failures. To do so, you should run hardware diagnostics, check the application and Windows error logs for the related hardware failure errors. \n•	To cope up with database issues, use your recent data backup \n•	If no clean backup is available, you should run DBCC CHECKDB command without using any repair clause. This will determine the extent of corruption and repair clause that should be used. Again run DBCC CEHCKDB but with using suggested repair clause. But the process can delete the corrupted database items while making it error-free. \n•	To perform safe and efficient database repair, you need to use commercial <a href="http://www.repair-mssql-database.com">SQL Repair</a> utilities. These are designed as read-only applications that you can use to get complete SQL Recovery results. \nStellar Phoenix SQL Recovery is an advanced tool that repairs and restores damaged SQL Server database created with SQL Server 2008, 2005 and 2000. It is a comprehensive database repair product for all database objects and is embedded with unique set of features. It is compatible with Windows Vista, XP, 2003, 2000 and NT. \n
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

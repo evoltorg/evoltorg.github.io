@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Dynamic Ip Redirection</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Dynamic Ip Redirection</h2>
+<p class="meta">14 Oct 2003</p>
+
+<div class="post">
+<p>Those working on the internet as webdevelopers or webdesigners more than often find the need to host webservers on their own machines to let their clients follow their work. The problem is that as the IP changes, the address they gave their clients will stop working. To solve that, several companies offer you the chance to update your dynamic IP everytime it changes allowing you to keep a static URL pointing to your working, localhost machine.</p></p><p><p>If you don't have an internet site I guess you're pretty much stuck with that solution. However, if you do have a site - but keep a running server on your localhost - there is another way to do it using PHP!</p></p><p>Who does this article apply to? To all those who:\n<li> want to give others access to their machine's webserver;\n<li> have PHP installed;\n<li> have a running internet site, preferrably with subdomains.</p><p><p>On the cable service I'm using, the IP address doesn't change while I'm connected so I need only update my IP address one time, at boot up. The first thing we have to do is to create a PHP script which, at boot time, connects to my internet site and uploads a file containing my current IP address. That way, instead of having to give a new URL each time (each day) the IP changes, I can just say "Hey, visit me at http://myhome.myserver.net!" and they will get to the right place. That's where subdomains come in handy. If you're able to create a subdomain for redirection purposes that's better as <em>http://myhome.myserver.net</em> is a lot fancier and easier to remember than <em>http://www.myserver.net/myhome/</em>.</p></p><p><p>So, to update the IP I have a simple batch file called updateip.bat which runs at boot time and goes like this:</p></p><p><pre>\n@echo off\nh:\php\php.exe d:\000_LocalhostRedirection\updateip.php\n</pre></p><p><p>I suppose you could do it without using a batch file, running PHP itself, but that's an old habit for someone who remembers using MSDOS 3.10. Remember to change those paths to whatever applies to you.</p></p><p><p>Now, the script updateip.php:</p></p><p><pre>\n&lt;?php</p><p>/*\nUPDATEIP.PHP\nGets current IP address and updates the server\n*/</p><p>// The name should be your machine's name. If you use localhost it will return\n// 127.0.0.1 which doesn't suit our needs. Replace &quote;orange&quote; by whatever network name your machine has.</p><p>$orange_ip = gethostbyname('orange');</p><p>// Next we create a file containing just the IP address we got before</p><p>$fp = fopen('orange_ip','w');\nfputs($fp,$orange_ip);\nfclose($fp);</p><p>// Whatever we need to connect to the ftp server we set here</p><p>$myserver['ftp'] = 'ftp.yourdomain.net';\n$myserver['user'] = 'yourusername';\n$myserver['pass'] = 'yourpassword';</p><p>// Open the connection</p><p>$ftp = ftp_connect($myserver['ftp']);\n$result = ftp_login($ftp, $myserver['user'], $myserver['pass']);</p><p>// If there is a connection, we send the file. If not, nothing happens.\n// With little more effort we could notify someone if this fails\n// The second parameter for ftp_put is the destination file. Change it to whatever is your case.\n// As this file is to run at startup we echo nothing. It should run silently.</p><p>if ($result)\n	{\n	$upload = ftp_put($ftp, 'www/orange_ip', 'orange_ip', FTP_ASCII);\n	ftp_close($ftp);\n	}</p><p>?&gt;\n</pre></p><p><p>Now that we have, on the server, a file with our current IP address what must be done? Create a script which, when called, redirects the visitor to our localhost using our current IP Address. For convenience I named the script index.php. That way it will be called by default when someone types the address I gave them.</p></p><p><pre>\n&lt;?php</p><p>/*\nINDEX.PHP\nReads current IP address and redirects the visitor\n*/</p><p>// Remember the file we uploaded with updateip.php?</p><p>$fp = fopen('orange_ip','r');\n$destip = fgets($fp,20);\nfclose($fp);</p><p>// Assuming something could have gone wrong, we check to see if there's something inside the\n// file. Not the perfect method, I agree. Still, I'm lazy.\n// If $destip has something in it (an IP address we hope) we use the HTTP Location directive to\n// redirect the browser.</p><p>if ($destip != '')\n	{\n	$location = trim('http://'.$destip.'/');\n	header("Location: ".$location);\n	exit;\n	}</p><p>?&gt;\n</pre></p><p><p>And that's it. There is space for improvements. Lazy as I am I didn't take the time to prevent or circumvent errors, but things should work smoothly. When your machine boots, your IP address is sent via FTP to your server. If someone visits the address you gave, they will be redirected to your localhost. If your IP changes frequently and you're using any scheduling software you can make sure updateip.php runs from time to time. Enjoy.</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

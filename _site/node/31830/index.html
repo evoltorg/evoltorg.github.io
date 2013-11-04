@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Extending Headings With Xml</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Extending Headings With Xml</h2>
+<p class="meta">02 Jul 2002</p>
+
+<div class="post">
+<h2>Headings as they stand today</h2></p><p><p>The headings <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code> \nare very basic ways of representing headings within a document. \nAlthough the method stands up well enough to mark up basic \ndocuments, it doesn't stand up to everything we can throw at it.</p></p><p><p>It would have been much nicer if from the start the header tags had \nbeen defined something along the lines of the following, from day one:</p></p><p><pre>\n&lt;h1 text="top heading"&gt;\n	&lt;h2 text="lower heading"&gt;\n		&lt;p&gt;random content&lt;/p&gt;\n	&lt/h2&gt;\n	&lt;p&gt;text unassociated with the h2&lt;/p&gt;\n&lt;/h1&gt;\n</pre></p><p><h2>A refinement of headings</h2></p><p><p>Obviously though, this is not the case. This doesn't mean that \nwe're not able to associate headers with their content, however, just that \nwe have to do it ourselves. This is where the extensibility of <acronym title="eXtensible Markup Language">XML</acronym> \ncan help you if you're using <acronym title="eXtensible HyperText Markup Language">XHTML</acronym>.</p></p><p><p>Because of the namespacing abilities of XML we can mix in our \nown custom markup with our XHTML. We can use this to produce a \nfully degradable (<acronym title="HyperText Markup Language">HTML</acronym> browsers are supposed to ignore unknown \nelements) container element to associate our headings with their \ncontent.</p></p><p><p>First of all we need to declare the namespace for our heading \nextensions. For the purposes of this exercise let's use the <acronym title="Uniform Resource Locator">URL</acronym> \n<q>http://members.evolt.org/luminosity/xml/header/</q>. Now, to \nincorporate our extended elements we change our base tag from \n<code>&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;</code>, \nto <code>&lt;html xmlns="http://www.w3.org/1999/xhtml" \nxmlns:header="http://members.evolt.org/luminosity/xml/header/" xml:lang="en"&gt;</code>.</p></p><p><p>Now whenever we run across a header we can associate it with \nits content using our custom designed tags. Every time you see a header, \nput a <code>&lt;header:hn&gt;</code> before the header, and a \n<code>&lt;/header:hn&gt;</code> after the last of its associated \ncontent. For example, if we start off with the following code sample:</p></p><p><pre>\n&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;\n	&lt;head&gt;\n		&lt;title&gt;The supermarket fiasco&lt;/title&gt;\n	&lt;/head&gt;\n	&lt;body&gt;\n		&lt;h1&gt;The supermarket fiasco&lt;/h1&gt;\n		&lt;h2&gt;The beginning&lt;/h2&gt;\n		&lt;p&gt;In the beginning was the supermarket.\n		The supermarket dished out your typical\n		bland supermarket food.&lt;/p&gt;\n		&#8230;\n		&lt;h2&gt;The end&lt;/h2&gt;\n		&lt;p&gt;And so the public cheered, as the last\n		supermarket burnt, and their taste buds\n		were once again put to use.&lt;/p&gt;\n	&lt;/body&gt;\n&lt;/html&gt;\n</pre></p><p><p>We replace it with this:</p></p><p><pre>\n&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:header="http://members.evolt.org/luminosity/xml/header/" xml:lang="en"&gt;\n	&lt;head&gt;\n		&lt;title&gt;The supermarket fiasco&lt;/title&gt;\n	&lt;/head&gt;\n	&lt;body&gt;\n		&lt;header:h1&gt;\n		&lt;h1&gt;The supermarket fiasco&lt;/h1&gt;\n		&lt;header:h2&gt;\n		&lt;h2&gt;The beginning&lt;/h2&gt;\n		&lt;p&gt;In the beginning was the supermarket.\n		The supermarket dished out your typical\n		bland supermarket food.&lt;/p&gt;\n		&#8230;\n		&lt;/header:h2&gt;\n		&lt;header:h2&gt;\n		&lt;h2&gt;The end&lt;/h2&gt;\n		&lt;p&gt;And so the public cheered, as the last\n		supermarket burnt, and their taste buds\n		were once again put to use.&lt;/p&gt;\n		&lt;/header:h2&gt;\n		&lt;/header:h1&gt;\n	&lt;/body&gt;\n&lt;/html&gt;\n</pre></p><p><h2>The optional extras</h2></p><p><p>So how does this help us? Well it satisifies those \nof us who wish that header had been a container element \nfor its content all along. You can regard the h1 inside \nour h1 the same as the legend inside a fieldset tag, if \nyou're not happy with having the same data seemingly \ndefined twice. You can also set the text of the original \nh1 to be an attribute for your new h1 if you want. Use \nsomething like: <code>&lt;header:h1 header:text="The supermarket fiasco"&gt;</code>. \nIn the future, when browser support is good enough you \ncould then eliminate the original hn tags and use the \nbefore pseduo-class with generated content to print out \nthe header (<code>header:hn:before {content: attr(header:text);}</code>), \nalthough I would recommend against this, because your \nnew element won't have semantic meaning to browsers, \nwhereas the old hn tags do.</p></p><p><p>We can of course use the new tags to style all content \nbased on their level of heading &#8212; in fact this would be \nthe only practical usage that I can imagine at this time. \nSomething along the lines of:</p></p><p><pre>\nheader:h1 {\n	background-color: blue;\n}</p><p>header:h2 {\n	background-color: light blue;\n}\n</pre></p><p><p>And of course, you can further extend the new headers \nwith your own attributes, and you could then use them with \nsome nifty JavaScript or what have you.</p></p><p><p>Also, you're not limited to extending header elements. \nYou can also use your own namespaces to create documents that use \nyour own tags to fill in for other elements that you need, or want, \nthat HTML doesn't provide yet.</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

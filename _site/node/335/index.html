@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Asp Performance Tips</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Asp Performance Tips</h2>
+<p class="meta">12 Aug 1999</p>
+
+<div class="post">
+Using ASP on a busy server? Finding that it can't cope? Try our tips for making everything run faster, smoother and altogether more froody.<p>\nPerformance goals vary from application to application. You should set your\ngoals to correspond with your expected user traffic. In general, you should\naim for 20 pages or more per second with less than 30 percent CPU\nutilization, and response times of 10 seconds or less.\n<ul>\n<li>Retrieving values from collections is relatively slow. Store retrieved\nvalues in local variables if you need to access them more than once. \n<li>Avoid using server-side <code>#include</code> directives to include large lists of\nconstants.\n<li>Use the new <code>&lt;METADATA&gt;</code> tag to import type-library constants into\nglobal.asa. \n<li>Avoid using <code>Server.CreateObject</code>. Use <code>&lt;OBJECT&gt;</code> tags instead. \n<li>Group multiple Response.Write statements, and delimit them with one set of\n<code>&lt;% %&gt;</code> delimiters. \n<li>Avoid redimensioning VBScript arrays. \n<li>Use only one scripting language per page. \n<li>Buffered responses (Response.Buffer=True) are faster than unbuffered ones\n(although they can appear less responsive). \n<li>Use <code>Response.IsClientConnected</code> during the processing of long scripts. This\nproperty determines if the client has disconnected from the server since the\nlast <code>Response.Write</code>, and improves application responsiveness during times of\npeak usage. \n<li>Use components to encapsulate business logic rather than complex script. \n<lli>Convert dynamic ASP output to static HTML using the ASP2HTM component\nwherever possible. (ASP2HTM is included on the Internet Information Server\n(IIS) Resource Kit CD.) \n<li>Store commonly requested, unchanging content in memory using an\napplication-scope Dictionary object. \nAvoid using Session_OnEnd event procedures, if possible. \n<li>Disable the Session object on a page-by-page basis with the <code>&lt;%@\nEnableSessionState=False %&gt;</code> statement. This declarative allows ASP to\nprocess scripts concurrently, rather than sequentially. \n<li>Write client scripts that don't require roundtrips to the server. Distribute\nwork to the client, such as form input validation. Use the Browser\nCapabilities component (MSWC.BrowserType) and customize client-side scripts\nto take advantage of the browser, incorporating such technologies as DHTML,\nclient-side script, and ActiveX? controls. \n<li>Focus your optimization efforts on the most common paths through your site\nor application. You can determine user behavior with IIS service logs and\nthe Usage Import and Report Writer component of Site Server Express. \n<li>Set <code>Response.Expires</code> appropriately so that proxy servers can intelligently\ncache information that doesn't change often. \n<li>Optimize the use of ADO Connection objects, with ODBC connection pooling and\nstored procedures. \n<li>Measure system performance with tools such as Task Manager, NetMon, and\nPerfMon. Measure Web capacity with WCAT. Profile portions of your ASP script\nwith the ASP Tracer component. For more information see the IIS Resource\nKit. \n<li>Try to keep one ASP page to One application.\nUse SQL stored procedures wherever possible.\n</ul></p><p>These tips are culled from <a href='http://msdn.microsoft.com'>MSDN</a>, where there may be even more.
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

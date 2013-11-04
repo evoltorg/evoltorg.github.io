@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Does Netscape 6 Break Your Table Layouts</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Does Netscape 6 Break Your Table Layouts</h2>
+<p class="meta">27 Dec 2000</p>
+
+<div class="post">
+<p>When it comes to installing new software, I'm like a two-year-old at Christmas, excited by the prospect of every new feature, interface widget, and performance improvement promised by the product. The fact that one or more of my childlike expectations is nearly always either partially or wholly disappointed rarely seems to dampen my enthusiasm for the next new product. Yeah, I'm a sucker -- a software sucker.</p>\n<p>When it came to installing the release version of Netscape 6, however, my normal enthusiasm for the latest thing was far more reserved, informed by installing and testing numerous Mozilla milestone builds and two preview-release versions of the Netscape-branded browser. My experience had sobered me with the realization that this was a browser of immense promise, but which was traditionally buggy and evolved slowly.</p>\n<p>My sobriety proved justified: after installing the release version of the browser, I was perplexed to discover that it added unsightly vertical spacing to pages that I had designed, and broke pixel-precise layouts, undoing hours of my design work without any obvious explanation. This was all-the-more confusing because, as far as I could recall, none of the earlier Mozilla builds or Netscape preview releases shared this problem.</p>\n<p>I wrote my pages to be compliant with the HTML 4.01 Transitional DTD, and the <a href="http://validator.w3.org/" target="_blank">W3C validator</a> verified that they were. My page layouts were moderately complex, so I began the process of dissecting them piece by piece to see at what point Netscape 6 balked at displaying them properly. I took away everything that was extraneous including scripting and style sheets, peeled my nested tables apart, and began at the most-basic level of simplicity. Netscape 6 smiled, displaying my basic table correctly.</p>\n<p>I re-nested my tables, and still Netscape 6 smiled.</p>\n<p>I added back in the CSS, yet Netscape's sunny demeanor remained undiminished.</p>\n<p>It wasn't until I added the document type declaration that Netscape frowned and broke my layout. Hmm. "Strange," I thought. I had taken <a href="http://www.w3.org/TR/html4/struct/global.html#h-7.2" target="_blank">my document type declaration</a> straight from the <a href="http://www.w3.org/TR/html4/" target="_blank">HTML 4.01</a> recommendation itself:</p>\n<code>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"<br>\n���"<a href="http://www.w3.org/TR/html4/loose.dtd" target="_blank">http://www.w3.org/TR/html4/loose.dtd</a>"&gt;</code>\n<p>Nonetheless, the browser treated this fully valid declaration just as if it were a figment of my imagination. Further tinkering finally brought the solution: Netscape 6 apparently <em>only</em> recognizes a single, particular URI within the transitional document type declaration:</p>\n<code>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"<br>\n���"<a href="http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd" target="_blank">http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd</a>"&gt;</code>\n<p>Although the content of these DTDs is identical, using the URI of the first document type declaration will break the page in Netscape 6 whereas using the URI of the second will prove successful. My pixel-precise table layouts are properly aligned once again. With that solved, Netscape 6 and I are both smiling.</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

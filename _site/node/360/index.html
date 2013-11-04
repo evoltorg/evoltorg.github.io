@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Replacing Text In Multiple Files With Perl</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Replacing Text In Multiple Files With Perl</h2>
+<p class="meta">23 Aug 1999</p>
+
+<div class="post">
+<p>Have you ever needed to change the text in a\nbunch of files quickly?  You could open each file\nand then do a search-and-replace.  This process\ncan be time-consuming, tedious, and error-prone.\nSo instead, let's automate this task with\nPerl.</p></p><p><p><strong>The \nCode</strong></p></p><p><pre>\n#!/usr/local/bin/perl\n#\n# Replaces a string within multiple files\n# specified on the command line</p><p>$mv = '/bin/mv';</p><p>$op = shift &#124;&#124; die(&quot;Usage: $0 perlexpr [filenames]\n&quot;);</p><p>if (!@ARGV) {\n  @ARGV = &lt;STDIN&gt;;\n  chop(@ARGV);\n}</p><p>foreach $file (@ARGV) {\n  if (!-f $file) {\n       print &quot;Skipping non-regular file: $file\n&quot;;\n       next;\n  }\n  if (-B $file) {\n       print &quot;Skipping binary file: $file\n&quot;;\n       next;\n  }</p><p>  $outfile = &quot;/usr/tmp/$file.$$&quot;;</p><p>  open(FILE, $file) &#124;&#124;\n       die(&quot;Couldn't open $file: $!\n&quot;);\n  undef $/;\n  $_ = &lt;FILE&gt;;\n  close(FILE);</p><p>  if (eval $op) {\n    open(OFILE, &quot;&gt; $outfile&quot;) &#124;&#124;\n        die(&quot;Couldn't open $outfile: $!\n&quot;);\n    print OFILE;\n    close(OFILE);</p><p>    system($mv, '-f', $file, &quot;$file.bak&quot;);\n    system($mv, '-f', $outfile, $file);</p><p>    print &quot;File changed: $file\n&quot;;\n  }\n  else {\n    print &quot;No change to file: $file\n&quot;;\n  }\n}</p><p>exit(0);\n</pre></p><p><p><strong>The Explanation</strong></p></p><p><p>Save the above code into a file called\n<strong>replace</strong>.  Make sure that the\npermissions are set correctly so that you can\nexecute the script.  Also check to make sure that\nyour Perl interpreter is in /usr/local/bin.  If\nPerl is somewhere else, you'll need to change the\nfirst line to point to where Perl is installed on\nyour system.  Finally, check to make sure that\nyour <strong>mv</strong> executable is in /bin\nwhich it should be.  If not, you'll need to change\nline 6, <strong>$mv = '/bin/mv';</strong> to point \nto the correct location of the executable.</p></p><p><p>To use the script you would type:</p></p><p><p><blockquote>replace perlexpr\n[files]</blockquote></p></p><p><p>where <strong>perlexpr</strong> is the\nsubstitution operator, i.e., s///.  You can\nactually pass any Perl expression through to\n<strong>perlexpr</strong> allowing you to do more\ncomplex text substitutions.  If you decide to\nthat, however, make sure that your expression\nleaves the block with a non-zero value if you want \nthe change to take place.  It's easiest to make\nthis value the number of replacements that\nactually occurred.  The <strong>files</strong>\nargument is a list of filesname that you want to\nchange.  You can leave this argument out and the\nscript will take a list of names from STDIN.</p></p><p><p>The script works by reading in each text file\nthat is passed to it and evaluating the Perl\nexpression that is supplied on the command-line.\nIf the expression evaluates to TRUE, it creates a\ntemporary file containing the changes, makes a\nbackup of the original file\n(<em>filename</em>.bak), and then copies the\nchanged file over top of the original file.  Also,\nsince the script reads the entire file into a\nsingle scalar variable, you'll probably want to\nuse the /g modifier to any substitution commands\nthat you pass in; this will ensure that multiple\noccurrences are replaced and not just the first\none.</p></p><p><p><strong>The Examples</strong></p></p><p><ol>\n<li><p>Your company has changed its name from 'Get\nRich Quick Corp.' to 'Suckers Are Us' and you need \nto change all your Web pages to reflect this.</p></p><p><blockquote>replace 's/Get Rich Quick\nCorp\./Suckers Are Us/g' *</blockquote></p><p><li><p>The new guy in your office has started\nusing .htm in all of his links while the files are \nactually end in .html.</p></p><p><blockquote>replace 's/\.htm\&quot;/\.html\&quot;/g'\n*.htm</blockquote></p><p><p>You can then use your\n<a href="http://evolt.org/article/Renaming_Files_with_Perl/17/351/index.html">rename\nscript</a> to change the file suffixes from .htm\nto .html.</p></p><p><p><strong>Note:</strong> This assumes that your\nlinks end with a double quotation mark and that\n.htm&quot; does not appear anywhere but in a\nlink.</p></p><p><li><p>You want to highlight all references to my\nname in your files.</p></p><p><blockquote>replace 's!Dean Mah!&lt;strong&gt;Dean\nMah&lt;/strong&gt;!g' *</blockquote>\n</ol></p><p><p>The standard warning applies here when using\nregular expressions, make your expressions as\nspecific as possible, otherwise they are bound to\nmatch something that you didn't want it to.  To be\nsafe, you should compare the original file with\nthe changed file using something like\n<strong>diff</strong> to make sure that only the\nchanges that you wanted occurred.</p></p><p><p>If you have any problems or questions about\nthis script, you can e-mail them to me at:\n<a href="mailto:dmah@vox.org">dmah@vox.org</a>.</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

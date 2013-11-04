@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Enabling Virtual Hosts On Macos X</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Enabling Virtual Hosts On Macos X</h2>
+<p class="meta">05 Jul 2001</p>
+
+<div class="post">
+Enabling Virtual Hosts on MacOS X</p><p><p>\nAs a web developer, it's not unusual to have a multiple sites under development at the same time. Here's how to develop as many sites as you want, with &quot;root relative&quot; calls for graphics, scripts, CSS, links, etc. and keep all of the files for any particular site together - and they don't even have to be in the default web server document root.\n</p>\n<p>\nThe practice is called &quot;Name-Based Virtual Hosts&quot;. As described in the <a href="http://httpd.apache.org/docs-2.0/vhosts/" title="Link to the Apache Documentation for Virtual Hosts on the Apache www site - opens in new window." target="_blank">Apache documentation</a> (thoughtfully provided by <a href="http://www.apple.com/" title="A link to Apple Computers www site" target="_blank">Apple</a> with every <a href="http://www.apple.com/macosx/" title="A link to the MacOS X information pages on Apple's www site" target="_blank">MacOS X</a> installation):\n</p>\n<blockquote>\n<P><cite>The term <em>Virtual Host</em> refers to the practice of maintaining\nmore than one server on one machine, as differentiated by their apparent\nhostname. For example, it is often desirable for companies sharing a\nweb server to have their own domains, with web servers accessible as\n<code>www.company1.com</code> and <code>www.company2.com</code>,\nwithout requiring the user to know any extra path information.</cite></P></p><p><P><cite>Apache was one of the first servers to support IP-based\nvirtual hosts right out of the box. Versions 1.1 and later of\nApache support both, IP-based and name-based virtual hosts (vhosts).\nThe latter variant of virtual hosts is sometimes also called host-based or\nnon-IP virtual hosts.</cite></P>\n</blockquote></p><p><p>\nThe instructions for adding Virtual Hosts in the Apache documents tell you what you need to change in your Apache configuration - but, they don't give you the rest of the story. To create functioning Virtual Hosts for development on your Mac, you also need to tell it that <code>http://my.test.site</code> resolves to 127.0.0.1 (the internal IP address of your machine - every machine on the net thinks <em>it</em> is 127.0.0.1) or <code>http://localhost/</code>. You fix this up by using Apple's NetInfo Manager (Applications/Utilities/NetInfo Manager).\n</p>\n<p>\nNB: from here on out, you'll have to have administrator privileges on your machine. You don't need to be root, but you do need to have the ability to &quot;sudo&quot;.\n</p></p><p><p>\nFirst, we need to create the pointer to localhost that we're going to use to tell Apache what files to serve as the web site. \n</p>\n<ol>\n	<li>Open NetInfo Manager and browse to /machines/localhost.</li>\n	<li>Click on the lock, and enter your password so that you can make changes.</li>\n	<li>Duplicate &quot;localhost&quot; (Edit::Duplicate)</li>\n	<li>Select &quot;localhost copy&quot; and then select the name property in the lower window</li>\n	<li>Change the value of &quot;name&quot; from localhost to whatever your development site will be. Remember, if you choose a real domain, you won't be able to do anything (like see the web site, send mail, etc.) with that domain from this machine. I use bogus TLD's - so www.test.site works fine.</li>\n	<li>Click on one of the other directories in the list, and you will be asked if you want to save your changes. Save them!</li>\n</ol></p><p><p>\nYou've now made an entry in your NetInfo Manager for a bogus site that points to your local machine. If you try to go to http://www.test.site now with a web browser, you'll see the same thing you'll see if you go to http://localhost/. Which brings us to step two - creating the vhost entry in the Apache Config file.\n</p>\n<p>\nOpen Terminal and enter:\n</p>\n<blockquote>\n	<code>[localhost:~] bob% cd /etc/httpd/</code><br>\n	<code>[localhost:/etc/httpd] bob% ls -la</code><br>\n</blockquote>\n<p>\nOne of the files you see in there should be httpd.conf. You'll want to make a backup of that file - just in case. So...\n</p>\n<blockquote>\n	<code>[localhost:/etc/httpd] bob% cp httpd.conf httpd.conf.back</code><br>\n	<code>[localhost:/etc/httpd] bob% ls -la</code><br>\n</blockquote>\n<p>\nNow you see httpd.conf and httpd.conf.back in the directory. \n</p>\n<p>\nNow comes the fun part. You need to edit your httpd.conf file. Since it is owned by root and root is the only user with read and write permissions on the file, you will need to pretend that you are root, even if it's just for a little while. The safest way to do this is to use the &quot;sudo&quot; command. In the next examples, I use emacs to edit the httpd.conf file, but you also have vi and pico at your disposal, and you can use TextEdit or BBEdit if you like. I only use emacs because it's what I know and I like the safety of not having an application opened as root (which is what you'd get if you used open -a and used BBEdit or TextEdit).\n</p>\n<p>\nSo, issue the following command:\n</p>\n<blockquote>\n	<code>[localhost:/etc/httpd] bob% sudo emacs httpd.conf</code>\n</blockquote>\n<p>\nFind the line (ctrl + s to search in emacs) that reads <code>### Section 3: Virtual Hosts</code> and read the description below it. It shows an example of a name based vhost. Uncomment the line that reads <code>#NameVirtualHost *</code> and change it to <code>NameVirtualHost 127.0.0.1</code>. Below the example VirtualHost, you'll want to create your own listings now. \n</p>\n<p>\nIf you tell the server that you have one vhost on 127.0.0.1, it will presume that every call to 127.0.0.1 (including localhost) is a request for that web site - so, if you want to have http://localhost work, you need to add 2 vhost entries.  It looks like this:\n</p>\n<pre>\n#       Leave this one alone - it makes sure that localhost works.\n&lt;VirtualHost 127.0.0.1&gt;\n	DocumentRoot /Library/WebServer/Documents\n	ServerName localhost	\n&lt;/VirtualHost&gt;</p><p>#        Add new hosts here for development</p><p>&lt;VirtualHost 127.0.0.1&gt;\n	DocumentRoot /Library/WebServer/Documents/path/to/files\n	ServerName www.test.site\n&lt;/VirtualHost&gt;\n</pre>\n<p>\nIn the listing for your test site, you can make the DocumentRoot value whatever you want. It doesn't have to be in the default web docs directory. Whatever will work for you to help you keep your files in order is fine.\n</p>\n<p>\nSave your changes (ctrl+x, ctrl+s) and quit emacs (ctrl+x, ctrl+c). Now you have to restart Apache. In MacOS X, the easiest way to do this is in the Sharing panel in System Preferences. Turn Web Sharing off, then turn it on again. It's that simple.\n<p>\n<p>\nNow, open a web browser and go to http://www.test.site/. If you've done it all right, you'll see the site you pointed at in the httpd.conf file. All of your root relative calls will work, and all of your files are manageable again. As you pick up new sites to build, you can easily add them like this and have a complete testing and development machine.\n</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

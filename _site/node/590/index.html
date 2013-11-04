@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Easy Perl Persistence Faker</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Easy Perl Persistence Faker</h2>
+<p class="meta">22 Nov 1999</p>
+
+<div class="post">
+<p>All Perl programmers have to spend some time on making\nsemi-persistent pages. A lot of this time is spent on writing the code\nand the form. Now to make your life just a tad easier I've written a\nsimple subroutine that will parse a form against some simple preset\ncriteria. This is the code :</p></p><p><pre>\nsub ParseForm {\n&nbsp;&nbsp;&nbsp;&nbsp;# Get parameters\n&nbsp;&nbsp;&nbsp;&nbsp;my $formtext = shift ;\n&nbsp;&nbsp;&nbsp;&nbsp;my $formref  = shift ;</p><p>&nbsp;&nbsp;&nbsp;&nbsp;# Now get the real hash form the reference\n&nbsp;&nbsp;&nbsp;&nbsp;my %form = %{$formref} ;</p><p>&nbsp;&nbsp;&nbsp;&nbsp;# Now we will parse the form for complex\n&nbsp;&nbsp;&nbsp;&nbsp;# replacements\n&nbsp;&nbsp;&nbsp;&nbsp;$formtext =~ s/\%(.+?)\=(.+?)\=\&gt;(.+?)\&lt;\&gt;(.+?)\%/$form{$1} eq $2 ? $3 : $4/ego ;\n&nbsp;&nbsp;&nbsp;&nbsp;# And now we will do the same for simple\n&nbsp;&nbsp;&nbsp;&nbsp;# replacements\n&nbsp;&nbsp;&nbsp;&nbsp;$formtext =~ s/\%(.+?)\%/$form{$1}/ego ;</p><p>&nbsp;&nbsp;&nbsp;&nbsp;# And return the result\n&nbsp;&nbsp;&nbsp;&nbsp;return $formtext ;\n}\n</pre></p><p><p>This code will replace %varname% with the appropriate variable from\nthe form hash and %varname=text to check for=&gt;one value&lt;&gt;or the other%\nwill be replaced by &quot;one value&quot; if varname is text to check for or\n&quot;or the other&quot; if not.</p></p><p><p>An amusing example in which this can be used is the following : \n(application of this to a form is up to you)</p></p><p><pre>\n# define some dumb variables&lt;\n%form = ( firstword =&gt; &quot;marry&quot; , secondword =&gt; &quot;you&quot; , ) ;</p><p># Automatically flush the buffer after each write\n$&#124; = 1 ;</p><p># Print the conversation\nprint &quot;Will you marry? \n Are you cheating on me ? \n Answer: &quot; ;</p><p># Get the cheating question\n$cheat = &lt;STDIN&gt; ;\nchomp $cheat ; $cheat = lc($cheat) ;</p><p># And get the answer into the form\n$form{'cheating'} = $cheat ;</p><p># Define the text to parse\n$parsetext = qq~%cheating=no=&gt;I will&lt;&gt;I will not% %firstword% %secondword%.~ ;</p><p># And do the mumbo jumbo\nprint &amp;ParseForm( $parsetext , \%form ) ;</p><p># And get out of here\nexit ;\n</pre>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

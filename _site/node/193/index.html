@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Tune Your Webserver For Performance</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Tune Your Webserver For Performance</h2>
+<p class="meta">26 Jun 1999</p>
+
+<div class="post">
+Getting maximum performance out of a webserver is an important part of developing a website, and often the most overlooked. Making sure your server can handle a heavy load or getting the most out of your current hardware are great ways to improve an end-user's experience on your site.<P> A lot of fuss is being made about which operating system is the best to run a webserver on right now. Without jumping into the reasons why one is better than the other, I'd like to introduce some ways to tune your webserver, no matter what platform you choose to run it on. Some of them may be obvious while others may not, but all of them will increase the performance of your webserver to make you, your clients, your boss, and your users happier by letting them view content as fast as you can possibly make it.<P> <B>1.) Keep the version of your webserver up to date.</B><br> Whether it be a new Service Pack or the latest release of your webserver, make sure you're running the latest and greatest. Performance, security, and optimization are always being improved by the webserver developers, so take advantage of it! As an example, the latest version of Apache(1.3.6 at this time) is about 30% faster than a 1.2.x version of Apache from about two years ago.<P> <B>2.) Don't let your data fight!</B><br> Reading and writing your site content and server logs to the same disk drive can really slow down a server - don't let them fight for access! The best solution is to have your HTTP logs reside on one disk and your content on another disk. If you can't get separate disks, split your existing disk into one or more partitions. <P> <b>3.) More RAM, less Mhz.</B><br> If you think it's time for a hardware upgrade for a server, forget about getting the latest and greatest from Intel and spend the money on RAM. Webservers aren't CPU cycle hogs, but they do use a lot of memory, so the more you have, the better your machine will run! A 300Mhz chip with 128Mb of RAM will outperform a 500Mhz Pentium III with 64Mb of RAM. <P> <P>\n<b>4.) Ditch those services!</B><br> Another commonly overlooked point is machines that run a lot of excess software on top of serving pages! Your webserver should be just that, a <b>webserver</B>! Don't force it to run other applications that compete for system resources. A good example is turning off sendmail and X-Windows on a Unix based server - you don't need these running on the server, but they're typically installed on the OS by default.<P> <P>\n<b>5.) Give one machine one task.</B><br> This ties in with point four, but I've seen a lot of people that will run their mailserver, webserver, AND database all on the same machine, hardly leaving time for the machine to serve pages! Instead, I recommend that you give one machine one specific duty. One box for a mailserver, one for your webserver, one for a fileserver, and one for a database. Running too many things on one machine will give you poor performance for all of them! <P> <P>\n<b>6.) Buh-bye CGI!</b><BR> If you have the means, use your server's API (application programming interface) such as ISAPI (for IIS) and NSAPI (for Netscape) or Java Servlets to generate dynamic content. All of them scale better than CGI's and when used with their server, can give you powerful functionality. CGI's rely on starting a new process for each request which can be a bottleneck on busy machines. <P> <P>\n<b>7.) Don't trash that trailing slash!</B><BR> This is getting pretty picky - when making links on your pages, always use the trailing slash if you're linking to a directory or the front of a site. If you don't, the server has to send a message back to the browser saying something like "You should really use a trailing slash" and the browser then reissues the command with a trailing slash on the URL. Sure it will work without the trailing slash, but it's one less trip to the server. <P> <P>\n<b>8.) Turn off reverse DNS lookups</b><br> Both Apache and IIS have an option to look up a client's hostname when they request a page. This will really slow down a heavy traffic site because the server has to do a DNS lookup on each object that each client requests, the whole time, waiting on this to write that info to the logs. Every way you look at it, this is a bad idea. If you're interested in hostnames of people that are coming to your site, resolve the hostnames when you use your favorite log analyzer, most of them have this feature. <P> <P>\n<b>9.) TCP MTU = MTU TCP</b><BR> This is also a simple, but often overlooked, way to make your server run faster. Use the same TCP(transmission control protocol) MTU (maximum transmission unit) as your upstream provider does. That way your packet size is the same as theirs is, and you won't lose any time splitting up packets and putting them back together at a different size. Call your provider and ask them what they have theirs set to; if they don't know, switch providers :) <P> <P>\n<b>10.) Switch on the bandwidth.</B><br> Again, if you have the means, use a switch to route traffic to your servers rather than a hub. A switch allows each port to have either 10 or 100Mbs speed unlike a hub, where the 10 or 100Mbs is shared among all ports on the hub. I know this one isn't that good, but I needed an even number to end on :)<P> <P>\nSo there you have it, 10 different ways to get the best performance out of your website. In cooperation with your content and graphics people optimizing their code and images, you should have everything it takes to make your website scream! If you have any other tips to speed up your server, post them below for others to see! <P> Also, if you have any questions, feel free to contact me at <a href="mailto:djc%40members.evolt.org">djc@members.evolt.org</a>! <P>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

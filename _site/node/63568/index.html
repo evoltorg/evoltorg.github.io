@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Create A News System With Php</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Create A News System With Php</h2>
+<p class="meta">05 Jan 2012</p>
+
+<div class="post">
+If you ever need a news system for your website, where you can add news items through an admin panel, this is how you do it.<br />\nYou will just need 3 files for this: <br />\nindex.php (main page)<br />\ncreate_news.php (admin panel where you add the news)<br />\nnews.php (where you see the news items)<br />\n<br /><br /></p><p>\nindex.php:\n<br />\n<code>\n<div style="height:312px;overflow-x:auto;"> //creates an overflow to keep the page short\n<?php\n//conect to database\nsession_start();\n$server        = 'localhost';\n$username    = 'news';\n// $password    = '';\n$database    = 'news';</p><p>if(!mysql_connect($server, $username))\n{\n     exit('Error: Could not connect to the database');\n}\nif(!mysql_select_db($database))\n{\n     exit('Error: Could not select the database');\n}\n//get rows from database\n$result = mysql_query("SELECT * FROM news ORDER BY newsId DESC");\n    echo '<table width="500px"height="100px" border="1" cellspacing="1" cellpadding="1">'; //creates table\n    while($row = mysql_fetch_array($result)) //organise the rows from database query\n    //creates a row for each news item   \n        {                      \n            echo "<tr>";\n            echo "<td><img src=" . $row['newsImg'] . "></td>";\n            echo "<td><b><a href='../news.php?id=" . $row['newsId'] . "'>" . $row['newsTitle'] . "</a></b>&nbsp;<i>" . $row['newsDate'] . "</i><br><hr><p>" . $row['newsMain'] . "</p></td>";\n            echo "</tr>";\n        }\n?>\n</table>\n</code>\n<br />\nThis will display all the news items in a small div, where you will be able to scroll down to older items.<br />\nLines explained:<br />\n3-15: Creates connection to database<br />\n17: Gets the news items from the database<br />\n19: Creates array $row[]<br />\n22-25: Displays the news items individually.<br />\n<br /><br /></p><p>\ncreate_news.php\n<br />\n<code>\n<?php\nsession_start();\n$server        = 'localhost';\n$username    = 'news';\n// no password                    $password    = ' ';\n$database    = 'news';</p><p>if(!mysql_connect($server, $username))\n{\n     exit('Error: Could not connect to the database');\n}\nif(!mysql_select_db($database))\n{\n     exit('Error: Could not select the database');\n}\nelse\n{\nif($_SERVER['REQUEST_METHOD'] != 'POST')\n{\n?>\n<table width="500" border="1" cellspacing="3" cellpadding="1">\n<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">\n<tr>\n    <td>News Title:</td>\n    <td><input type="text" name="newsTitle"></td>\n</tr>\n<tr>\n    <td>News Image:</td>\n    <td><input type='text' name='newsImg'></td>\n</tr>\n<input type='hidden' name='newsDate' value='<?php echo date("d/m/Y")?>'>\n<tr>\n    <td>Description Post:</td>\n    <td><textarea name="newsMain" rows="5" cols="40"></textarea></td>\n</tr>\n<tr>\n    <td>Main Post:</td>\n    <td><textarea name="newsLong" rows="8" cols="40"></textarea></td>\n</tr>\n<tr>\n    <td><input type="reset" value="Reset"></td>\n    <td><input type="submit"  value="Add News"></td>\n</tr>\n</form>\n</table>\n<?php\n}\nelse\n{\nmysql_query("INSERT INTO news (newsTitle, newsMain, newsImg, newsDate, newsLong) VALUES ('$_POST[newsTitle]','$_POST[newsMain]','$_POST[newsImg]','$_POST[newsDate]','$_POST[newsLong]')");\nheader("Location: index.php");\n}\n}\n?>\n</code>\nThis code is just a normal form, to add the news to the database. Nothing to explain realy. You can add as many fields as you want.<br />\n<br /><br /></p><p>\nnews.php</p><p><br />\n<code>\n<?php\nif(isset($_GET['id'])){\n$new_id = $_GET['id'];\n}\nelse\n{\nheader("Location: index.php");\n}\nsession_start();\n$server        = 'localhost';\n$username    = 'news';\n// $password    = '';\n$database    = 'news';</p><p>if(!mysql_connect($server, $username))\n{\n     exit('Error: Could not connect to the database');\n}\nif(!mysql_select_db($database))\n{\n     exit('Error: Could not select the database');\n}\n$sql = "SELECT * FROM news WHERE newsId=" . $new_id;\n$result = mysql_query($sql);\nif(!$result)\n{\n    echo "There was an error, please try again!";\n}\nelse\n{\n    if(mysql_num_rows($result) == 0)\n    {\n        echo "This news article does not exist.";\n    }\n    else\n    {\n        while($row = mysql_fetch_array($result))\n        {\n            echo "<h1>" . $row['newsTitle'] . "</h1><br>";\n            echo "<h3>On " . $row['newsDate'] . "</h3>";\n            echo "<table border=\"1\" cellspacing=\"1\" cellpadding=\"1\"><br><tr><td><img src=" . $row['newsImg'] . "></td></tr></table><br>";\n            echo $row['newsLong'];\n        }\n    }\n}\n?>\n</code>\nThis page will display a news article selected from index.php<br />\nTo explain the code:<br />\n1-7: Checks if user comes from index.php and has selected a news article.<br />\n8-21: Connects to database.<br />\n22-27: Gets the news item with the ID set.<br />\n29-33: Checks if news article exists.<br />\n36-41: Displays the news article.<br />\n<br />\n<br />\n<br />\nThat's it! You now have a simple news system.<br />\nThank you for reading, and don't be harsh commenting, its my first tutorial :)
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

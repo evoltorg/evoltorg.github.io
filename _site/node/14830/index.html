@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Xml  Defining A Technology  Part One Of Six</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Xml  Defining A Technology  Part One Of Six</h2>
+<p class="meta">16 Aug 2001</p>
+
+<div class="post">
+<p>There are articles about XML in every major tech journal and at every web developer's site. It has already been said that XML will revolutionize the web and change the way internet works. So, what is XML and why all the fuss? </p></p><p><p>It may be easier to define what XML isn't rather than what it is. XML is not a markup language. Yeah, I know they call it that, it is two thirds of the name and yet other than some rules common to SGML and HTML there is nothing about XML that defines it as a language unless it's the term meta language.  If you're expecting to learn a new language, XML will surprise you. XML wants you to define your own language using XML terms. XML isn't a display language. It doesn't display content like HTML, it defines the content and relies on another language to render it. </p></p><p><p>XML, rather than being a language, is a database. Now I know you are wondering, "A database, all this fuss over a database?" Well, yes. But rather than having to make the data conform to a given set of rules, with XML you define the rules the data conforms to. This allows for some freedoms that just aren't possible with HTML. </p></p><p><p>Okay, okay, get on with the XML...</p></p><p><p>Before jumping into the XML structure there are a few basics that must be addressed. </p></p><p><p><strong>Tags</strong></p></p><p><p>XML tags <strong>MUST</strong> be paired. Recall the img tag from HTML? There's no &lt;/img&gt; tag. In XML  tags that don't come in pairs must take the empty form. A &lt;br&gt; tag in XML must be expressed as &lt;br/&gt;. Tags must also be nested properly.</p></p><p><p>&lt;p&gt;&lt;b&gt;Incorrect Nesting&lt;/p&gt;&lt;/b&gt; is incorrect and must be expressed;</p></p><p><p>&lt;p&gt;&lt;b&gt;Correct Nesting&lt;/b&gt;&lt;/p&gt;</p></p><p><p><strong>XML is case sensitive</strong></p>\n<p>A &lt;TITLE&gt; tag is seen as an entirely different tag than a &lt;title&gt; tag. </p></p><p><p><strong>Whitespace</strong></p>\n<p>XML, unlike HTML, deems whitespace in content as intentional and leaves the space intact. XML browsers may collapse this but XML does indeed count returns and spacebar entries as important. </p></p><p><p><strong>The Types of XML Documents</strong></p></p><p><p>There are two types of XML documents. Valid ones and well-formed ones. A valid document contains everything you need to know about the content and structure of the document. A well-formed document contains the bare essentials while adhering to the XML rules. Either one is acceptable. The major difference is that a VALID document must either contain or point to a DTD, (Document Type Definition).</p></p><p><p>DTDs contain the information needed to allow processing applications to display the document. They include a definition of the &lt;tags&gt; that are used to mark up the document. The DTD contains the rules defining the structural relationship for &lt;tags&gt;. For example, a &lt;piston&gt; tag may exist within &lt;engine&gt; tags but an &lt;engine&gt; tag cannot exist between &lt;piston&gt; tags. The DTD also specifies the sequence of tags, &lt;year&gt; before &lt;manufacturer&gt; and &lt;make&gt; and &lt;model&gt;. The DTD is where you specify the tag attributes as well,  &lt;font="bold&gt; for your &lt;emphasis&gt; tags for example. You can also include any other information needed about the structure or grammar of the document you intend to create.<p></p><p><p><strong>Do I have to have a DTD?</strong></p></p><p><p>Quite simply, no. A well-formed document is enough. </p></p><p><p><strong>Why take all the time to make one then?</strong></p></p><p><p><strong>CONTROL.</strong> The DTD allows for complete control over the processing of your document. Since everything is specified, there can be no arbitrary representation of the document from the processing application. </p></p><p><p><strong>Okay, we have some rule for documents, but what about the documents themselves? </strong></p></p><p><p>XML documents consist of elements. Each element may contain another element, this may or may not be content accessible to the viewers, and within each sub-element other elements may exist and so on.  XML documents are ordered as Prolog, Root Element and Epilog, although epilog may not exist in the same form in future XML protocols. </p></p><p><p>A well-formed document need only contain the Root Element while a Valid document needs the Prolog and the Root Element. The Epilog is never a requirement. </p></p><p><p><strong>What does the Prolog consist of? </strong></p></p><p><p>First, you don't need a Prolog at all. If you aren't interested in creating DTDs,  a document with nothing but a Root Element is perfectly acceptable. The prolog is an introduction of the document to whatever application is processing it and it can serve to provide info to the surfer as well. </p></p><p><p><strong>There are 4 parts to the prolog. </strong></p></p><p><p><strong>1. XML Declaration.</strong> This is nearly the same thing as an &lt;HTML&gt; tag and will look like this in its simplest form. &lt;?xml version="1.0"?&gt; The "?" marks are delimiters for Processing Instructions. This lets the program or browser know that the folllowing document is an XML document and may need special handling and that it complies with version 1 of the XML rules. The encoding information follows; &lt;?xml version="1.0" encoding="iso-8859-1"?&gt;. This merely tells the application or browser what character set is used to render the document. This can be anything you specify. Finally, there is the standalone document declaration. This value is either yes or no. &lt;?xml version="1.0" encoding="iso-8859-1" standalone="yes"?&gt; If you specify yes this tells the application that ALL the rules for this document may be found within the document of within a file you specify. At this time the standalone document declaration appears to on the way out. It isn't needed. If you are using a DTD it can be specified elsewhere. </p></p><p><p><strong>2. Comment.</strong> Much the same as HTML comment. &lt;!--Any characters or text can be placed within &lt;comment&gt; tags and will be ignored by the application processing the document--&gt; </p></p><p><p><strong>3. Processing Instructions, or PIs</strong> &lt;quicktime version="6.0"  bitrate="32Kbps"?&gt; this lets the browser know that files expected to be played by the quicktime application will be rendered at 32Kpbs. If the browser doesn't understand what Quicktime is, more than likely, the PI will be ignored. </p></p><p><p><strong>4. The document type declaration.</strong> This is not the same as DTD, (document type definition) and there are three components. This merely tells the application what kind of XML document is being used, this could be for an auto manufacturer and named automl. </p>\n \n<p>Syntax is as follows: &lt;!DOCTYPE name externalDTDpointer internalDTDsubset&gt;</p></p><p><p>Only name is required. &lt;!DOCTYPE automl&gt;</p></p><p><p>ExternalDTDpointer tells the aplication where to find the DTD. &lt;!DOCTYPE automl SYSTEM "http://www.auto.com/autuoml.dtd"&gt;</p></p><p><p>The internalDTDsubset is optional and supplements the external DTD. The internal DTD overrides the external. The syntax is &lt;!DOCTYPE automl SYSTEM "http://www.auto.com/automl.dtd" [<ELEMENT vinnumber ANY>]&gt;</p></p><p>\n<p>The Root Element is the heart and soul of XML and as such, can represent a well-formed document without any mention of a Prolog or an epilog. An Element consists of a single pair of tags. What exists between the tags is added markup. For our automakers site our root element might consist of:</p></p><p><p>&lt;autoinfo&gt;</p>\n&lt;make&gt;Ford&lt;/make&gt;\n<p>&lt;/autoinfo&gt;</p></p><p><p> This is a very limited view of what a Root Element is and there is MUCH more information to be covered in the next section. </p></p><p><p><strong>Epilog</strong></p></p><p><p>The epilog can contain any information that is covered in the Prolog except for DOCTYPE and XML declarations. I suggest using the Prolog to cover all the instructions and info needed and foregoing the use of the Epilog. Once again, the Epilog's fate is yet to be determined in the XML protocols and looks decidedly uncertain.</p></p><p><p>This section has covered the basics of an XML document, Prolog, Root Element and Epilog including some basic syntax and some markup differences that are different from HTML. In the next section we'll get into some detail about the Root Element, Attributes,  Entities and more. </p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

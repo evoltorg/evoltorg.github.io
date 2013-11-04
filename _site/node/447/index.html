@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Javascript Naming No No</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Javascript Naming No No</h2>
+<p class="meta">16 Sep 1999</p>
+
+<div class="post">
+<P>When naming objects on a page, most commonly images and form elements, <STRONG>NEVER</STRONG> name any object with the same name.</P><P>For instance, let's imagine you had a rather simple page like this:</P></p><p></p><p><P>\n<pre>\n&lt;HTML&gt;\n  &lt;HEAD&gt;\n    &lt;TITLE&gt;A simple page&lt;/TITLE&gt;\n    &lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;\n      &lt;! -- \n        function checkValue()\n        {\n          alert('The form value is ' + document.USER_INFO.USER_ID.value);\n        }\n      // --&gt;\n    &lt;/SCRIPT&gt;\n  &lt;/HEAD&gt;&lt;BR&gt;&lt;BODY&gt;\n  &lt;FORM NAME=&quot;USER_INFO&quot;&gt;\n    &lt;TABLE&gt;\n      &lt;TR&gt;\n        &lt;TD&gt;\n          &lt;IMG NAME=&quot;USER_ID&quot; SRC=&quot;images/required.gif&quot;\n           HEIGHT=&quot;20&quot; WIDTH=&quot;20&quot; BORDER=&quot;0&quot; ALT=&quot;Required&quot;&gt;\n          &lt;/TD&gt;\n        &lt;TD&gt;\n        &lt;INPUT TYPE=&quot;TEXT&quot; NAME=&quot;USER_ID&quot; SIZE=&quot;10&quot;\n           VALUE=&quot;&quot; onBlur=&quot;checkValue()&quot;&gt;\n        &lt;/TD&gt;\n      &lt;/TR&gt;\n    &lt;/TABLE&gt;\n  &lt;/FORM&gt;\n&lt;/BODY&gt;\n&lt;/HTML&gt;\n</pre>\n</P></p><p><P>Notice that both the image and the form input element share the same name.  What will happen in some browsers when the onBlur() function is called, the browser will give a JavaScript error saying that<BR><BR>\n<code>document.USER_INFO.USER_ID is undefined</code><BR><BR> or a similar error.  The browser thinks it's trying to find the value of the image object named <I>USER_ID</I>, which it can't do because image objects do not have a <I>VALUE</I> attribute associated with them.</P><P>The same would be true if you were trying to access an image object with the same name as a FORM element that it followed.  It can't find the image because it occurs right after a FORM element with the same name.  Since <I>.src</I> is not valid for a FORM element, it returns an error.</P><P>So, in conclusion, remember that if you have elements that need to have the same or similar names for functionality to not make them share names or your perfectly useful JavaScript functions will break horribly for some, if not all of your users.</P>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Working With Window Sizes The Low Tech Way</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Working With Window Sizes The Low Tech Way</h2>
+<p class="meta">09 Oct 2000</p>
+
+<div class="post">
+<h3>Background</h3>\n<p>Every few weeks another article or two crops up, talking about what a pain it is to create layouts that are &quot;friendly&quot; at one screen resolution when your normal operating environment is different, e.g. it's a good idea to target 800x600 window sizes, but you're running your station at 1280x1024.</p>\n<p>Eighteen months ago, I came up with a creative workaround for this problem.</p>\n<hr>\n<h3>Assumptions you <i>can</i> make</h3>\n<p>One nice thing about display environments is that a pixel will always be a pixel (unless the user is a reasonably savvy Windows user who's changed their ppi equivalency and/or window geometry).  A <a href="http://www.alistapart.com/stories/fear4/index.html" target="_new">recent article in A List Apart</a> talks about this convenience.</p>\n<p>One of things that follows from this is that regardless of resolution&#151;and excepting the situation posed in the previous paragraph&#151;browser chrome will always have the same <i>pixel</i> dimensions.</p>\n<p>Therefore, what matters most are the overall <i>dimensions</i> of the browser window.</p>\n<p>This brings us to the desktop and&#151;more specifically&#151;the image that you intend to place on it.</p>\n<hr>\n<h3>Finally, the solution</h3>\n<p>The following assumes that you have access to Photoshop.</p>\n<ol><li>Take an image that you've already sampled and cropped to the size of your display.  <a href="http://www.digitalblasphemy.com/" target="_new">digitalblasphemy.com</a> has always been my favorite place to look when I've got time to kill.</li>\n<li>Use ascending layers, containing successively smaller rectangles, to represent each full-screen window size, and manipulate their opacity, color, or whatever else to achieve a result <a href="http://www.io.com/persist1/small-su37.gif" target="_new">resembling this</a>.  How you arrange the squares is entirely your own affair; it just so happens that I like to center mine on the desktop.  The important thing is to provide enough contrast so that you can see each outline without straining.</li></ol>\n<p>This done, you can put the new image on your desktop and then when it comes time to ask, &quot;what does this design look like at resolution <i>n</i>?&quot; all you have to do is drag inside the lines.  You'll then have a painfully simple way to see how your design renders under various conditions, and not have to do too much guesswork.</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

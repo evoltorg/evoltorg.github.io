@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Does Ie 6 Center Your Table Content</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Does Ie 6 Center Your Table Content</h2>
+<p class="meta">30 Aug 2001</p>
+
+<div class="post">
+<p>With the release of Internet Explorer 6, some developers are discovering that content in table cells that used to be left-justified is now centered. The cause is a little obscure, but the solution is simple.</p></p><p><p>Basically, the problem occurs when both of two conditions are present:</p></p><p><ol><li>A table is nested within either another table or a block element (such as a &lt;div&gt;) where the outer table or block element has its <code>align</code> attribute set to <code>&quot;center&quot;</code>, typically to create a &quot;jello&quot; layout where the content remains at the center of the screen.</li>\n<li>Internet Explorer 6 is operating in &quot;standards-compliant&quot; mode</li></ol>\n<h1>Producing the Problem</h1></p><p><p>To illustrate, here is a simple snippet of HTML code that will produce cell-content centering in Internet Explorer 6:</p></p><p><pre>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;\n  &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;\n&lt;html&gt;\n  &lt;head&gt;\n    &lt;title&gt;IE 6 Centering Behavior&lt;/title&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;div align=&quot;center&quot;&gt;\n      &lt;table border=&quot;1&quot;&gt;\n        &lt;tr&gt;\n          &lt;td&gt;Here is some data to make this cell a bit wide.&lt;/td&gt;\n        &lt;/tr&gt;\n        &lt;tr&gt;\n          &lt;td&gt;Is this cell centered?&lt;/td&gt;\n        &lt;/tr&gt;\n      &lt;/table&gt;\n    &lt;/div&gt;\n  &lt;/body&gt;\n&lt;/html&gt;</pre></p><p><p>In previous versions of Internet Explorer, this code could reliably be expected to display as in Figure 1, below:</p></p><p><p align="center"><img src="images/569/TextAlign_IE5.gif" width="392" height="236" alt="Sample table as rendered in Internet Explorer 5"><br>Figure 1</p></p><p><p>By contrast, Internet Explorer 6 centers not only the nested table itself, but also the content of its cells as in Figure 2, below:</p></p><p><p align="center"><img src="images/569/TextAlign_IE6_Center.gif" width="395" height="235" alt="Sample table as rendered in Internet Explorer 6"><br>Figure 2</p></p><p><h1>Fixing the Problem</h1></p><p><p>The actual cause of this rendering quirk in Internet Explorer 6 is its new, standards-compliant rendering mode. Although it is unclear to me that the <a href="http://www.w3.org" target="_blank" title="World Wide Web Consortium (link opens in a new window)">W3C</a> <a href="http://www.w3.org/TR/html401/" target="_blank" title="link opens in a new window">HTML 4.01 Specification</a> requires this behavior, the IE development team apparently interpreted the spec otherwise (or else it is a rendering bug that will be banished in a future release). So, the key to eliminating this problem is simple: turn off the standards-compliant rendering mode.</p></p><p><p>How, you ask? The secret is in the document type declaration (sometimes referred to as a doctype declaration, but not to be confused with the document type definition, or DTD). And here's how you do it:</p></p><p><ul><li>The following doctype declaration causes IE 6 to render the page in standards-compliant mode:<br><br>\n<code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;<br>\n&nbsp;&nbsp;&quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</code><br><br></li>\n<li>But with a simple modification -- eliminating the <acronym title="Universal Resource Identifier">URI</acronym> portion of the doctype declaration -- IE 6 reverts to what is commonly called &quot;quirks&quot; mode, and renders the table in a manner consistent with previous versions of IE:<br><br>\n<code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;</code></li></ul></p><p><p>In case you are wondering, the doctype declaration without a URI will validate using the <a href="http://validator.w3.org/" target="_blank" title="link opens in a new window">W3C's validator</a>. So, there you have it: compliant code that will help <strong>you</strong> stay centered, instead of your table cells. Happy coding!</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Breadcrumbs For Php Lovers</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Breadcrumbs For Php Lovers</h2>
+<p class="meta">31 Dec 2000</p>
+
+<div class="post">
+<p>\nMartin and Adrian started breadcrumb mania, and I'm continuing the tradition with "Breadcrumbs for PHP Lovers." If you want to know why breadcrumbs make good business, read Martin's <a href="http://evolt.org/article/Breadcrumbs_for_All/17/4428/evolt.org" title="Why breadcrumbs are great and how to do them with SSI and Perl">Breadcrumbs for All</a>. If you need an ASP-based breadcrumb trail generator, Adrian's <a href="http://www.evolt.org/article/Breadcrumbs_for_Those_Using_ASP/17/4438/evolt.org" title="ASP! It's from Microsoft!">Breadcrumbs for Those Using ASP</a> should help.\n</p>\n<p>\nWith no further ado, here's how to build a breadcrumb trail in PHP. I wrote the code mostly by porting Adrian's concept to PHP, using native functions whenever possible.\n</p>\n<p>\nIf you're integrating this generator with a homebrew content management system or have a setup where the home page of your site is not accessible via a single "/" absolute URL, you can set <code>$root_url</code> to a different location; the script will automatically modify all paths to suit. Like Adrian's solution, if <code>$page_title</code> is not set, the script will print "Current Page" for the page the user is on.\n</p>\n<p>\nSave the code below as <strong>breadcrumb.php</strong> in your includes directory.\n</p></p><p><pre>\n&lt;?php</p><p>##############################################################################\n# breadcrumb.php                  Version 1.1                                #\n# Copyright 2000 Jacob Stetser    jstetser@icongarden.com                    #\n# Created Dec 30, 2000            Last Modified May 2, 2001                 #\n##############################################################################\n# COPYRIGHT NOTICE                                                           #\n# Copyright [and -left] 2000 Jacob Stetser. All Rights Reserved except as    #\n# provided below.                                                            #\n#                                                                            #\n# breadcrumb.php may be used and modified free of charge by anyone so long   #\n# as this copyright notice and the comments above remain intact. By using    #\n# this code you agree to indemnify Jacob Stetser from any liability that     #\n# might arise from it's use.                                                 #\n#                                                                            #\n# This script is released under the BSD license.                             #\n# The author recognizes this script's indebtedness to evolt.org, Martin      #\n# Burns, Adrian Roselli and countless other ideas of its kind. This script   #\n# is therefore unencumbered free code.                                       #\n##############################################################################</p><p>function breadCrumb($PATH_INFO) {\n	global $page_title, $root_url;</p><p>	// Remove these comments if you like, but only distribute \n	// commented versions.\n	\n	// Replace all instances of _ with a space\n	$PATH_INFO = str_replace(&quot;_&quot;, &quot; &quot;, $PATH_INFO);\n	// split up the path at each slash\n	$pathArray = explode(&quot;/&quot;,$PATH_INFO);\n	\n	// Initialize variable and add link to home page\n	if(!isset($root_url)) { $root_url=&quot;&quot;; }\n	$breadCrumbHTML = '&lt;a href=&quot;'.$root_url.'/&quot; title=&quot;Home Page&quot;&gt;Home&lt;/a&gt; &amp;gt; ';\n	\n	// initialize newTrail\n	$newTrail = $root_url.&quot;/&quot;;\n	\n	// starting for loop at 1 to remove root\n	for($a=1;$a&lt;count($pathArray)-1;$a++) {\n		// capitalize the first letter of each word in the section name\n		$crumbDisplayName = ucwords($pathArray[$a]);\n		// rebuild the navigation path\n		$newTrail .= $pathArray[$a].'/';\n		// build the HTML for the breadcrumb trail\n		$breadCrumbHTML .= '&lt;a href=&quot;'.$newTrail.'&quot;&gt;'.$crumbDisplayName.'&lt;/a&gt; &amp;gt; ';\n	}\n	// Add the current page\n	if(!isset($page_title)) { $page_title = &quot;Current Page&quot;; }\n	$breadCrumbHTML .= '&lt;strong&gt;'.$page_title.'&lt;/strong&gt;';\n	\n	// print the generated HTML\n	print($breadCrumbHTML);\n	\n	// return success (not necessary, but maybe the \n	// user wants to test its success?\n	return true;\n}</p><p>?&gt;\n</pre></p><p><p>\nTo use breadcrumb.php on your pages, you'll need to first include it and, if you desire, set <code>$page_title</code>:\n</p></p><p><pre>\n&lt;?php $page_title = &quot;About Us&quot;;\ninclude('/includes/breadcrumb.php'); ?&gt;\n&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot;\n                &quot;http://www.w3.org/TR/REC-html40/loose.dtd&quot;&gt;</p><p>&lt;html lang=&quot;en-us&quot;&gt;\n&lt;head&gt;</p><p>&lt;title&gt;&lt;?php echo $page_title ?&gt;&lt;/title&gt;\n[...]\n</pre></p><p><p>\nTo print out the breadcrumb trail, call the function like this:\n</p></p><p><pre>\n&lt;?php breadCrumb($SCRIPT_URL); ?&gt;\n</pre></p><p><p>\nIf you are running a solution where all pages are generated by a single php script that parses <code>$PATH_INFO</code>, you may want to set <code>$root_url</code> to the actual script and parse use <code>$PATH_INFO</code> in place of <code>$SCRIPT_URL</code>.\n</p>\n<p>\nThe code is commented so you can easily see where to add or change HTML. Enjoy!\n</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

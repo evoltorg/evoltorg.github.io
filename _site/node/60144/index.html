@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>User Friendly Forms In Php</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>User Friendly Forms In Php</h2>
+<p class="meta">01 May 2003</p>
+
+<div class="post">
+<p>Have you ever been filling in a form online and you forget to fill in a required field, or it requires a US zip code, or certain characters are banned etc etc and when you submit the form you get an undescriptive error, then when you hit "back" in your browser, all the information you entered into the form has disappeared and you have to fill it all in again? Annoying isn't it?</p>\n<p>In this tutorial I'll show you a way to make your forms more friendly with PHP, so users don't have to keep filling forms in if they make a mistake -- make your forms more friendly.</p>\n<h3>How</h3>\n<p>By putting in just a little extra effort we can make our forms display the errors and show the form again, with the fields the user already filled in completed. Here's what we do:</p>\n<ul>\n<li>Create a function to output our form that pre-fills the inputs with values, if they've already been entered.</li>\n<li>Perform our data checks and ensure everything is in order.</li>\n<li>If there's a mistake, append the description to a variable -- <code>$error_str</code>.</li>\n<li>If <code>$error_str</code> is not empty, halt the script execution, show the errors in <code>$error_str</code> and recall the form function.</li>\n<li>Otherwise continue processing the script as normal.</li>\n</ul>\n<h3>Putting this into code</h3>\n<p>The first step is to create our form function. Let's imagine we want a user to submit their <em>first name</em>, <em>second name</em>, <em>age</em>, <em>location</em> and <em>gender</em>. We need to create a function that outputs this form and holds any values the user has already entered.</p>\n<pre>&lt;?php\n// function to output form and hold previously entered values.</p><p>function user_form() {\n    // if vars aren't set, set them as empty.\n    // (prevents "notice" errors showing for those who have them enabled)\n    if (!isset($_POST['first_name'])) $_POST['first_name'] = '';\n    if (!isset($_POST['second_name'])) $_POST['second_name'] = '';\n    if (!isset($_POST['age'])) $_POST['age'] = '';\n    if (!isset($_POST['location'])) $_POST['location'] = '';\n    if (!isset($_POST['gender'])) $_POST['gender'] = '';\n    // now to output the form HTML.\n    echo '&lt;p&gt;All fields are required.&lt;/p&gt;';\n    echo '&lt;form action="'.htmlspecialchars($_SERVER['PHP_SELF']).'" method="post"&gt;';\n    echo '&lt;table border="0" cellspacing="4" cellpadding="0"&gt;';\n    echo '&lt;tr&gt;&lt;td&gt;First name:&lt;/td&gt;&lt;td&gt;&lt;input type="text" name="first_name" value="'.htmlspecialchars($_POST['first_name']).'"&gt;&lt;/td&gt;&lt;/tr&gt;';\n    echo '&lt;tr&gt;&lt;td&gt;Second name:&lt;/td&gt;&lt;td&gt;&lt;input type="text" name="second_name" value="'.htmlspecialchars($_POST['second_name']).'"&gt;&lt;/td&gt;&lt;/tr&gt;';\n    echo '&lt;tr&gt;&lt;td&gt;Age:&lt;/td&gt;&lt;td&gt;&lt;input type="text" name="age" value="'.htmlspecialchars($_POST['age']).'"&gt;&lt;/td&gt;&lt;/tr&gt;';\n    echo '&lt;tr&gt;&lt;td&gt;Location:&lt;/td&gt;&lt;td&gt;&lt;input type="text" name="location" value="'.htmlspecialchars($_POST['location']).'"&gt;&lt;/td&gt;&lt;/tr&gt;';\n    // let's make the gender input a select box\n    // you can see how we pre-select an option\n    echo '&lt;tr&gt;&lt;td&gt;Gender:&lt;/td&gt;&lt;td&gt;&lt;select name="gender"&gt;';\n    echo '&lt;option value="male"';\n    if (strtolower($_POST['gender']) == 'male'    empty($_POST['gender'])) echo ' selected="selected"';\n    echo '&gt;Male&lt;/option&gt;';\n    echo '&lt;option value="female"';\n    if (strtolower($_POST['gender']) == 'female') echo ' selected="selected"';\n    echo '&gt;Female&lt;/option&gt;';\n    echo '&lt;/select&gt;&lt;/td&gt;&lt;/tr&gt;';\n    echo '&lt;tr&gt;&lt;td colspan="2"&gt;&lt;input type="submit" value="Submit" name="submit"&gt;&lt;/td&gt;&lt;/tr&gt;';\n    echo '&lt;/table&gt;';\n    echo '&lt;/form&gt;';\n}</p><p>?&gt;</pre>\n<p>Okay, there we have it. This function will print out the form, and pre-fill the text inputs with their $_POST indexes. We also have a &lt;select&gt; box. If <code>$_POST['gender']</code> is empty or "male", the "Male" select option will be selected. If it is "female" the "Female" option will be selected.</p>\n<p>This means that if a user has submitted the form and we have to show it again, because of errors, the values they entered will be there again, they won't have to fill every one in again.</p>\n<p><strong>Note</strong>: Remember, if you are pre-filling a form input with a variable value, always ensure that you use <a href="http://www.php.net/manual/en/function.htmlspecialchars.php" target="_blank" title="PHP manual: htmlspecialchars()">htmlspecialchars()</a>. If the variable contains a quote, your form won't like it. If the variable contains HTML, they will be properly converted to HTML entities. If the variable contains HTML entities, and we did not use htmlspecialchars(), they would show as the character they represent when the form is called, not the actual entitiy. For example, if a user submitted &amp;lt; in the form and the function was recalled, it would show as &lt; on the next page. Using htmlspecialchars() will ensure the entity remains as &amp;lt;, preserving the data properly.</p>\n<h3>Data Checking</h3>\n<p>Whenever you allow a user to submit data through a form, always remember to be <em>paranoid</em>. Do not assume the form they submitted to your script is the form you have written, it is very easy for a user to make a copy of the form and send in data they shouldn't be able to. For instance we have only "male" and "female" options available for the "gender" select input. A user could easily copy the form and edit it, add another option and submit to your script, we must ensure we check the data properly.</p>\n<pre>&lt;?php</p><p>// assuming we saved the above function in "functions.php", let's make sure it's available\nrequire_once 'functions.php';</p><p>// has the form been submitted?\nif (isset($_POST['submit'])) {\n    // the form has been submitted\n    // perform data checks.\n    $error_str = ''; // initialise $error_str as empty\n    if (empty($_POST['first_name'])) $error_str .= '&lt;li&gt;You did not enter your first name.&lt;/li&gt;';\n    if (empty($_POST['second_name'])) $error_str .= '&lt;li&gt;You did not enter your second name.&lt;/li&gt;';\n    if (empty($_POST['age'])) $error_str .= '&lt;li&gt;You did not enter your age.&lt;/li&gt;';\n    if (empty($_POST['location'])) $error_str .= '&lt;li&gt;You did not enter your location.&lt;/li&gt;';\n    if (empty($_POST['gender'])) $error_str .= '&lt;li&gt;You did not enter your second name.&lt;/li&gt;';\n    // more checks\n    if (strlen($_POST['first_name']) &lt; 2) $error_str .= '&lt;li&gt;Your first name must be longer than one letter.&lt;/li&gt;';\n    if (strlen($_POST['second_name']) &lt; 2) $error_str .= '&lt;li&gt;Your second name must be longer than one letter.&lt;/li&gt;';\n    if (!is_numeric($_POST['age'])) $error_str .= '&lt;li&gt;Your age must be a numeric value.&lt;/li&gt;';\n    if (strtolower($_POST['gender']) != 'male' &amp;&amp; strtolower($_POST['gender']) != 'female') $error_str .= '&lt;li&gt;Your gender can only be male or female.&lt;/li&gt;';\n    // we could do more data checks, but you get the idea.\n    // we could also strip any HTML from the variables, convert it to entities, have a maximum character limit on the values, etc etc, but this is just an example.\n    // now, have any of these errors happened? We can find out by checking if $error_str is empty\n    if (!empty($error_str)) {\n        // errors have occured, halt execution and show form again.\n        echo '&lt;p&gt;There were errors in the information you entered, they are listed below:&lt;/p&gt;';\n        echo '&lt;ul&gt;'.$error_str.'&lt;/ul&gt;';\n        // show form again\n        user_form();\n        exit; // die\n    }\n    // if we get here, all data checks were okay, process information as you wish.\n} else {\n    // the form has not been submitted, let's show it\n    user_form();\n}</p><p>?&gt;</pre></p><p><p>There we have it. Using a function to display the form makes it easy for us to make our forms more friendly. I know I have given up and left sites because the forms kept wiping the data I'd already entered, if you want to keep users happy put in a little extra effort to ensure they do as little work as possible.</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

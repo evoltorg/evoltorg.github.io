@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Renaming Files With Perl</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Renaming Files With Perl</h2>
+<p class="meta">17 Aug 1999</p>
+
+<div class="post">
+<p>Have you ever wanted to rename more than one file at a time?  Have you ever wanted to be able to rename a group of files based on a regular expression?  Well the script  below will let you do just that.</p>    <p><strong>The  Code</strong></p></p><p><pre>\n#!/usr/local/bin/perl\n#\n# Usage: rename perlexpr [files]</p><p>($regexp = shift @ARGV) &#124;&#124; die &quot;Usage:  rename perlexpr [filenames]\n&quot;;</p><p>if (!@ARGV) {\n   @ARGV = &lt;STDIN&gt;;\n   chomp(@ARGV);\n}</p><p>\nforeach $_ (@ARGV) {\n   $old_name = $_;\n   eval $regexp;\n   die $@ if $@;\n   rename($old_name, $_) unless $old_name eq $_;\n}</p><p>exit(0);\n</pre></p><p><P> <p><strong>The  Explanation</strong></p>    <p>Save the above code into a file called  <strong>rename</strong>.  Make sure that the  permissions are set correctly so that you can execute  the script.  Also check to make sure that your Perl  interpreter is in /usr/local/bin.  If Perl is somewhere  else, you'll need to change the first line to point to  where Perl is installed on your system.</p> <P> <p>To use the script you use:</p>    <p><blockquote>rename perlexpr [files]</blockquote></p>    <p>where <strong>perlexpr</strong> is the  substitution operator, i.e., s///.  You can  actually pass any Perl expression through to  <strong>perlexpr</strong> allowing you to do more  complex file renaming actions.  The  <strong>files</strong> argument is a list of  filenames that you want to change.  You can leave  the <strong>files</strong> argument out and the  script will take a list of names from STDIN.</p>  <P> <p><strong>The Examples</strong></p>    <ol>  <li><p>Make all the files in the directory end with  .html instead of .txt.</p>    <blockquote>rename 's/txt$/html/' *</blockquote>    <li><p>Change all the files prefixed with the text  <strong>mah</strong> and suffixed with .new to be  suffixed with .old instead.</p>    <blockquote>rename 's/new$/old/' mah*.new</blockquote>    <li><p>Hide every file in the directory by prefixing  the filename with a .</p>    <blockquote>rename 's/(.+)/\.$1/' *</blockquote>  </ol>  <P> <p>The possibilities are endless.  You should be  careful however as you are dealing with regular  expressions.  You should be as specific as  possible when specifying your patterns otherwise  you may rename a file in a way that you had not  anticipated.</p>    <p>For instance, take the first example.  If you had  typed:</p>    <blockquote>rename 's/txt/html/' *</blockquote>  <P>  <p>(notice the missing $ in the pattern?) and you had a  file named <strong>newtxt.txt</strong>, the script  would rename the file to <strong>newhtml.txt</strong>  which might not have been what you wanted.</p>    <p>Hopefully this script will be useful to you.  If  you have any problems or questions, you can e-mail  them to me at  <a href="mailto:dean.mah@gmail.com">dean.mah@gmail.com</a>.</p>   <P> <P> <P> <P> <P>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

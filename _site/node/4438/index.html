@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Breadcrumbs For Those Using Asp</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Breadcrumbs For Those Using Asp</h2>
+<p class="meta">28 Dec 2000</p>
+
+<div class="post">
+<p>\nInstead of going through the usefulness of the breadcrumb navigation concept all over again, I'll just refer you to Martin's article, <cite><a href="http://evolt.org/article/Breadcrumbs_for_All/17/4428/evolt.org" title="Breadcrumbs for All - on evolt.org, opens in this window">Breadcrumbs for All</a></cite>.  It's a great tutorial for those of us with Perl and Unix/Apache servers, but it leaves out those of us using ASP on IIS.  It also leaves out a few others, but I'm just doing ASP here, so cut me some slack.\n</p></p><p><p>\nYou can see a sample of this code in action at the <a href="http://kenancenter.org/" target="_blank" title="opens in new window">Kenan Center</a> site (the Recreation section has the most depth right now).  This site has only a few levels of directories, but it is still just as useful on that site as on extremely deep sites.\n</p></p><p><p>\nOne thing to keep in mind is that you have to name directories in plain english (or your human-readable language of choice) since it uses the directory names for the breadcrumb.  This function will capitalize the words in the directory names, and it replaces all underscores with spaces for display.  It does not handle special characters, but then again, neither does the Windows file system (at least not extended characters).  It's a simple matter of using a <code>replace()</code> function against a pre-defined list of characters to enable that, however.\n</p></p><p><p>\nThe code should be created as an include file called <code>breadcrumb.asp</code> and stuffed into your general includes directory.  The page that calls it should have a variable called <code>PageTitle</code> that is the name of the page.  This variable is used by <code>breadcrumb.asp</code> (and if you're smart, the file calling it) to list the current page.  If the variable is blank, however, it just uses the words "Current Page."  It's also worth noting that this script goes right to the root of the site with its links, which may or may not be what you want.\n</p></p><p><pre>\n&lt;% '############################</p><p>'##############################################################################\n'# breadcrumb.asp                  Version 1.0                                #\n'# Copyright 2000 Adrian Roselli   adrian@roselli.org                         #\n'# Created 24/4/2000               Last Modified 24/4/2000                    #\n'##############################################################################\n'# COPYRIGHT NOTICE                                                           #\n'# Copyright [and -left] 2000 Adrian Roselli  All Rights Reserved except as   #\n'# provided below.                                                            #\n'#                                                                            #\n'# breadcrumb.asp may be used and modified free of charge by anyone so long   #\n'# as this copyright notice and the comments above remain intact. By using    #\n'# this code you agree to indemnify Adrian Roselli from any liability that    #\n'# might arise from it's use.                                                 #\n'#                                                                            #\n'# This script is released under the GPL.                                     #\n'# Selling the code for this program or any derivative work is expressly      #\n'# forbidden. A full copy of the GPL can be found in the Code section of      #\n'# http://evolt.org. In all cases copyright and this header must remain       #\n'# intact.                                                                    #\n'##############################################################################</p><p>\nFunction BreadCrumb(FullPath)</p><p>Do Until instr(1,FullPath,&quot;/&quot;) = 0</p><p>	'## Create an array of letters in the alphabet.\n	Letters = array(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;,&quot;g&quot;,&quot;h&quot;,&quot;i&quot;,&quot;j&quot;,&quot;k&quot;,&quot;l&quot;,&quot;m&quot;,&quot;n&quot;,&quot;o&quot;,&quot;p&quot;,&quot;q&quot;,&quot;r&quot;,&quot;s&quot;,&quot;t&quot;,&quot;u&quot;,&quot;v&quot;,&quot;w&quot;,&quot;x&quot;,&quot;y&quot;,&quot;z&quot;)</p><p>	'## split on the /\n	tmpPath = mid(FullPath,1,instr(1,FullPath,&quot;/&quot;)-1)\n	strTmpPath = Trim(tmpPath)\n	DirPath = DirPath &amp; strTmpPath &amp; &quot;/&quot;</p><p>	'## upshift the first character\n	firstLetter = ucase(mid(strTmpPath,1,1))\n	strTmpPath = firstLetter &amp; mid(strTmpPath,2,len(strTmpPath))</p><p>	'## replace udnerscores with spaces and upshift the following character\n	for each letter in letters\n		strTmpPath = Replace(Trim(strTmpPath),&quot;_&quot; &amp; lcase(letter),&quot; &quot; &amp; UCase(letter))\n	next</p><p>	'## split the next one out	\n	FullPath = mid(FullPath,instr(1,FullPath,&quot;/&quot;)+1,Len(FullPath)-Len(tmpPath))</p><p>	'## separate them with &gt;&gt; symbols\n	IF strTmpPath = &quot;&quot; THEN\n		response.write &quot;&lt;a href=&quot;&quot;/&quot;&quot; style=&quot;&quot;text-decoration:none&quot;&quot;&gt;Home Page&lt;/a&gt;&quot;\n	ELSEIF strTmpPath = &quot;Home&quot; THEN\n	ELSE\n		response.write &quot; &amp;gt; &lt;a href=&quot;&quot;&quot; &amp; DirPath &amp; &quot;&quot;&quot; style=&quot;&quot;text-decoration:none&quot;&quot;&gt;&quot; &amp; strTmpPath &amp; &quot;&lt;/a&gt;&quot;\n	END IF\nLoop</p><p>IF PageTitle = &quot;&quot; THEN\n	response.write &quot; : Current Page&quot;\nELSE\n	response.write &quot; : &quot; &amp; PageTitle\nEND IF</p><p>End Function %&gt;\n</pre></p><p><p>\nTo call this code in your page, you need to call the include file and (if you want) set the variable <code>PageTitle</code> as something.  For example:\n</p></p><p><pre>\n&lt;% PageTitle = &quot;About Us&quot; %&gt;\n&lt;!--#include virtual =&quot;/includes/breadcrumb.asp&quot;--&gt;\n&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0 Transitional//EN&quot;\n                &quot;http://www.w3.org/TR/REC-html40/loose.dtd&quot;&gt;</p><p>&lt;html lang=&quot;en-us&quot;&gt;\n&lt;head&gt;</p><p>&lt;title&gt;&lt;% = PageTitle %&gt;&lt;/title&gt;\n[...]\n</pre></p><p><p>\nWhen you are ready to call the function on the page to display the breadcrumb trail, simply call it like this:\n</p></p><p><pre>\n&lt;% = BreadCrumb(Request.ServerVariables(&quot;PATH_INFO&quot;)) %&gt;\n</pre></p><p><p>\nThe code can easily be tweaked, and some things changed or modified (like the <code>Letters</code> array, or setting the <code>PATH_INFO</code> server variable as a variable early in the script) depending on your needs.  You can modify the HTML that displays the breadcrumb in the include file so it matches your site styles as well.\n</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

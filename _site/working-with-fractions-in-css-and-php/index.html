@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Working With Fractions In Css And Php</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Working With Fractions In Css And Php</h2>
+<p class="meta">12 Feb 2007</p>
+
+<div class="post">
+<p>\n  Most of us are uncomfortable with using fractions when writting programs. \n  If we encounter a fraction, we will first convert it into a floating point \n  number (with decimals) and proceed from there. Most programming languages \n  would prefer to use 0.5 as opposed to 1/2 because the later might conflict \n  with the syntax of the languages. In this article, I will discuss my attempt \n  to work with fractions in one of the PHP projects that I have done.\n</p>\n<h2>Displaying Fractions In HTML</h2>\n<p>\n  There are a few ways to display fractions in the web. The most common way is \n  just to add a slash between 2 numbers, like so "1/2". There are also special \n  HTML characters that we can make fractions look more professional. Eg. to display \n  1/2, we can use the HTML code <code>&frac12;</code>. However, not many fractions \n  are supported by HTML. So, you may be in trouble if you want to display 2/9 in HTML. \n</p>\n<p>\n  A better way to display a fraction is probably to use the superscript and \n  subscript tags. Using <code><sup></code> and <code><sub></code> tags, my 2/9 will \n  look a bit better. We can also use a "special slash" <code>&#8260;</code> between \n  2 numbers instead of a normal slash ( / ). Still not satisfied? With CSS, we can \n  push the limit further. \n<p>\n  If we define a css like this:\n</p>\n<code>\n  .fracNum, .fracDen { \n         font-size: 70%; \n  } \n  .fracNum { vertical-align: 0.5em; } \n  .fracDen { vertical-align: -0.5em; }\n</code>\n<p>\n  and when implemented with the 'sup' and 'sub' tags, The fraction will look even \n  better. The code will be something like:\n</p>\n<code>\n  <sup class="fracNum">2</sup>&#8260;<sub class="fracDen">9</sub>\n</code></p><p><h2>Converting Decimals To Fraction - A Real Example</h2>\n<p>\n  I wrote a program that let people frame their pictures online. When I was \n  halfway through, I was told that the program should support imperial \n  measurements (inches). The problem with working in inches is that very few \n  people would say my picture is 6.34 inch width by 9.82 inch height; Most \n  people would say 6 and 3/8 inch by 9 and 3/8 height for example. \n</p>\n<p>\n  The biggest problem now is that the framing engine calculates everything in \n  mm. Instead of rewritting the whole engine, I figured out that what I need \n  is just an interface to convert mm to inches. So, if I pass 300mm into a \n  function, it should return me 11 and 3/4 as the answer. Dividing 300mm by 1 \n  inch (25.4mm) will leave me with a long decimal. It would be silly to try \n  and display a fraction for a decimal like 0.1111. The function should be \n  intelligent enough to round off the decimal to something that can be easily \n  displayed as a fraction. For example, if I round off 0.1111 to 0.125, I can \n  display the fraction as 1/8 instead of 1111/100000. Time is running short \n  and I need a simple and sweet solution.\n</p></p><p><h2>Implementation</h2>\n<p>\n  I would like to go through snipplets of code with explaination first before \n  revealing everything. Feel free to jump to the end of the page and copy \n  the whole function if you just want to implement it in your website. \n  The code is written in PHP. \n</p></p><p><h3>Part 1: Extracting the decimal in inches. </h3></p><p><?php\n  define(INCH_TO_MM, 25.4);\n  // 1 inch equals to 25.4mm\n  $inch = $mm / INCH_TO_MM; \n  $pWhole = explode('.',$inch); \n  $pWhole = $pWhole[0];\n  $pDecimal = $val-$pWhole; \n?>\n<p>\n  The measurement in mm is first converted to inches(with decimal). \n  The decimal is then isolated from the whole number and stored in a \n  <code>var</code> called <code>$pDecimal</code>. Now, I need to store a \n  list of all possible fractions with their mm equivalent in an array. \n  I use intervals of 1/8 for the sake of simplicity.\n</p>\n<h3>Part 2: Rounding off to the closest inch interval.</h3>\n<?php\n  $fractionOption = array();\n  $fractionOption['0/8’] = 0;\n  $fractionOption['1/8’] = 0.125;\n  $fractionOption['1/4’] = 0.25;\n  $fractionOption['3/8’] = 0.375;\n  $fractionOption['1/2’] = 0.5; \n  $fractionOption['5/8’] = 0.625; \n  $fractionOption['3/4’] = 0.75; \n  $fractionOption['7/8’] = 0.875; \n  $fractionOption['8/8’] = 1;\n  \n  foreach ($fractionOption as $k => $v) {\n         // Converted $pDecimal back to mm to perform calculation \n         $tmpV[$k] = abs($pDecimal - $v);\n  }\n  \n  asort($tmpV,SORT_NUMERIC);\n  \n  list($inch, $mm) = each($tmpV);\n?>\n<p>\n  This is the most important step in the whole conversion process. The \n  foreach loop creates a new array called <code>$tmpV</code> which stores \n  the inch fraction as the key and the inch difference as the value. \n  We will now sort <code>$tmpV</code> with the minimum 'mm' value at the top\n  and the maximum 'mm' value at the bottom using the <code>asort</code> \n  function. We are extracting the first entry in the array because it stores \n  the minimum 'mm' difference. As you can see, what we are trying to do here \n  is to round <code>$pDecimal</code> off to the closest decimal value in the \n  <code>$fractionOption</code> array (ie, 0.125, 0.25, 0.375..etc). \n</p>\n<p>\n  We can now safely extract the first key-value pair in $tmpV using the \n  <code>list</code> function. The <code>$inch</code> var stores the inch \n  representation that we want.\n</p></p><p><h3>Part 3: Cleaning Up </h3>\n<?php\n  $inch = ($inch == '0/8') ? '': $inch;\n  // round off to nearest whole number if 8/8\n  if ($inch == '8/8') {\n      $inch = '';\n      $pWhole++;\n  }\n?>\n<p>\n  We do not want to display the fraction if it is ‘0/8’ or ‘8/8’ because it \n  is pretty much meaningless. However, if the fraction is ‘8/8’, we have \n  to increase the whole number by 1.\n</p></p><p><h3>Part 4: Adding some CSS </h3>\n<?php\n  if ($inch != '') {\n      $tFrac = explode('/',$inch);\n      // again please replace [] with the real html tags\n      $fraction = "[sup class='fracNum']$tFrac[0][/sup]&#8260;[sub class='fracDen']$tFrac[1][/sub]";\n  }\n  else { \n      $fraction = ''; \n  } \n  return "$pWhole $fraction";\n?>\n<p>\n  Remember that we eliminated any fractions that are '0/8' or '8/8'? \n  So we only need to process any fraction that falls within the range of \n  '1/8' to '7/8'. By splitting the fractions into numerators and denominators, \n  we can now apply our CSS technique mentioned above.\n<p></p><p><h2>The Whole Thing </h2>\n<p>\n  As promised, the full code is displayed below:\n</p></p><p><?php</p><p>function mmToInch ($val) {</p><p>       $fractionOption = array();\n       $fractionOption['0/8'] = 0;\n       $fractionOption['1/8'] = 0.125;\n       $fractionOption['1/4'] = 0.25;\n       $fractionOption['3/8'] = 0.375;\n       $fractionOption['1/2'] = 0.5;\n       $fractionOption['5/8'] = 0.625;\n       $fractionOption['3/4'] = 0.75;\n       $fractionOption['7/8'] = 0.875;\n       $fractionOption['8/8'] = 1;\n       define(INCH_TO_MM, 25.4);</p><p>       $val = $val/INCH_TO_MM;\n       $pWhole = explode('.',$val);\n       $pWhole = $pWhole[0];\n       $pDecimal = $val-$pWhole;\n              \n       foreach ($fractionOption as $k => $v) {\n              $tmpV[$k] = abs($pDecimal - $v);\n       }\n       \n       asort($tmpV,SORT_NUMERIC);\n       list($inch, $mm) = each($tmpV);</p><p>       // nullify pWhole and pFraction\n       $pWhole = ($pWhole == 0) ? '': $pWhole;\n       $inch = ($inch == '0/8') ? '': $inch;</p><p>\n       // round off to nearest whole number if 8/8\n       if ($inch == '8/8') {\n              $inch = '';\n              $pWhole++;\n       }\n       \n       // strip inch and return fraction formatted in css\n      if ($inch != '') { \n             $tFrac = explode('/',$inch);\n              $fraction = "<sup class='fracNum'>$tFrac[0]</sup>&#8260;<sub class='fracDen'>$tFrac[1]</sub>";\n       }\n       else {\n              $fraction = ''; \n       }\n       return $pWhole.' '.$fraction;   \n}</p><p>// testing \necho "67.885 mm is equivalent to ".mmToInch(66.885)." inches";</p><p>?>\n<p>\n  The sourcecode can be dowloaded at http://web-developer.sitecritic.net/mmToInch_function.txt\n</p>\n<h2>Conclusion</h2>\n<p>\n  I hope that the decimal to fraction conversion solution shown in this \n  tutorial is straight forward and easy to implement. The script rounds \n  off any decimal value to the closest one-eighth of an inch. If you want \n  more accuracy, you can make your fraction interval smaller, for example \n  1/16 or 1/32...and so on. The logic used in this example can be easily \n  applied to other programming languages. Feel free to try the online framing \n  program at http://www.clubframeco.com/smartFramer.html. Make sure you select \n  the inch option to see fractions in action.\n</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

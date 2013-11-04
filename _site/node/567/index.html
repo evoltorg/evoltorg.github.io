@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>A Javascript Image Viewer</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>A Javascript Image Viewer</h2>
+<p class="meta">15 Nov 1999</p>
+
+<div class="post">
+<p>The following code is for a generic Javascript\nimage viewer that I have been using in a\nproject.</p></p><p><p>The project is an HTML based CD-Rom. The CD\ncontains a large amount of images and I wanted a\nsolution to be able to include thumbnail images in\na group of pages and link to a larger version of\nthe image. I did not however, want to maintain a\nlarge number of extra pages containing the larger\nimages.</p></p><p><p>Instead I decided to write a dynamic page\ncontaining all the required info. At first, I\ntried sending all the required info to build the\npage in the QueryString. Hmm, this worked after a\nfashion, but everything needed URLencoding, the\nquerystrings were a pain to write for each link\nand it didn't work on all the browsers I tested\non.</p></p><p><p>Then, after discussing the issue on &quot;The\nList&quot;, Jeff Howden came up with the idea that\nI have implemented in the script below (I would\nlike to stress that this is pretty much his\ncode).</p></p><p><p>This script takes a single number as an\nargument (which I have passed from the link by\nupdating a JavaScript variable in an unchanging\nframe on the site). It then reads values from a\nset of arrays, which contain all the information\nrequired to build up each page.</p></p><p><p>Using such a method, it is possble to build\nquite complex dynamic pages, though I feel the\nmethod is especially suited to image\nlibraries.</p></p><p><p>Here's the page</p></p><p><pre>\n&lt;HTML&gt;\n&lt;HEAD&gt;\n&lt;TITLE&gt;Image viewer Javascript&lt;/TITLE&gt;\n&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;</p><p></p><p>&lt;!--\n// Script developed by Steve Cook (steve@cookstour.org)\n// From an idea by Jeff Howden (c4wd@triax.com)\n// Feel free to use and extend :-)</p><p></p><p>/*\nThis is a script to grab the image name from the\nprevious link and display a page Link to the\nscript like so - &lt;A HREF=&quot;image_viewer.htm&quot;\nonClick=&quot;parent.frames.hd_main.imgNumPass=6;&quot;&gt;</p><p>\nAnd in the frame you use for storing info, have the following;</p><p>imgNumPass = 0;</p><p>\nIt's that simple!\n*/</p><p></p><p>master_array = new Array();\ntitle_array = new Array();\nimglocation_array = new Array();\ndir_array = new Array();\ntext_array = new Array();</p><p></p><p>// Here's an array holding ALL of our image page information\n// Simply add new array blocks to add new pages</p><p></p><p>master_array[0] = 0;\ntitle_array[0] = 'Title';\nimglocation_array[0] = 'image_name.jpg';\ndir_array[0] = 'production';\ntext_array[0] = 'Some text to accompany the image perhaps?';\nmaster_array[1] = 1;\ntitle_array[1] = 'Another Title';\nimglocation_array[1] = 'another_image_name.jpg';\ndir_array[1] = 'production';\ntext_array[1] = 'Heres another lovely image';</p><p></p><p>var title = '';\nvar imglocation = '';\nvar dir = '';\nvar text = '';\nvar magicNum = '';</p><p></p><p>// In your link to this page, set a variable imgNumPass\n// in another frame first</p><p>\nmagicNum = parent.frames.hd_main.imgNumPass;</p><p>\nfor(i = 0; i &lt; master_array.length; i++) {\n&nbsp;&nbsp;&nbsp;if(master_array[i] == magicNum) {\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title = title_array[i];\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imglocation = imglocation_array[i];\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dir = dir_array[i];\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text = text_array[i];\n&nbsp;&nbsp;&nbsp;}\n}</p><p></p><p>// --&gt;\n&lt;/SCRIPT&gt;\n&lt;/HEAD&gt;</p><p></p><p>&lt;BODY BGCOLOR=&quot;#FFFFFF&quot;&gt;\n&lt;DIV ALIGN=&quot;center&quot;&gt;\n&lt;TABLE WIDTH=&quot;600&quot; ALIGN=&quot;CENTER&quot; BORDER=0&gt;\n&lt;TR&gt;&lt;TD&gt;&lt;FONT FACE=&quot;Arial, Helvetica&quot; SIZE=&quot;3&quot;&gt;&lt;DIV ALIGN=&quot;center&quot;&gt;</p><p></p><p>&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;\n&lt;!--\ndocument.write (&quot;&lt;H3&gt;&quot; + title + &quot;&lt;/H3&gt;&quot;);\ndocument.write (&quot;&lt;IMG SRC='images/&quot; + dir + &quot;/&quot; + imglocation + &quot;' ALT=&quot; + text + &quot; BORDER=0&gt;&quot;);\nif (text != '') {\n&nbsp;&nbsp;&nbsp;document.write(&quot;&lt;BR CLEAR=all&gt;&lt;P&gt;&lt;B&gt;&lt;I&gt;&quot; + text + &quot;&lt;/I&gt;&lt;/B&gt;&quot;);&lt;/br&gt;\n}\n// --&gt;\n&lt;/SCRIPT&gt;</p><p></p><p>&lt;/TD&gt;&lt;/TR&gt;\n&lt;/TABLE&gt;&lt;/DIV&gt;</p><p></p><p>&lt;/BODY&gt;\n&lt;/HTML&gt;\n</pre>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

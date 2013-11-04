@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Cron   A Regular Workhorse</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Cron   A Regular Workhorse</h2>
+<p class="meta">02 Jun 1999</p>
+
+<div class="post">
+<p>\nSo, you can write CGI scripts. And they get kicked off when a user goes to your page, and fills in a form.\n</p></p><p><p>\nBut what if you want to have things going on even if you don't get any users? What if you want to run a big database job nightly, ready for your first morning's visitor? Or maybe you want to have an autoresponder check a POP box every few minutes, and fire out appropriate response emails?\n</p></p><p><p>\nIf you're on a Unix-type server, you're in luck. *nix can kick off your script at any given time interval, without your intervention, and we're going to show you how, using an autoresponder Perl script as an example.\n</p></p><p><h2>What you'll need:</h2></p><p><ol type="1" start="0">\n 	<li>A Unix (including Linux) web server where your scripts are living;</li>\n 	<li>Telnet access to that server (shouldn't be a problem - try throwing your Telnet application at www.yourdomain.com using the user ID & password you use for FTP);</li>\n 	<li>A text editor and FTP application;</li>\n 	<li>A non-paranoid sysadmin who hasn't disabled cron - if they let you install your own CGIs, you'll probably be OK.</li>\n 	<li>For the demo script we're using, you'll need Perl, with the Mail::POP3 module, a POP box which the module can access and sendmail access (ask your sysadmin about these).</li>\n 	<li>Two beers (80/- from Edinburgh's <a href="http://www.caledonian-brewery.co.uk/eighty.htm" target="blank">Caledonian brewery</a> recommended).</li>\n</ol></p><p><h2>So what is Cron?</h2></p><p><p>\nIt's a process that's running all the time on the server. What it does is continuously check through each user's list of scheduled jobs, and if one's due to run, it runs it. The lists are called <strong>Crontabs</strong>, and can contain any Unix command, including running a script. You can edit your Crontab directly, which can be quick and dirty, or you can take the easier method of submitting a text file instead. As I'm all for an easy life, we'll be using the second method.\n</p></p><p><h2>The demo script</h2></p><p><p>\nOK, <a href="http://www.easyweb.co.uk/tutorials/autoresponder.txt" target="_blank">here</a>'s the Perl script we'll be running. It checks the POP box which bots@easyweb.co.uk throws mail into, gets any mail, and emails the sender back an appropriate message, depending on the incoming email's subject. If you want to use this, then you're welcome, but remember to tell people where you got it ;-)\n</p></p><p><p>\nInstall this script, as normal, making sure it's executable, and take a note of the <strong>full path</strong> to it (it might be something like <code>/home/yourlogin/cgi-bin/autoresponder.cgi</code>).\n</p></p><p><p>\nYou'll now need to test that the script works. Email the mailbox, then telnet into your server, and (assuming that your script is living in the cgi-bin subdirectory of your space), enter the following commands:\n</p></p><p><pre>\n cd cgi-bin\n autoresponder.cgi\n</pre></p><p><p>\nAll things being equal, you should get an email back, and you can crack open your first beer.\n</p></p><p><h2>Setting up the Cron job</h2></p><p><p>\nNow you have a working script, you'll need to kick it off fairly frequently. We'll be keeping a balance between not overloading the server (keeping your sysadmin and users happy), while still having it run often enough, we'll run the job every 5 minutes.\n</p></p><p><h3>Crontab format</h3></p><p><p>\nThe general format for Crontabs is:\n</p></p><p><pre>\nminute hour day month weekday command\n</pre></p><p><p>\nNote that\n<ul type="disc">\n 	<li><code>hour</code> in 24 hour format</li>\n 	<li>0 is Sunday, 6 is Saturday for <code>day</code></li>\n 	<li><code>command</code> can be any system command, or the full path to a user script</li>\n</ul> \n</p></p><p><p>\nSo to have my script (which is at /home/web3060/cgi-bin/autoresponder.cgi) running at 9:10pm on 30th September, I'd use\n</p></p><p><pre>\n10 21 30 9 * /home/web3060/cgi-bin/autoresponder.cgi\n</pre></p><p><p>\nThe other 2 things you need to know is that an asterisk in any field means all values, so <code>0 23 * * * /usr/local/bin/disktidy</code> will run at eleven PM every night, <code> 0 23 1 * * command </code> will run at eleven PM every 1st of the month, <code> 15 5 * * 1 command </code> will run at 5:15 am every Monday etc, and that if you want more than one value in a field, separate them by commas (remember not to put a space within a field, or the system will get confused). This means that to fire our script every 5 minutes every hour, every day, every month, we'll need the following:\n</p></p><p><pre>\n0,5,10,15,20,25,30,35,40,45,50,55 * * * * /full/path/to/autoresponder.cgi\n</pre></p><p><p>\nCopy the above, crack open that text editor and paste it in - replacing <code>/full/path/to/autoresponder.cgi</code> with the equivalent for your system &#151; save it as autoresp.ctb and FTP the file into your own space (your home directory for preference).\n</p></p><p><p>\nNow telnet into your webspace and enter your Crontab command by entering the following:\n</p></p><p><pre>\ncrontab autoresp.ctb\n</pre></p><p><p>\nYou can check that this has worked by entering <code> crontab -l </code> which should give back a list containing the Crontab entry above (y'know - 0,5,10 etc). One more command which you might like to take a note of now is <code> crontab -r </code> which removes your Crontab, so you can back out your change if needed.\n</p></p><p><p>\nNow all you have to do is run your test. Email the mailbox, and sit back for 5 minutes or so. Your server might not the job <strong>exactly</strong> at the time specified (and if you've specified an hour of day, beware of timezones too), as it considers background jobs like this as less important than other stuff it's doing, like delivering web pages to users who think every second counts. But after a few minutes you should get an email back. Congratulations! You can crack open that other beer safe in the knowledge that you can now do stuff that 90% of other web designers can't.\n</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

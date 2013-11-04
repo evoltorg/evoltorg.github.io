@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Making Peace Legacy Browsers And External Scripts</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Making Peace Legacy Browsers And External Scripts</h2>
+<p class="meta">14 Mar 2001</p>
+
+<div class="post">
+<script type="text/javascript">\n<!--\nfunction fnMouseOver2() {}\nfunction fnMouseOut2() {}\nfunction fnMouseClick2() {\n  alert("Your browser does not support external script files.\nSorry!") ;\n}\n// -->\n</script>\n<script type="text/javascript" src="http://members.evolt.org/jaylard/dev/scripts/js_ExternalJavascriptSupport.js">\n<!--\nfunction fnMouseOver1() {}\nfunction fnMouseOut1() {}\nfunction fnMouseClick1() {\n  alert("Your browser does not support external script files.\nSorry!") ;\n}\n// -->\n</script>\n<p>There are several benefits to using external JavaScript files, and among them are more-compact HTML pages and the caching and sharing of script files among multiple web pages. Most legacy browsers, meaning those that support only JavaScript version 1 (such as Netscape 2 and Internet Explorer 3), however, do not support external script files. When a web page tries to call a function or access a variable that is stored in an external script file, first-generation JavaScript-enabled browsers will throw a fit of errors.</p>\n<p>Rather than dismiss this pitfall as part of the price of using a legacy browser, there are steps that developers can take to prevent errors in older browsers while preserving the benefits of external script files for everyone else. Here are two of them:</p>\n<h2>Method 1</h2>\n<p>In this first example, the code for legacy browsers is contained <em>between</em> the opening and closing <code>&lt;script&gt;</code> tags that also reference the external script file through the <code>src</code> attribute:<br><br>\n<em>Example:</em><br>\n<pre>&lt;script type=&quot;text/javascript&quot; src=&quot;scripts/js_ExternalJavascriptSupport.js&quot;&gt;\n  &lt;--\n    function fnMouseOver1() {}\n    function fnMouseOut1() {}\n    function fnMouseClick1() {\n      alert(&quot;Your browser does not support external script files.\nSorry!&quot;) ;\n    }\n  // --&gt;\n&lt;/script&gt;</pre><br><br>\nPartial source of <code>js_ExternalJavascriptSupport.js</code>:<br><br>\n<pre>function fnMouseOver1() {\n  if (document.images) {\n    document.images[&quot;Smiley1&quot;].src = &quot;images/SmileyOver.gif&quot; ;\n  }\n}</p><p>function fnMouseOut1() {\n  if (document.images) {\n    document.images[&quot;Smiley1&quot;].src = &quot;images/Smiley.gif&quot; ;\n  }\n}</p><p>function fnMouseClick1() {\n  alert(&quot;Your browser does support external script files.\nAwesome!&quot;) ;\n}</pre><br><br>\n<em>Try it:</em><br><br>\n<a href="JavaScript://" onmouseover="fnMouseOver1();" onmouseout="fnMouseOut1();" onclick="fnMouseClick1(); return false"><img name="Smiley1" src="http://members.evolt.org/jaylard/dev/images/Smiley.gif" border="0" alt="Smiley Face"></a>\n<ul><li><strong>Mouse over the image above.</strong> If you are using a legacy browser you should see no change in the image -- but you will also <em>not</em> receive a scripting error. If you are using a newer browser that understands external script files, the mouseover image will change (assuming that your browser also supports the images collection).</li>\n<li><strong>Click on the image above.</strong> You will receive an alert that confirms whether or not your browser understands external script files. Browsers that do should execute the function in the external file, while browsers that don't should execute the function contained within the embedded script element.</li></ul><br><br>\n<strong>Benefits:</strong>\n<ul><li>With minimal code, this method prevents errors in legacy browsers that do not understand external script files.</li>\n<li>It takes advantage of the designed intent of the <code>&lt;script&gt;</code> element: browsers that understand the <code>src</code> attribute should ignore any content contained between the opening and closing <code>&lt;script&gt;</code> tags, while browsers that don't understand it will execute that code while ignoring the external file.</li>\n<li>It works with functions <em>and</em> variables.</li></ul><br><br>\n<strong>Drawbacks:</strong><br><br>\n<ul><li>A very small number of known browsers -- all of which are extremely minor makes and models -- are capable of handling external script files while also executing code contained within <code>&lt;script&gt;</code> elements that include a <code>src</code> attribute. This number is far smaller than the number of legacy browsers that will handle this method correctly, but it is still a consideration, however small.</li></ul><br></p>\n<h2>Method 2</h2>\n<p>The second method was developed by <a href="http://www.evolt.org/">Evolt</a>'s <a href="http://www.evolt.org/user/jeff/15/index.html">Jeff Howden</a>, and offers a benefit or two that the previous method does not. This method involves the use of two <code>&lt;script&gt;</code> elements: one that lacks a <code>src</code> attribute to accommodate legacy browsers, and one that includes a <code>src</code> attribute to handle newer browsers. The secret of this method is that if there are two versions of a function, the second version takes precedence (much like style declaration precedence for those familiar with <acronym title="Cascading Style Sheets">CSS</acronym>). So, by declaring the legacy version of the function first, and then  the more-robust version of the function in an external script file, newer browsers that understand external script files will execute the second version, while legacy browsers that don't understand them will execute the first.<br><br>\n<em>Example:</em><br>\n<pre>&lt;script type=&quot;text/javascript&quot;&gt;\n  &lt;--\n    function fnMouseOver2() {}\n    function fnMouseOut2() {}\n    function fnMouseClick2() {\n      alert(&quot;Your browser does not support external script files.\nSorry!&quot;) ;\n    }\n  // --&gt;\n&lt;/script&gt;\n&lt;script type=&quot;text/javascript&quot; src=&quot;scripts/js_ExternalJavascriptSupport.js&quot;&gt;&lt;/script&gt;</pre><br><br>\nPartial source of <code>js_ExternalJavascriptSupport.js</code>:<br><br>\n<pre>function fnMouseOver2() {\n  if (document.images) {\n    document.images[&quot;Smiley2&quot;].src = &quot;images/SmileyOver.gif&quot; ;\n  }\n}</p><p>function fnMouseOut2() {\n  if (document.images) {\n    document.images[&quot;Smiley2&quot;].src = &quot;images/Smiley.gif&quot; ;\n  }\n}</p><p>function fnMouseClick2() {\n  alert(&quot;Your browser does support external script files.\nAwesome!&quot;) ;\n}</pre><br><br>\n<em>Try it:</em><br><br>\n<a href="JavaScript://" onmouseover="fnMouseOver2();" onmouseout="fnMouseOut2();" onclick="fnMouseClick2(); return false"><img name="Smiley2" src="http://members.evolt.org/jaylard/dev/images/Smiley.gif" border="0" alt="Smiley Face"></a>\n<ul><li><strong>Mouse over the image above.</strong> As with the first example, if you are using a legacy browser you should see no change in the image -- but you also should <em>not</em> receive a scripting error. If you are using a newer browser that understands external script files, the mouseover image will change (assuming that your browser also supports the images collection) because your browser supersedes the first function with the second.</li>\n<li><strong>Click on the image above.</strong> You will receive an alert that confirms whether or not your browser understands external script files. Browsers that do should execute the function in the external file, while browsers that don't should execute the function contained within the embedded script element.</li></ul><br><br>\n<strong>Benefits:</strong><br><br>\n<ul><li>With only slightly more code than required by the first example,this method prevents errors in legacy browsers that do not understand external script files.</li>\n<li>When the browser is unable to locate the external script file, this method has a beneficial side-effect that prevents script errors even in newer browsers. Because the newer browsers recognize the first <code>&lt;script&gt;</code> element, they will use it in those rare cases when the content of the second <code>&lt;script&gt;</code> element is unavailable to replace that of the first. This is a very powerful benefit.</li></ul><br><br>\n<strong>Drawbacks:</strong><br><br>\n<ul><li>None currently known.</li></ul><br></p>\n<p>Whichever method you choose to use is up to you. Also, if you discover quirks or breakdowns in either of these approaches, please either post the details below or email me at <a href="jaylard@members.evolt.org">jaylard@members.evolt.org</a>. Happy coding!</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

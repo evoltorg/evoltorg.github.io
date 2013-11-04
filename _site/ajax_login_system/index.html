@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Ajax Login System Using Xmlhttprequest</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Ajax Login System Using Xmlhttprequest</h2>
+<p class="meta">10 Jan 2006</p>
+
+<div class="post">
+   <p>The idea of Asyncronous Javascript and XML (Ajax) has been around in different forms for some time now, but only recently is truly taking off.  If you aren't familiar with what I'm talking about, feel free to peruse <a href="http://www.adaptivepath.com/publications/essays/archives/000385.php">Adaptive Path's recent article on ajax</a>, but it is not required reading.</p></p><p><p>In a nutshell, ajax encompasses the idea of using XMLHttpRequest objects in javascript to avoid needlessly refreshing a web page.  Famous uses of it are <a href="http://www.google.com/webhp?complete=1&hl=en">Google Suggest</a> and <a href="http://maps.google.com/">Google Maps</a>, as well as many other non-Google websites that I cannot recall offhand.  Possibilities are growing that go beyond what an iframe and DHTML could handle, let alone pure page refreshes.  The Internet is finally truly going stateless, and the challenge posed now by the adaptive path article is as follows: <q>to forget what we think we know about the limitations of the Web, and begin to imagine a wider, richer range of possibilities.</q></p></p><p><p>In that regard, I started a project on the weekend that I wasn't sure was possible: creating a fully secure "ajax"-powered login system, ideal for blogs, forums, and other similar sites.  I had a barebones secure case working within a few hours, and a few more hours gave the final result that I will share today.</p></p><p><p>Before we go on, I suggest you check out the <a href="http://www.jamesdam.com/ajax_login/login.html#login">demonstration of the login system</a> trying out the username and password combinations "user1 / pass1" and "user2 / pass2".  Once you get a grasp for what is going on, we'll continue.</p></p><p><p>So in essence the system does exactly what you just saw, and exactly what I described.  While I will not go through the code, I'll briefly go over how the system as a whole works:</p>\n<ol>\n<li>You signal that you intend to log in by focussing on the username or password text box on the page.</li>\n<li>The server then obtains a random number ("seed" in the code) for the transaction that will be used only for the current transaction, and once the transaction is complete, the seed is useless.  (Note this means that if data is intercepted, it cannot be reconstructed to log in the user that was intercepted.)</li>\n<li>Once you enter a username and password, the server md5 hashes your password, and then md5 hashes that hash with the seed, and sends thi to the server for authentication (along with your username and the id of the transaction).</li>\n<li>The server compares the hash it recieved with the hash of the password hash stored in the database concatenated with the seed for the transaction given by the id from the client.</li>\n<li>If these two hashes match, the user is logged in.  Otherwise, the appropriate error message is sent back to the client.</li>\n</ol></p><p><p>Notice how I haven't discussed the presentation issues, as in reality they have little to do with the problem.  When I moved from my barebones ugly example to the somewhat more aesthetically pleasing one that I've linked to today, I didn't change any of the backend, nor the login_controller.js file.  In designing the system this way, it can be applied to any number of applications, such as a blog comment, a forum, etc.</p></p><p><p>Also notice that this is seemingly <em>more</em> secure than a traditional login system since the password is never transmitted in plain text.</p></p><p><p>In the example I have given, I didn't provide any allowances for older browsers, however it would be very simple to modify it such that it degrades gracefully.</p></p><p><p>Finally, I didn't actually use XML anywhere in my implementation.  It simply wasn't necessary, plain text served just as well.  In more complicated situations XML might be the answer, but don't over-complicate the problem.</p></p><p><p>It is my hope that this application of ajax and XMLHttpRequest gets your creativity going for more applications of the technology, and makes you more aware of just how cool it can be.</p></p><p><p>The last line of the Adaptive Path article I referenced to at the beginning of this article says "It's going to be fun."  So far it's been great fun for me, and I trust it will be for you too.</p>\n
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

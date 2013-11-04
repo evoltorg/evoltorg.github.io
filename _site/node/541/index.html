@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>A Quick And Dirty Chmod Tutorial</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>A Quick And Dirty Chmod Tutorial</h2>
+<p class="meta">30 Oct 1999</p>
+
+<div class="post">
+<p>'chmod' or &quot;change mode&quot; is the *NIX\nway of changing file permissions. It is VERY\ndifferent from DOS/Windows, if you are new to *NIX\nor always wondered what &quot;drwxr-xr-x&quot;\nmeant read on.....</p></p><p><p>Where Windows/DOS machines realistically have one\nset of file permissions: Read/Write - Archive -\nSystem - Hidden&nbsp; and then add on User\nPermissions to the files and directories; *NIX\nbreaks the permissions into three groups, 1 -\nuser, 2 - group, 3 - world.</p></p><p><p>When you do an ls -la you might see the\nfollowing:</p></p><p><TT>[user@linux sites]$ ls -la<BR>\ndrwxr-xr-x&nbsp; 16 root&nbsp; root&nbsp; 1024 Oct 20 19:56 .<BR>\ndrwxr-xr-x&nbsp;&nbsp; 9 root&nbsp; root&nbsp; 1024 Sep&nbsp; 5 22:56 ..<BR>\ndrwxr-xr-x&nbsp;&nbsp; 9 foo&nbsp;&nbsp; user&nbsp; 1024 Sep&nbsp; 5 22:56 dir1<BR>\ndrwxr-xr-x&nbsp;&nbsp; 9 foo&nbsp;&nbsp; user&nbsp; 1024 Sep&nbsp; 5 22:56 dir2<BR>\ndrwxr-xr-x&nbsp;&nbsp; 9 foo&nbsp;&nbsp; user&nbsp; 1024 Sep&nbsp; 5 22:56 dir3<BR>\n-rw-r--r--&nbsp;&nbsp; 9 foo&nbsp;&nbsp; user&nbsp; 1024 Sep&nbsp; 5 22:56 file1<BR>\n-rw-r--r--&nbsp;&nbsp; 9 foo&nbsp;&nbsp; user&nbsp; 1024 Sep&nbsp; 5 22:56 file2<BR>\n-rw-r--r--&nbsp;&nbsp; 9 foo&nbsp;&nbsp; user&nbsp; 1024 Sep&nbsp; 5 22:56 file3<BR><BR>\n</TT></p><p><p>All the gobblygook at the beginning of each line is\nthe file permissions. Note: To *NIX, directories\nare just special files. In order to allow someone\nto 'traverse' the directory tree, the user must\nhave eXecute permissions on the directory even if\nthey have read/write privileges.</p></p><p><p>Within each set of permissions (you, group, world)\nthere are three permissions you can set: Read -\nWrite - Execute. Therefore when you set the\npermissions on a file you must take into account\n'who' needs access.</p></p><p><p>Here's a stripped down list of the options\nchmod takes: (for more info do a man chmod at the\ncommand line.)</p></p><p><p>chmod [-R] ### &lt;filename or directory&gt;</p></p><p><p>-R is optional and when used with directories will\ntraverse all the sub-directories of the target\ndirectory changing ALL the permissions to\n###. Very useful but use with extreme\ncaution.</p></p><p><p>The #'s can be:</p></p><p>0 = Nothing<BR>\n1 = Execute<BR>\n2 = Write<BR>\n3 = Execute &amp; Write&nbsp; (2 + 1)<BR>\n4 = Read<BR>\n5 = Execute &amp; Read (4 + 1)<BR>\n6 = Read &amp; Write (4 + 2)<BR>\n7 = Execute &amp; Read &amp; Write (4 + 2 + 1)<BR><BR></p><p><p>Of course you need a file name or target\ndirectory. Wild cards * and ? are acceptable. If\nyou don't supply the -R, with the target\ndirectory, the directory itself will be changed,\nnot anything within it.</p></p><p><p>Again you must supply the #'s in a set of three\nnumbers (you, group, world).</p></p><p><p>To make a file readable and writable by you, and\nonly read for your group, and no access from the\nworld,it would look like:</p></p><p><p>chmod 640 filename</p></p><p><p>The result would look like...</p></p><p><TT>\n-rw-r-----&nbsp;&nbsp; 9 foo&nbsp; user&nbsp; 1024 Sep&nbsp; 5 22:56 file3<BR><BR>\n</TT></p><p><p>To make all files that end in .cgi read-write-executable for\nyou, and read-executable for everyone else:</p></p><p><p>chmod 755 *.cgi</p></p><p><p>The result would look like...</p></p><p><TT>-rwxr-xr-x&nbsp;&nbsp; 9 foo&nbsp; user&nbsp; 1024 Sep&nbsp; 5 22:56 file3.cgi<BR>\n-rwxr-xr-x&nbsp;&nbsp; 9 foo&nbsp; user&nbsp; 1024 Sep&nbsp; 5 22:56 file4.cgi<BR><BR>\n</TT></p><p><p>Here are some standard permissions for files and\ndirectories:</p></p><p><p>[This is a gross approximation, a place to\nstart. Your sysadmin maybe really loose with\npermissions or a really tight-butt. Your mileage\n*will* vary.]</p></p><p><p>For Apache running as nobody:nobody.....Most Perl\nScripts should be set to 755.  Most HTML files\nshould be set to 644. And most data files that\nmust be written to by a web server should be\n666. The standard directory permission should be\n755. Directories that must be written to by a web\nserver should be 777.</p></p><p><p>If the web server is running within the same\ngroup as you....Most Perl Scripts should be set to\n750. Most HTML files should be set to 640. And\nmost data files that must be written to by a web\nserver should be 660. The standard directory\npermissions should be 750.  Directories that must\nbe written to by a web server should be 770.</p></p><p><p>Your home directory should be 700. If you are\noperating a ~username type server, the public_html\ndirectory should be 777. (You may also need to\nopen up the home directory to 755.)</p></p><p><p>Side Note: any file name that starts with a '.'\nis invisible to the webserver when a directory\nlist is generated. This is a quick and dirty way\nto hide a file.</p>\n
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Empty Nothing And Null How Do You Feel Today</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Empty Nothing And Null How Do You Feel Today</h2>
+<p class="meta">16 Aug 1999</p>
+
+<div class="post">
+In VBScript there are three (yup, three) states of a variable not having a value (well, a usable one anyway). <P>\nEmpty == Uninitialized Null == actually, well, Null. Okay, so technically this is a value. More in a sec. Nothing == for objects only, basically the same as Empty <P>\n"" --the empty string (VBScript calls it the null string) is a valid value. Remember this. <P>\nVBScript also has three ways to check for non values: IsEmpty, IsNull, and IsNothing. The lesson is that you can't mix and match. And none of them will cooperate if you're checking against "". You check for "" by comparing against "". <P>\nFor those of you hellbent on the long answer, here you go: <P>\nIf you set a variable to the empty string to clear it out, say Session("userid")="", then VBScript still treats it as containing a value. The corollary is that the storage is still allocated for it in memory-- no garbage collection. If you try IsEmpty(Session("userid")) you'll get false. IsNull(Session("userid")) returns false as well. IsNothing is either false or an error, I don't remember. <P>\nSo how do you clear it out? Do this instead: Session("userid") = Empty. Now IsEmpty(Session("userid")) returns true. Memory used to hold the variable is freed. IsNull(Session("userid")) still returns false, because its not Null. IsNothing is the same as above. <P>\n"So what's Null?" According to VB lore (documentation), Null is "no valid data." The only time I've seen something actually return a value of Null is when pulling data from a db. So if I have a recordset oRS with a field called firstname and it is Null in the db, then IsNull(oRS("firstname")) will return True. And IsEmpty? --False. You can set a variable to Null, but again, VBScript treats this as some value (although not "valid data") and keeps the storage allocated. <P>\nOh, and then there's Nothing. Nothing is the special trick to making sure your objects are shutdown, closed out and deallocated. Anytime you do a Set myvar =... you want to Set myvar=Nothing when you're done using it. Otherwise VBScript holds onto it, the memory it takes up, and the information in it until you do or the ASP page finishes processing. So yeah, you can get away without it, but you're stuff will run faster if you do, and you'll be able to brag about how good a programmer you are. 	You can't set a regular variable to Nothing. You have to set it to Empty. An object set to Nothing will return false if you try IsEmpty(object). IsNull will return false as well. <P>\n"So why the hell all this cornfusing information?" <P>\nSo you are more careful with your code, and maybe those times where you're getting values or the page does something funky you now know why. <P>\nI'm trying to eliminate: "Session("userid")="" ...why the hell is IsEmpty(Session("userid")) returning false?!?!? #$@%@#*%!" from your life, because I like you.  <P>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

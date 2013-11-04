@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Remembering Non Registered Visitors</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Remembering Non Registered Visitors</h2>
+<p class="meta">19 Jun 2002</p>
+
+<div class="post">
+<p>You have a couple of forms on your site that require the same user information or\na single form that is frequently resubmitted by visitors. You don't have the time to implement\nuser registration and don't want to spend hours or days learning somebody else's code. \nYou are not sure if people will sign-up at all. What you need is to &quot;remember&quot; non-registered visitors.\n</p></p><p><h2>Why people <em>may</em> not register</h2>\n<ul>\n    <li>It takes time even if you only fill in a username and password</li>\n    <li>Many services on the web <em>require</em> lots of information</li>\n    <li>Some sites require additional action to activate your account</li>\n</ul></p><p><h2>What are the benefits of remembering visitors?</h2>\n<ul>\n    <li>People may opt to turn it off</li>\n    <li>Can coexist with the same service for registered users</li>\n    <li>Doesn't take much time to implement it</li>\n    <li>Doesn't require a database</li>\n</ul></p><p><h2>And the drawbacks</h2>\n<ul>\n    <li>Requires cookies, at least when you want it to be permanent</li>\n    <li>The same browser has to be used every time</li>\n</ul></p><p><h2>What exactly is it?</h2>\n<p>It is a way to remember the information the visitor of your site entered \neither for the current session or for a specified amount of time with a cookie.\n</p></p><p><p>When the visitor submits the form the reusable information - the information that doesn't change\nwhen the same user fills the form another time - is saved. Depending on the implementation, you could offer\nan option to permanently save the information as a cookie or just to save it for the session.\n</p></p><p><h2>What is required?</h2>\n<p>A server-side scripting language such as \n<a href="http://www.php.net" target="_blank"><acronym  title="PHP Hypertext Preprocessor">PHP</acronym></a>,\n<acronym title="Active Server Pages">ASP</acronym>,\n<acronym title="Java Server Pages">JSP</acronym> or anything as CGI \nthat will both display the form and process the submitted values. \n</p></p><p></p><p><h2>And some code</h2>\n<p>The example provides the code in PHP but as said above it can be done in \nany server-side scripting language or application.\n</p></p><p><pre>\ndefine('COOKIE_REMEMBER', 'remember-me');</p><p>session_load_remembered();</p><p>if ($_SERVER['REQUEST_METHOD'] == 'POST') {\n    processData();\n} else {\n    displayForm();\n}\n</pre></p><p><p>Our cookie name is defined with a constant so if you want to change\nit you can do it in one place. The first function call initializes the session variables\nfrom that cookie, if available.\n</p>\n<p>\nNext we check if we should display the form or \nprocess the submitted one.\n</p></p><p><pre>\nfunction session_load_remembered() {\n    if (isset($_COOKIE[COOKIE_REMEMBER]) ) {\n        // the order of name, email has to be the same as in the code to save the data\n        list($_SESSION['name'], $_SESSION['email']) = @unserialize($_COOKIE[COOKIE_REMEMBER]);\n    }\n}\n</pre></p><p><p>PHP's <code>unserialize</code> function takes a string representation \nof a PHP variable - array in our case, and returns the structure itself. We've suppressed \nerror messages with the <code>@</code> control operator because the cookie may have \nbeen modified by the user. The <code>list</code> language construct is used to set the values of \nour session variables at once.\n</p></p><p><p>We've used PHP's 4.1 style superglobal <code>_COOKIE</code> and \n<code>_SESSION</code> arrays; if you want to use the code with an earlier \nversion of PHP you need to modify the code to <code>HTTP_*_VARS</code>\nand import it from the global namespace with a <code>global</code> declaration \nas in the example:\n</p></p><p><pre>\nglobal $HTTP_COOKIE_VARS;</p><p>echo $HTTP_COOKIE_VARS[COOKIE_REMEMBER];\n</pre></p><p><pre>\nfunction displayForm($subject = '', $comment = '') {\n    ?&gt;\n    &lt;form method="post" action="&lt;?php echo $_SERVER['PHP_SELF']?&gt;"\n        onsubmit="return true"&gt;\n    &lt;table border="0" cellspacing="5" cellpadding="0" summary="Comments form"&gt;</p><p>    &lt;tr&gt;\n        &lt;td&gt;Name:&lt;/td&gt;\n        &lt;td&gt;&lt;input type="text" name="fullName" id="fullName" value="&lt;?php echo $_SESSION['name']?&gt;" /&gt;&lt;/td&gt;\n    &lt;/tr&gt;</p><p>    &lt;tr&gt;\n        &lt;td&gt;E-mail:&lt;/td&gt;\n        &lt;td&gt;&lt;input type="text" name="email" id="email" value="&lt;?php echo $_SESSION['email']?&gt;" /&gt;&lt;/td&gt;\n    &lt;/tr&gt;</p><p>    &lt;tr&gt;\n        &lt;td&gt;Subject:&lt;/td&gt;\n        &lt;td&gt;&lt;input type="text" name="subject" id="subject" value="&lt;?php echo $subject?&gt;" /&gt;&lt;/td&gt;\n    &lt;/tr&gt;</p><p>    &lt;tr&gt;\n        &lt;td colspan="2"&gt;\n            &lt;input type="checkbox" name="remember" /&gt;\n            Remember me\n        &lt;/td&gt;\n    &lt;/tr&gt;</p><p>    &lt;tr&gt;\n        &lt;td colspan="2"&gt;Comments:&lt;/td&gt;\n    &lt;/tr&gt;</p><p>    &lt;tr&gt;\n        &lt;td colspan="2"&gt;\n            &lt;textarea id="comment" name="comment" rows="8" cols="40"&gt;&lt;?php echo $comment?&gt;&lt;/textarea&gt;\n        &lt;/td&gt;\n    &lt;/tr&gt;</p><p>    &lt;tr&gt;\n        &lt;td&gt;&lt;input type="submit" value="Add comment" /&gt;&lt;/td&gt;\n        &lt;td&gt;&lt;input type="reset" value="Clear fields" /&gt;&lt;/td&gt;\n    &lt;/tr&gt;</p><p>    &lt;/table&gt;\n    &lt;/form&gt;\n    &lt;?php\n}\n</pre></p><p><p>This isn't perfect HTML: you should add <code>title</code>s to the code,\nand also wrap the text labels in HTML <code>label</code> elements. Other improvements \ncan also be made, it's up to you.\n</p></p><p><p>This is an example PHP function to display a comments form. Note that we've set the\ndefault values of the <code>name</code> and <code>email</code> fields to our session\nvariables that will hold the saved data. The other two default values for the \n<code>subject</code> and <code>comment</code> are just put in case server-side \nvalidation fails and we need to redisplay the form with the values filled in.\n</p></p><p>\n<pre>\nfunction processData() {\n    // some validation\n    // redisplay the form if it fails with a line like:\n    // displayForm($_POST['subject'], $_POST['comment']);</p><p>\n    // if all is ok\n    $_SESSION['name'] = $_POST['fullName'];\n    $_SESSION['email'] = $_POST['email'];</p><p>    if (isset($_POST['remember']) ) {\n        setcookie(COOKIE_REMEMBER, \n            serialize(array($_SESSION['name'], $_SESSION['email']) ),\n            time() + 31104000);\n    }</p><p>    // add the info to database\n}\n</pre></p><p><p>This one handles the submitted data, validation needs to be put in place of course.\nWhen all data is correct we can save our data in the session, and \nalso set up a cookie that will remember the info for the visitor's next visit to the site if he/she requested it.\n</p></p><p><p>The POST variable <code>remember</code> will be set to <code>on</code> when \nthe visitor checks the box, otherwise it will not be set at all. The code to set the \ncookie will make it expire in one year.</p>\n<p>\n If you are on a shared host and your site is \naccessible under one directory it is recommended to set the next optional parameter \nto <code>setcookie</code> to that directory to prevent cookie leaks.\n</p>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

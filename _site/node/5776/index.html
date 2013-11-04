@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Third Column Slickness   Screen Size Customization</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">evolt.org</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Third Column Slickness   Screen Size Customization</h2>
+<p class="meta">28 Feb 2001</p>
+
+<div class="post">
+<p>\nThe techniques involves using a ILayer or IFrame (NS4 and others respectively) to bring in another page of content.  One side effect is that this is also a technique for including content from a separate site. \n</p>\n<p>\nIn this case, I'm using table with alignment wrapped around the iframe/ilayer to avoid having to alter any of the other markup on the page\n</p>\n<pre></p><p>if (document.layers    document.getElementById) {\n     screenwidth = window.innerWidth;\n     screenheight  = window.innerHeight;\n}\nif (document.all ) {\n     screenwidth = document.body.clientWidth;\n     screenheight = document.body.clientHeight;\n}</p><p>if(screenwidth &gt; 800) {\n	if(document.layers) {\n		document.write('&lt;table align=&quot;right&quot; width=&quot;180&quot;&gt;&lt;tr&gt;&lt;td&gt;  &lt;/td&gt;&lt;td&gt;&lt;ilayer src=&quot;/blogger/featured.cfm&quot; width=&quot;180&quot; height=&quot;' + screenheight + '&quot; scrolling=&quot;no&quot;&gt;&lt;/ilayer&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;');\n	} else {\n		if(document.all    document.getElementById) {\n			document.write('&lt;table align=&quot;right&quot; width=&quot;180&quot;&gt;&lt;tr&gt;&lt;td&gt;  &lt;/td&gt;&lt;td&gt;&lt;iframe src=&quot;/blogger/featured.cfm&quot; width=&quot;180&quot; height=&quot;' + screenheight + '&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;');\n		}\n	}	\n}\n</pre>
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Your Name<br />
+                What You Are<br />
+                you@example.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>
