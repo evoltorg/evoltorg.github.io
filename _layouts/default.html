@@ -24,16 +24,12 @@
     </script>
 
     <!--    ####     # The following CSS is IE only, as per	# http://virtuelvis.com/archives/2004/02/css-ie-only    ####    -->
-
     <!--[if IE]>
-
     <link rel="stylesheet" href="themes/evolt/structure_ie.css" type="text/css" />
-
     <![endif]-->
 
     <style type="text/css" media="all">@import "/css/style.css";</style>
     <!--    ####     # the following print CSS needs to be moved into the $styles php above - here for now for testing purposes    ####    -->
-
     <link rel="stylesheet" href="/css/print.css" media="print" type="text/css"/>
     <!-- Javascript for login form select. A smarter person would conditionalise this on whether there's a logged in user... -->
     <script language="JavaScript" type="text/javascript">
@@ -66,6 +62,30 @@
         <a href="/#accesskey-list" accesskey="0">Skip to Accesskey List.</a>
     </div>
     <!-- end accessibility skip -->
+
+    <div id="header"><h2 class="access">Start of page header</h2>
+        <a href="/" title="Return to the home page" accesskey="1" ><img src="/images/evoltorg.gif" alt="evolt.org" title="Welcome to evolt.org" id="logo" /></a>
+        <h2 class="access"><a name="other-sites">Other Fine Evolt.org Sites</a></h2>
+        <ul id="sections">
+            <li id="sectionwork"><a href="/" title="list and articles">Work</a>
+                <p>list and articles</p>
+            </li>
+            <li id="sectiontest"><a href="http://browsers.evolt.org/" title="browser archive">Test</a>
+                <p>browser archive</p>
+            </li>
+            <li id="sectiondonate"><a href="/help_support_evolt" title="keep evolt.org alive">Donate</a>
+                <p>keep evolt.org alive</p>
+            </li>
+        </ul>
+    </div>
+
+    <form method="post" action="/search/node" id="searchform">
+        <fieldset>
+            <legend>Search evolt.org</legend>
+            <label for="searchbox" class="faux-legend">search:</label>
+            <input type="text" name="edit[keys]" id="searchbox" size="12" maxlength="50" accesskey="4" value="" /><input type="submit" id="searchevolt" class="form-submit" name="op" value="Search" />
+        </fieldset>
+    </form>
 
         <div class="site">
           <div class="header">
