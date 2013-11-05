@@ -1,0 +1,493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <title>Category: backend | evolt.org</title>
+
+    <meta name="Copyright" content="&copy; evolt.org and its members" />
+    <meta name="Keywords" content="web, internet, design, technology, interface, multimedia, script, commentary, hardware, software, articles, news" />
+    <meta name="Description" content="A world community for web developers, evolt.org promotes the mutual free exchange of ideas, skills and experiences." />
+
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <style type="text/css" media="all">@import "/css/drupal.css";</style>
+    <style type="text/css">@import url(/css/codefilter.css);</style>
+
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        _uacct = "UA-25047390-2";
+        _udn = ".evolt.org";
+        urchinTracker();
+    </script>
+
+    <!--    ####     # The following CSS is IE only, as per	# http://virtuelvis.com/archives/2004/02/css-ie-only    ####    -->
+    <!--[if IE]>
+    <link rel="stylesheet" href="themes/evolt/structure_ie.css" type="text/css" />
+    <![endif]-->
+
+    <style type="text/css" media="all">@import "/css/style.css";</style>
+    <!--    ####     # the following print CSS needs to be moved into the $styles php above - here for now for testing purposes    ####    -->
+    <link rel="stylesheet" href="/css/print.css" media="print" type="text/css"/>
+    <!-- Javascript for login form select. A smarter person would conditionalise this on whether there's a logged in user... -->
+    <script language="JavaScript" type="text/javascript">
+        <!--
+        function validateLogin(form)
+        {
+            if(!form.username.value || form.username.value == 'username')
+            {
+                alert('Username is required to login.');
+                form.username.focus();
+                return false;
+            }
+            if(!form.password.value)
+            {
+                alert('Password is required to login.');
+                form.password.focus();
+                return false;
+            }
+            return true;
+        }
+        //-->
+    </script>
+</head>
+
+    <body>
+
+    <!-- start accessibility skip to content -->
+    <div id="access-skip" class="access">
+        <a href="/#main-page-content" accesskey="2">Skip to page content</a> or
+        <a href="/#accesskey-list" accesskey="0">Skip to Accesskey List.</a>
+    </div>
+    <!-- end accessibility skip -->
+
+    <div id="header"><h2 class="access">Start of page header</h2>
+        <a href="/" title="Return to the home page" accesskey="1" ><img src="/images/evoltorg.gif" alt="evolt.org" title="Welcome to evolt.org" id="logo" /></a>
+        <h2 class="access"><a name="other-sites">Other Fine Evolt.org Sites</a></h2>
+        <ul id="sections">
+            <li id="sectionwork"><a href="/" title="list and articles">Work</a>
+                <p>list and articles</p>
+            </li>
+            <li id="sectiontest"><a href="http://browsers.evolt.org/" title="browser archive">Test</a>
+                <p>browser archive</p>
+            </li>
+            <li id="sectiondonate"><a href="/help_support_evolt" title="keep evolt.org alive">Donate</a>
+                <p>keep evolt.org alive</p>
+            </li>
+        </ul>
+    </div>
+
+    <form method="post" action="/search/node" id="searchform">
+        <fieldset>
+            <legend>Search evolt.org</legend>
+            <label for="searchbox" class="faux-legend">search:</label>
+            <input type="text" name="edit[keys]" id="searchbox" size="12" maxlength="50" accesskey="4" value="" /><input type="submit" id="searchevolt" class="form-submit" name="op" value="Search" />
+        </fieldset>
+    </form>
+
+    <div id="content"><div id="channel">
+        <!-- this item really shouldn't be done this way -->
+        <p class="work-title"><a href="/">Work</a></p>
+        <ul id="secondary">
+            <li><a href="/about">About Us</a></li><li><a href="http://lists.evolt.org/">Lists</a></li><li><a href="/taxonomy/term/23">Jobs</a></li>
+        </ul>
+        <ul id="secondary-constants">
+            <li><a href="/faq" accesskey="5">FAQ</a></li>
+            <li><a href="/contact" accesskey="9">Contact</a></li>
+        </ul>
+    </div>
+
+        <div class="sidebar" id="sidebar-left"><h2 class="access"><a name="content-categories">Navigation Starts</a></h2>
+            <div class="block">
+                <h4>Submit</h4>
+                <a href="/submit">Submit articles, news or reviews for publication on evolt</a>
+            </div>
+            <div class="block">
+                <h4>Article Categories</h4>
+                <div class="menu">
+                    <ul>
+                        <li class="leaf"><a href="/categories/backend" title="">Backend</a></li>
+                        <li class="leaf"><a href="/categories/code" title="">Code</a></li>
+                        <li class="leaf"><a href="/categories/commentary-society" title="">Commentary &amp; Society</a></li>
+                        <li class="leaf"><a href="/categories/community-news" title="">Community News</a></li>
+                        <li class="leaf"><a href="/categories/ia-usability" title="">IA/Usability</a></li>
+                        <li class="leaf"><a href="/categories/jobs" title="">Jobs</a></li>
+                        <li class="leaf"><a href="/categories/news" title="">News</a></li>
+                        <li class="leaf"><a href="/categories/reviews-links" title="">Reviews &amp; Links</a></li>
+                        <li class="leaf"><a href="/categories/site-development" title="">Site Development</a></li>
+                        <li class="leaf"><a href="/categories/software" title="">Software</a></li>
+                        <li class="leaf"><a href="/categories/suggestions" title="">Suggestions</a></li>
+                        <li class="leaf"><a href="/categories/visual-design" title="">Visual Design</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="block">
+                <h4>Highest rated articles</h4>
+                <ul>
+                    <li><a href="/node/60384">PHP Login System with Admin Features</a> (4.59)</li>
+                    <li><a href="/node/60261">Where / What Vision Systems and Visual Design</a> (4.52)</li>
+                    <li><a href="/node/21234">A Simple Character Entity Chart</a> (4.51)</li>
+                    <li><a href="/php_login_script_with_remember_me_feature">PHP Login Script with Remember Me Feature</a> (4.5)</li>
+                    <li><a href="/style-switcher-in-asp">Style Switcher in ASP</a> (4.37)</li></ul>
+            </div>
+
+            <div class="block">
+                <h4></h4>
+                <!-- Donations block -->
+                <div id="donation">
+                    <h3>
+                        <a href="/help_support_evolt">Help Support evolt.org</a>
+                    </h3>
+                    <p>Evolt.org is an <strong>all volunteer</strong> organisation that relies on member support to survive and grow.
+                        <a href="/help_support_evolt">Find out</a> how you can help through:</p>
+                    <ul>
+                        <li><a href="/help_support_evolt#donations">Giving Money &raquo;</a></li>
+                        <li><a href="/help_support_evolt#technical">Providing Mirror Servers &raquo;</a></li>
+                        <li><a href="http://www.cafepress.com/evoltgear">Buying evolt.org merchandise &raquo;</a></li>
+                        <li><a href="/help_support_evolt#knowledge">Contributing your knowledge and expertise  &raquo;</a></li>
+                    </ul>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                        <input type="hidden" name="cmd" value="_xclick" />
+                        <input type="hidden" name="business" value="give@evolt.org" />
+                        <input type="hidden" name="item_name" value="evolt.org's shameless tin cup" />
+                        <input type="hidden" name="item_number" value="1" />
+                        <input type="image" src="/images/paypalone.gif" border="0" name="submit" alt="Support evolt.org with your donation of any amount" width="97" height="31" /></form>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                        <input type="hidden" name="cmd" value="_xclick-subscriptions" />
+                        <input type="hidden" name="business" value="give@evolt.org" />
+                        <input type="hidden" name="item_name" value="evolt.org: $15 monthly support" />
+                        <input type="hidden" name="item_number" value="15" />
+                        <input type="hidden" name="no_shipping" value="1" />
+                        <input type="hidden" name="return" value="http://www.evolt.org" />
+                        <input type="hidden" name="no_note" value="1" />
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <input type="image" src="/images/paypal15.gif" border="0" name="submit" alt="Support evolt.org with your monthly $15 donation" width="97" height="31" />
+                        <input type="hidden" name="a3" value="15.00" />
+                        <input type="hidden" name="p3" value="1" />
+                        <input type="hidden" name="t3" value="M" />
+                        <input type="hidden" name="src" value="1" />
+                        <input type="hidden" name="sra" value="1" />
+                    </form>
+                </div>
+                <!-- Donations Block --></div>
+        </div><!-- /sidebar left -->
+
+        <div class="main-content-node" id="content-left">
+            <h2 class="access"><a name="main-page-content">Main Page Content</a></h2>
+
+          <h1 class="category">Category: backend</h1>
+<ul class="posts">
+
+    <div><span class="month">FEB</span> <span class="day">02</span> <span class="year">2007</span> </div>
+    <h2><a href="/ultimate_htaccess_examples">Ultimate Htaccess Examples</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JAN</span> <span class="day">10</span> <span class="year">2006</span> </div>
+    <h2><a href="/ajax_login_system">Ajax Login System Using Xmlhttprequest</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">DEC</span> <span class="day">30</span> <span class="year">2003</span> </div>
+    <h2><a href="/node/60247">Php Coding Guidelines</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">NOV</span> <span class="day">25</span> <span class="year">2003</span> </div>
+    <h2><a href="/node/60232">Tracking Your Users In The Access Logs</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">SEP</span> <span class="day">09</span> <span class="year">2003</span> </div>
+    <h2><a href="/node/60222">Storing Form Array Data To Mysql Using Php</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUL</span> <span class="day">23</span> <span class="year">2003</span> </div>
+    <h2><a href="/node/60182">Add Geography To Your Web Site For A Better View</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">MAY</span> <span class="day">31</span> <span class="year">2003</span> </div>
+    <h2><a href="/node/60160">Mask Your Web Server For Enhanced Security</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">APR</span> <span class="day">13</span> <span class="year">2003</span> </div>
+    <h2><a href="/node/60122">Password Encryption Rationale And Java Example</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">MAR</span> <span class="day">28</span> <span class="year">2003</span> </div>
+    <h2><a href="/node/60103">Using Pear S Mimedecode Module</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JAN</span> <span class="day">06</span> <span class="year">2003</span> </div>
+    <h2><a href="/Simple_Localization_with_PHP">Simple Localization With Php</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">NOV</span> <span class="day">25</span> <span class="year">2002</span> </div>
+    <h2><a href="/An_Introduction_to_generating_sequences_with_SQL">An Introduction To Generating Sequences With Sql</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">NOV</span> <span class="day">23</span> <span class="year">2002</span> </div>
+    <h2><a href="/node/43193">Evaluating A Database</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">OCT</span> <span class="day">24</span> <span class="year">2002</span> </div>
+    <h2><a href="/node/44112">Ten Things To Do With Iis</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">AUG</span> <span class="day">12</span> <span class="year">2002</span> </div>
+    <h2><a href="/node/35930">Using Xml With Php Without Any Apache Changes</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUL</span> <span class="day">31</span> <span class="year">2002</span> </div>
+    <h2><a href="/node/35810">Downtime This Weekend</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUL</span> <span class="day">23</span> <span class="year">2002</span> </div>
+    <h2><a href="/node/33907">Image Manipulation With Cfmx And Jai</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUL</span> <span class="day">16</span> <span class="year">2002</span> </div>
+    <h2><a href="/node/33857">Php Text Marker An Alternative</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">MAY</span> <span class="day">30</span> <span class="year">2002</span> </div>
+    <h2><a href="/incoming_mail_and_php">Incoming Mail And Php</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">MAY</span> <span class="day">29</span> <span class="year">2002</span> </div>
+    <h2><a href="/node/26852">Form Validation An Object Oriented Approach</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">MAY</span> <span class="day">16</span> <span class="year">2002</span> </div>
+    <h2><a href="/Beginning_Database_Design_Part_I">Beginning Database Design Part I</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">MAR</span> <span class="day">29</span> <span class="year">2002</span> </div>
+    <h2><a href="/Making_clean_URLs_with_Apache_and_PHP">Making Clean Urls With Apache And Php</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">MAR</span> <span class="day">23</span> <span class="year">2002</span> </div>
+    <h2><a href="/node/22715">Using Photoshop Actions To Prepare Web Photos</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">FEB</span> <span class="day">18</span> <span class="year">2002</span> </div>
+    <h2><a href="/node/21392">Stopping Spambots Ii   The Admin Strikes Back</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JAN</span> <span class="day">29</span> <span class="year">2002</span> </div>
+    <h2><a href="/node/20609">Recovering From Anonymous Ftp Abuse</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">SEP</span> <span class="day">10</span> <span class="year">2001</span> </div>
+    <h2><a href="/Boolean_Fulltext_Searching_with_PHP_and_MySQL">Boolean Fulltext Searching With Php And Mysql</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">AUG</span> <span class="day">22</span> <span class="year">2001</span> </div>
+    <h2><a href="/node/15126">Using Apache To Stop Bad Robots</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">AUG</span> <span class="day">21</span> <span class="year">2001</span> </div>
+    <h2><a href="/Simple_Cross_Language_Bulk_Mailer_Part_II">Simple Cross Language Bulk Mailer Part Ii</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">AUG</span> <span class="day">11</span> <span class="year">2001</span> </div>
+    <h2><a href="/RI_to_the_Rescue">Ri To The Rescue</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUL</span> <span class="day">20</span> <span class="year">2001</span> </div>
+    <h2><a href="/node/9279">Simple Cross Language Bulk Mailer Part 1</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUL</span> <span class="day">07</span> <span class="year">2001</span> </div>
+    <h2><a href="/node/13149">Cobalt Raq Servers And Cgiwrap</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUL</span> <span class="day">05</span> <span class="year">2001</span> </div>
+    <h2><a href="/node/13138">Enabling Virtual Hosts On Macos X</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUN</span> <span class="day">28</span> <span class="year">2001</span> </div>
+    <h2><a href="/node/12694">Credit Card E Primer</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">APR</span> <span class="day">22</span> <span class="year">2001</span> </div>
+    <h2><a href="/node/9982">Coldfusion Strings Masks And Filters</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">MAR</span> <span class="day">31</span> <span class="year">2001</span> </div>
+    <h2><a href="/node/9286">Inside The Evolt Org Rebuild Interview With Jeff</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">MAR</span> <span class="day">27</span> <span class="year">2001</span> </div>
+    <h2><a href="/node/9155">Integrating Flash Coldfusion</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JAN</span> <span class="day">26</span> <span class="year">2001</span> </div>
+    <h2><a href="/node/5263">A Brief Introduction To Metadata And The Semantic</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">NOV</span> <span class="day">01</span> <span class="year">2000</span> </div>
+    <h2><a href="/node/3644">Unlocking Ms Access Mdb Files</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">OCT</span> <span class="day">03</span> <span class="year">2000</span> </div>
+    <h2><a href="/node/3392">Introducing Tux The Cute And Cuddly Iis Killer</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">SEP</span> <span class="day">27</span> <span class="year">2000</span> </div>
+    <h2><a href="/node/3311">Battle Of The Bandwidth Part Ii</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">SEP</span> <span class="day">25</span> <span class="year">2000</span> </div>
+    <h2><a href="/node/3301">Battle Of The Bandwidth Part I</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">SEP</span> <span class="day">08</span> <span class="year">2000</span> </div>
+    <h2><a href="/node/3093">What Goes On Under The Hood Of The Internet</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">APR</span> <span class="day">16</span> <span class="year">2000</span> </div>
+    <h2><a href="/node/1700">Recap Iis And Apache Together</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">APR</span> <span class="day">06</span> <span class="year">2000</span> </div>
+    <h2><a href="/node/1618">Sql And Database Resources On The Web</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">MAR</span> <span class="day">07</span> <span class="year">2000</span> </div>
+    <h2><a href="/node/1302">Apache Security Primer</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JAN</span> <span class="day">12</span> <span class="year">2000</span> </div>
+    <h2><a href="/node/687">Wap Content 1   Design 0</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">DEC</span> <span class="day">14</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/627">Happy Birthday Evolt Org</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">NOV</span> <span class="day">23</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/591">Using Excel Spreadsheets As Web Data Sources</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">NOV</span> <span class="day">19</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/578">Nt Alerts Delivered To Your Mailbox</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">NOV</span> <span class="day">14</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/565">Learning Asp In 2 Days</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">OCT</span> <span class="day">30</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/538">Fear And Loathing With Network Solutions</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">OCT</span> <span class="day">30</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/541">A Quick And Dirty Chmod Tutorial</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">OCT</span> <span class="day">05</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/481">Ben Forta On Optimizing Cf4 Applications</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">SEP</span> <span class="day">28</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/464">So You Want Your Own Mailing List</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">SEP</span> <span class="day">21</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/456">Zope Explained</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">SEP</span> <span class="day">20</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/449">Oo Programming The Python Way</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">SEP</span> <span class="day">09</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/429">Worried About High Disk Usage</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">SEP</span> <span class="day">08</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/426">Python Your Journey Starts Here</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">SEP</span> <span class="day">05</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/414">If You Plan To Evolt Join The Rebols</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">AUG</span> <span class="day">29</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/392">The Headology Of Email</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">AUG</span> <span class="day">23</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/357">New Python Based Publishing Environment</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">AUG</span> <span class="day">12</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/335">Asp Performance Tips</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">AUG</span> <span class="day">05</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/316">Multidimensional Arrays In Perl And Javascript</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUL</span> <span class="day">14</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/263">Unix File Permissions And Setuid Part 2</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUL</span> <span class="day">11</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/233">A Brief Introduction To Server Logs</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUL</span> <span class="day">09</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/226">A Cheesy Htaccess Tutorial</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUL</span> <span class="day">08</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/224">Unix File Permissions And Setuid Part 1</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUN</span> <span class="day">26</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/193">Tune Your Webserver For Performance</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUN</span> <span class="day">20</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/174">Introduction To Java Servlets</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUN</span> <span class="day">03</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/131">Top Ten Sql</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+    <div><span class="month">JUN</span> <span class="day">02</span> <span class="year">1999</span> </div>
+    <h2><a href="/node/125">Cron   A Regular Workhorse</a></h2>
+    <div class="categories">Filed under <a class='category' href='/categories/backend/'>backend</a></div>
+
+</ul>
+
+            <!-- end main content -->
+            <div style="clear: both"></div>
+        </div><!-- mainContent -->
+        <div class="spacer"></div>
+    </div><!-- end content -->
+    <div id="footer">
+        <p>Evolt.org is a world community for web developers, promoting the mutual free exchange of ideas, skills and experiences.</p>
+    </div>
+    <!-- start accessibility info -->
+    <div id="access-info" class="access">
+        <p class="access" ><a name="accesskey-list">The access keys for this page are</a>: ALT (Control on a Mac) plus:</p>
+        <ul class="access">
+            <li>1 links to the evolt.org home page.</li>
+            <li>plus 2 skips to the main content of the page.</li>
+            <li>plus 3 skips to login and registration.</li>
+            <li>plus 4 skips to the search form.</li>
+            <li>plus 5 links to site FAQs.</li>
+            <li>plus 6 skips to <a href="/#content-categories" accesskey="6">list of content categories</a> in this site.</li>
+            <li>plus 7 skips to the <a href="/#other-sites" accesskey="7">index of other sites in the evolt network</a>.</li>
+            <li>plus 9 links to the feedback page.</li>
+            <li>plus 0 will repeat this list.</li>
+        </ul>
+    </div><!-- end accessibility info -->
+    <div id="printheader">
+        <a href="/" title="evolt.org Home Page"><img src="/images/logo_print.gif" width="134" height="50" alt="evolt.org" border="0" align="left" hspace="10" />
+        </a>Evolt.org is an all-volunteer resource for web developers made up of a discussion list, a browser archive, and member-submitted articles.  This article is the property of its author, please do not redistribute or use elsewhere without checking with the author.</div>
+    </body>
+</html>
