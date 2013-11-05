@@ -14,7 +14,16 @@ title: evolt.org
             <img class="portrait" src="{{ post.avatar }}" alt="Picture of {{ post.user }}" />
             {% endif %}
             <div class="postinfo">{{ post.date | date_to_long_string }}</div>
-            <div class="postinfo"><a href="/categories/{{ post.category | replace: ' &','' | replace: ' ','-' }}">{{ post.category }}</a> | {{ post.real_name }}</div>
+            <div class="postinfo">
+                {% for category in post.categories %}
+                {% unless category == 'sticky' %}
+                <a href="/categories/{{ category | replace: ' &','' | replace: ' ','-' }}">
+                    {{ category }}
+                </a>
+                {% endunless %}
+                {% endfor %}
+                | {{ post.real_name }}
+            </div>
             <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
             <div class="node-summary">
                 {{ post.excerpt }}
@@ -34,10 +43,9 @@ title: evolt.org
     {% endif %}
     {% endfor %}
     {% unless sticky %} <!-- only show the article if it is NOT sticky -->
-    {% assign content = post.content %}
 
     <div class="node">
-        <div class="postinfo">{{ post.date | date_to_long_string }}, in <a href="/categories/{{ post.category | replace: ' &','' | replace: ' ','-' }}">{{ post.category }}</a></div>
+        <div class="postinfo">{{ post.date | date_to_long_string }}, in <a href="/categories/{{ post.categories | replace: ' &','' | replace: ' ','-' }}">{{ post.categories }}</a></div>
         <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
         <div class="node-summary">by {{ post.user }} | {{ post.excerpt }} <a href="{{ post.url }}">Read more &raquo;</a></div>
     </div>
