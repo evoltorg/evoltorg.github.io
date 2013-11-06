@@ -6,7 +6,14 @@ layout: default
 <div id="meta-data">
     <div class="postinfo-story">
         <p>Posted on <strong>{{ page.date | date_to_string }}</strong></p>
-        <p>in <strong><a href="/categories/{{ page.category | replace: ' &','' | replace: ' ','-' }}">{{ page.category }}</a></strong></p>
+        <p>in <strong>
+            {% for category in page.categories %}
+            {% unless category == 'sticky' %}
+              <a href="/categories/{{ category | replace: ' &','' | replace: ' ','-' }}">{{ category }}</a>
+            {% endunless %}
+            {% endfor %}
+        </strong>
+        </p>
         <p>by <strong>{{ page.real_name }}</strong> ({{ page.user }})</p>
     </div>
     <div id="participate">
@@ -15,7 +22,11 @@ layout: default
     <div id="want-more">
         <h4>Want more?</h4>
         <ul>
-            <li>More articles in <a href="/categories/">{{ page.category | replace: ' &','' | replace: ' ','-' }}</a></li>
+            {% for category in page.categories %}
+            {% unless category == 'sticky' %}
+            <li>More articles in <a href="/categories/{{ category | replace: ' &','' | replace: ' ','-' }}">{{ category }}</a></li>
+            {% endunless %}
+            {% endfor %}
             <li>More articles by <a href="user/88" title="View user profile.">{{ page.user }}</a></li>
         </ul>
     </div>
@@ -23,7 +34,9 @@ layout: default
 </div>
 
 <div id="authorbox">
-    <img class="portrait" src="{{ page.avatar }}" alt="Picture of {{ page.user }}"  />
+    {% if page.avatar %}
+    <img class="portrait" src="{{ page.avatar }}" alt="Picture of {{ page.user }}" />
+    {% endif %}
     <h4>{{ page.real_name }}</h4>
     <p><a href="#authorbio">Member info</a><!-- | <a href="/user/88">Full bio</a> --></p>
     <!-- <p><a href="/cubes_definition/index.html">
