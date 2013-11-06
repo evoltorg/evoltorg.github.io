@@ -1,74 +1,8 @@
----
-layout: default
-title: evolt.org
----
-
-<div id="home">
-
-    <!-- This loops through the paginated posts -->
-    {% if paginator.page == 1 %}
-    {% for post in site.categories.sticky %}
-
-        <div class="node-sticky">
-            {% if post.avatar %}
-            <img class="portrait" src="{{ post.avatar }}" alt="Picture of {{ post.user }}" />
-            {% endif %}
-            <div class="postinfo">{{ post.date | date_to_long_string }}</div>
-            <div class="postinfo">
-                {% for category in post.categories %}
-                {% unless category == 'sticky' %}
-                <a href="/categories/{{ category | replace: ' &','' | replace: ' ','-' }}">
-                    {{ category }}
-                </a>
-                {% endunless %}
-                {% endfor %}
-                | {{ post.real_name }}
-            </div>
-            <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
-            <div class="node-summary">
-                {{ post.excerpt }}
-                <a href="{{ post.url }}">Read more &raquo;</a>
-            </div>
-        </div>
-
-    {% endfor %}
-    {% endif %}
-
-    {% for post in paginator.posts %}
-
-    {% assign sticky = false %}
-    {% for cat in post.categories %} <!-- roll through this pages categories to find if it is sticky -->
-    {% if cat == 'sticky' %}
-    {% assign sticky = true %}
-    {% endif %}
-    {% endfor %}
-    {% unless sticky %} <!-- only show the article if it is NOT sticky -->
-
-    <div class="node">
-        <div class="postinfo">{{ post.date | date_to_long_string }}, in <a href="/categories/{{ post.categories | replace: ' &','' | replace: ' ','-' }}">{{ post.categories }}</a></div>
-        <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
-        <div class="node-summary">by {{ post.user }} | {{ post.excerpt }} <a href="{{ post.url }}">Read more &raquo;</a></div>
-    </div>
-
-    {% endunless %}
-    {% endfor %}
-
-
-    <div id="pager" class="container-inline">
-        {% if paginator.previous_page %}
-        <div class="pager-first"><a href="/">first page</a></div>
-        <div class="pager-previous">
-            <div class="pager-first"><a href="/page{{ paginator.previous_page }}">previous page</a></div>
-        </div>
-        {% endif %}
-        <div class="pager-list">
-            <div class="pager-previous">
-                <div class="pager-first">Page: {{ paginator.page }} of {{ paginator.total_pages }}</div>
-            </div>
-        </div>
-        {% if paginator.next_page %}
-        <div class="pager-next"><a href="/page{{ paginator.next_page }}">next page</a></div>
-        {% endif %}
-    </div>
-
-</div>
+<html>
+<head>
+    <title>evolt.org</title>
+</head>
+<body>
+<h1>This is the new homepage</h1>
+</body>
+</html>
