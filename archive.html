@@ -6,7 +6,7 @@ title: evolt.org
 <div id="home">
 
     <!-- This loops through the paginated posts -->
-    {% if paginator.page == 1 %}
+
     {% for post in site.categories.sticky %}
 
         <div class="node-sticky">
@@ -32,9 +32,9 @@ title: evolt.org
         </div>
 
     {% endfor %}
-    {% endif %}
 
-    {% for post in paginator.posts %}
+
+    {% for post in site.posts %}
 
     {% assign sticky = false %}
     {% for cat in post.categories %} <!-- roll through this pages categories to find if it is sticky -->
@@ -62,7 +62,7 @@ title: evolt.org
     {% endfor %}
 
 
-    <div id="pager" class="container-inline">
+    <!-- <div id="pager" class="container-inline">
         {% if paginator.previous_page %}
         <div class="pager-first"><a href="/">first page</a></div>
         <div class="pager-previous">
@@ -77,6 +77,6 @@ title: evolt.org
         {% if paginator.next_page %}
         <div class="pager-next"><a href="/page{{ paginator.next_page }}">next page</a></div>
         {% endif %}
-    </div>
+    </div> -->
 
 </div>
