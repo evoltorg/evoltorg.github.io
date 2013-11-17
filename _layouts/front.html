@@ -10,11 +10,12 @@
 	<meta name="copyright" content="&copy; evolt.org and it's members" />
 	<meta name="keywords" content="web, internet, design, technology, interface, multimedia, script, commentary, hardware, software, articles, news, history, browsers, archive" />
 	<meta name="description" content="A world community for web developers, evolt.org promotes the mutual free exchange of ideas, skills and experiences." />
-	<link rel="shortcut icon" href="favicon.ico" />
-	<link rel="stylesheet" href="front/assets/css/magnificpopup.css" media=screen" />
-	<link rel="stylesheet" href="front/assets/css/font-awesome.min.css" media=screen" />
-	<link rel="stylesheet" href="front/assets/css/style.css" media=screen" />
-	<link rel="stylesheet" href="front/assets/css/scheme-blue.css" media=screen" />
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/front/assets/css/magnificpopup.css" media="screen" />
+	<link rel="stylesheet" href="/front/assets/css/font-awesome.min.css" media="screen" />
+	<link rel="stylesheet" href="/front/assets/css/style.css" media="screen" />
+	<link rel="stylesheet" href="/front/assets/css/scheme-weo.css" media="screen" />
 	<title>{{ page.title }}</title>
 	<!-- IE fixes -->
 	<!-- [if IE]>
@@ -37,10 +38,12 @@
 				<li><a href="http://browsers.evolt.org/">Browsers</a></li>
 				<li><a href="http://lists.evolt.org/">Lists</a></li>
 			</ul>
-			<h1 id="logo"><a href="/" rel="home" title=""><img src="front/assets/img/evoltlogo.png" alt="" /></a></h1>
+			</nav>
+			<h1 id="logo"><a href="/" rel="home" title=""><img src="/front/assets/img/evoltlogo.png" alt="" /></a></h1>
 			<div id="address-block">
 				<ul>
-					<li><a href="http://twitter.com/evolt_org" title="Twitter"><i class="icon-twitter"></u></a></li>
+					<li class="smaller-gap"><a href="http://twitter.com/evolt_org" title="Twitter"><i class="icon-twitter"></i></a></li>
+					<li class="smaller-gap"><a href="http://www.flickr.com/groups/evolters/" title="Flickr"><i class="icon-flickr"></i></a></li>
 				</ul>
 			</div>
 		</div>
@@ -52,12 +55,72 @@
 		<li class="slide">
 		<div class="wrapper">
 			<div class="slide-text">
-				<p class="sub-heading-upper">1998</p>
-				<p class="big">evolt.org is Formed</p>
-				<p>Obligatory lorem ipsum.</p>
+				<p class="sub-heading-upper">Workers of the web, unite!</p>
+				<p class="big">Welcome to evolt.org</p>
+				<p>Mailing list discussions. Legacy browsers for testing. An article archive spanning 15 years. Join one of the world's longest-running web design communities.</p>
 			</div>
 			<div class="slide-image">
-				<img src="front/assets/img/slides-1998-browser1.png" alt="" />
+				<img src="/front/assets/images/slide-image-4.png" alt="" />
+			</div>
+		</div>
+		<div class="slide-back">
+			<!-- no background image for this slide -->
+		</div>
+		</li>
+		<li class="slide">
+		<div class="wrapper">
+			<div class="slide-text">
+				<p class="sub-heading-upper">1998</p>
+				<p class="big">Workers of the web, unite!</p>
+				<p>An exodus of members of the WIRED MonkeyJunkies web development community leads to the formation of <strong>evolt.org</strong>.</p>
+			</div>
+			<div class="slide-image">
+				<img src="/front/assets/img/slides-1998-evolt-alpha.png" alt="" />
+			</div>
+		</div>
+		<div class="slide-back">
+			<!-- no background image for this slide -->
+		</div>
+		</li>
+		<li class="slide">
+		<div class="wrapper">
+			<div class="slide-text">
+				<p class="sub-heading-upper">1999</p>
+				<p class="big">Something exciting</p>
+				<p><strong>evolt.org</strong> becomes more than a mailing list, building a site to hold articles written by community members.</p>
+			</div>
+			<div class="slide-image">
+				<img src="/front/assets/img/slides-1999-evolt-onepointoh.png" alt="" />
+			</div>
+		</div>
+		<div class="slide-back">
+			<!-- no background image for this slide -->
+		</div>
+		</li>
+		<li class="slide">
+		<div class="wrapper">
+			<div class="slide-text">
+				<p class="sub-heading-upper">2000</p>
+				<p class="big">More excitement</p>
+				<p>The site is upgraded again, with a new design reflecting improvements in HTML and CSS.</p>
+			</div>
+			<div class="slide-image">
+				<img src="/front/assets/img/slides-2000-evolt-twopointoh.png" alt="" />
+			</div>
+		</div>
+		<div class="slide-back">
+			<!-- no background image for this slide -->
+		</div>
+		</li>
+		<li class="slide">
+		<div class="wrapper">
+			<div class="slide-text">
+				<p class="sub-heading-upper">2005</p>
+				<p class="big">I can't take this</p>
+				<p><strong>evolt.org</strong> three-point-oh: a new foundation built upon an industrial-grade CMS, and modern web standards.</p>
+			</div>
+			<div class="slide-image">
+				<img src="/front/assets/img/slides-2005-evolt-threepointoh.png" alt="" />
 			</div>
 		</div>
 		<div class="slide-back">
@@ -105,19 +168,16 @@
 </div>
 </footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<script> 		
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/front/assets/js/jquery.easing.js"></script>
+<script src="/front/assets/js/jquery.cycle.all.js"></script>
+<script src="/front/assets/js/jquery.carousel.min.js"></script>
+<script src="/front/assets/js/jquery.isotope.min.js"></script>
+<script src="/front/assets/js/jquery.mixitup.min.js"></script>
+<script src="/front/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="/front/assets/js/jquery.mobilemenu.js"></script>
+<script src="/front/assets/js/scripts.js"></script>
+<script>
 jQuery(window).load(function() {
 	// init Cycle for slider
 	$('#slides').after('<div id="circle-pager">').cycle({
@@ -227,15 +287,6 @@ jQuery(window).load(function() {
 	  })(); 
 
 </script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="front/assets/js/jquery.easing.js"></script>
-<script src="front/assets/js/jquery.cycle.all.js"></script>
-<script src="front/assets/js/jquery.carousel.min.js"></script>
-<script src="front/assets/js/jquery.isotope.min.js"></script>
-<script src="front/assets/js/jquery.mixitup.min.js"></script>
-<script src="front/assets/js/jquery.magnific-popup.min.js"></script>
-<script src="front/assets/js/jquery.mobilemenu.js"></script>
-<script src="front/assets/js/scripts.js"></script>
 
 </body>
 </html>

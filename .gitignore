@@ -1,3 +1,6 @@
+# local testing
+Gemfile
+Gemfile.lock
 # ignore and unignore specifically for category pages
 !_site/
 _site/*
