@@ -45,7 +45,15 @@ title: evolt.org
     {% unless sticky %} <!-- only show the article if it is NOT sticky -->
 
     <div class="node">
-        <div class="postinfo">{{ post.date | date_to_long_string }}, in <a href="/categories/{{ post.categories | replace: ' &','' | replace: ' ','-' }}">{{ post.categories }}</a></div>
+        <div class="postinfo">{{ post.date | date_to_long_string }}, in
+            {% for category in post.categories %}
+            {% unless category == 'sticky' %}
+            <a href="/categories/{{ category | replace: ' &','' | replace: ' ','-' }}">
+                {{ category }}
+            </a>
+            {% endunless %}
+            {% endfor %}
+        </div>
         <h2><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
         <div class="node-summary">by {{ post.user }} | {{ post.excerpt }} <a href="{{ post.url }}">Read more &raquo;</a></div>
     </div>
