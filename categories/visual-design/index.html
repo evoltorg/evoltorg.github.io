@@ -52,6 +52,18 @@
         }
         //-->
     </script>
+    <script>
+        (function() {
+            var cx = '014253284978097689591:upxjiok6qmu';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                    '//www.google.com/cse/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+        })();
+    </script>
 </head>
 
     <body>
@@ -78,6 +90,8 @@
             </li>
         </ul>
     </div>
+
+    <gcse:searchbox-only resultsUrl="/categories/visual-design/index.html" ></gcse:searchbox-only>
 
     <div id="content"><div id="channel">
         <!-- this item really shouldn't be done this way -->
@@ -306,6 +320,9 @@
     <div class="categories">Filed under <a class='category' href='/categories/visual-design/'>visual design</a></div>
 
 </ul>
+
+            <!-- Add in the Google search results -->
+            <gcse:searchresults-only linkTarget="_top"></gcse:searchresults-only>
 
             <!-- end main content -->
             <div style="clear: both"></div>
