@@ -24,7 +24,7 @@ title: evolt.org
             <div class="postinfo">
                 {% for category in post.categories %}
                 {% unless category == 'sticky' %}
-                <a href="/categories/{{ category | replace: ' &','' | replace: ' ','-' }}">
+                <a href="/categories/{{ category | replace: ' &','' | replace: ' ','-' | replace: '/', '-' }}">
                     {{ category }}
                 </a>
                 {% endunless %}
