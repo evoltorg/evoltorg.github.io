@@ -4,4 +4,5 @@ Gemfile.lock
 # ignore and unignore specifically for category pages
 !_site/
 _site/*
+!_site/contact
 !_site/categories
