@@ -1,3 +1,8 @@
+# cruft
+.DS_Store
+*.swp
+~$*
+*~
 # local testing
 Gemfile
 Gemfile.lock
