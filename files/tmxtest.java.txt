@@ -1,0 +1,26 @@
+package tmxtest;
+
+/**
+ * <p>Title: TMX Example</p>
+ * <p>Description: Java Class to load text resources from TMX file</p>
+ * <p>Copyright: Copyright (c) 2004 Tecnick.com S.r.l.</p>
+ * @author Nicola Asuni
+ * @version 1.0
+ */
+public class tmxtest {
+
+  /**
+   * loads TMX data
+   */
+  final static TMXResourceBundle res = new TMXResourceBundle("sample_tmx.xml",
+      "en");
+
+  /**
+   * Prints 2 strings on System.out
+   * @param args String[]
+   */
+  public static void main(String[] args) {
+    System.out.println(res.getString("hello", ""));
+    System.out.println(res.getString("world", ""));
+  }
+}
