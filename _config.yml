@@ -1,4 +1,4 @@
-name: evolt.org
+title: evolt.org
 markdown: redcarpet
-pygments: true
+highlighter: true
 paginate: 10

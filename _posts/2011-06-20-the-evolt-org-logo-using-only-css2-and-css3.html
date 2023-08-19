@@ -1,6 +1,7 @@
 ---
 layout: post
 permalink: CSS3evoltLogo
+node: 63384
 ratings: 2
 avgrate: 5.0000
 rating: 4.21
@@ -20,11 +21,369 @@ You can see his brand-spanking-new blog at <a href=\"http://blog.adrianroselli.c
 </p>
 
 <p style=\"text-align:justify;\">
-Adrian authored the usability case study for evolt.org in <a href=\"http://www.amazon.com/exec/obidos/ASIN/1904151035/ref=nosim/evoltorg02-20\" rel=\"nofollow\" target=\"_new\" title=\"Amazon, for one, is selling it; opens in new window.\"><em>Usability: The Site Speaks for Itself</em></a>, published by glasshaus. He has written three chapters for the book <a href=\"http://www.amazon.com/exec/obidos/ASIN/1590591712/evoltorg02-20\" rel=\"nofollow\" target=\"_new\" title=\"Amazon, for one, is selling it; opens in new window.\"><em>Professional Web Graphics for Non Designers</em></a>, also published by glasshaus. Adrian also managed to get a couple chapters written (and published) for <a href=\"http://www.amazon.com/exec/obidos/ASIN/159059200X/evoltorg02-20\" rel=\"nofollow\" target=\"_new\" title=\"Opens in new window.\"><em>The Web Professional\'s Handbook</em></a> before glasshaus went under. They were really quite good. You should have bought more of the books.
+Adrian authored the usability case study for evolt.org in <a href=\"http://www.amazon.com/exec/obidos/ASIN/1904151035/ref=nosim/evoltorg02-20\" rel=\"nofollow\" target=\"_new\" title=\"Amazon, for one, is selling it; opens in new window.\"><em>Usability: The Site Speaks for Itself</em></a>, published by glasshaus. He has written three chapters for the book <a href=\"http://www.amazon.com/exec/obidos/ASIN/1590591712/evoltorg02-20\" rel=\"nofollow\" target=\"_new\" title=\"Amazon, for one, is selling it; opens in new window.\"><em>Professional Web Graphics for Non Designers</em></a>, also published by glasshaus. Adrian also managed to get a couple chapters written (and published) for <a href=\"http://www.amazon.com/exec/obidos/ASIN/159059200X/evoltorg02-20\" rel=\"nofollow\" target=\"_new\" title=\"Opens in new window.\"><em>The Web Professional's Handbook</em></a> before glasshaus went under. They were really quite good. You should have bought more of the books.
 </p>"
 user_since: 14 Dec 1998
 avatar: /images/pictures/picture-88.gif
 article_count: 85
 excerpt: "I set out to re-create the evolt.org logo using the bare minimum mark-up and many of the new styles available in CSS3. In addition, I wanted to make sure that the links themselves rendered fine in a text browser (mostly because I still surf in Lynx). Get a current browser and check it out."
 ---
-<p></p>While spending some time hacking through experiments with CSS3, I ran across this <a href="http://jsfiddle.net/chriscoyier/EcQVT/">example of a hexagon using only CSS</a> as <a href="http://twitter.com/#!/chriscoyier/status/81716989885820928">tweeted by Chris Coyier</a>. As I looked at it, I figured that since a hexagon defines the shape of each evolt.org cube I could just co-opt this and build the evolt.org logo using the example. Except I realized that the method he used for the hexagon does not translate to drawing a cube with lines and one differently-colored face.</p></p></p><p><p></p>So I set out to re-create the evolt.org logo using the bare minimum mark-up and many of the new styles available in CSS3. In addition, I wanted to make sure that the links themselves rendered fine in a text browser (mostly because I still surf in Lynx).</p></p></p><p><p></p>I started with this block of links:</p></p> </p><p><p></p><a href="http://evolt.org">evolt.org</a><br></p><a href="http://lists.evolt.org">lists.evolt.org</a><br></p><a href="http://browsers.evolt.org">browsers.evolt.org</a></p></p></p><p><p></p>Using this very simple mark-up (using only one <code>id</code> attribute for the block and no other attributes or unnecessary elements):</p></p></p><p><pre>&lt;p id="evolt"&gt;</p>&lt;a href="http://evolt.org"&gt;evolt.org&lt;/a&gt;&lt;br&gt;</p>&lt;a href="http://lists.evolt.org"&gt;lists.evolt.org&lt;/a&gt;>&lt;br&gt;</p>&lt;a href="http://browsers.evolt.org"&gt;browsers.evolt.org&lt;/a&gt;</p>&lt;/p></pre></p><p><p></p>With the magic of CSS (2 and 3) I was able to create this totally sweet logo (must be using Internet Explorer 9, recent versions of Firefox, Chrome, Opera, Safari to see the cubes):</p></p></p><p><style type="text/css"></p><!--</p>#evolt a:first-child, #evolt a:nth-of-type(2), #evolt a:last-child</p> { display: block;</p>   position: relative;</p>   float: left;</p>   text-indent: -1000px;</p>   padding: 0;</p>   border: 4px solid #000;</p>   -webkit-transition: background-color 0.25s ease-in;</p>   -moz-transition: background-color 0.25s ease-in;</p>   -ms-transition: background-color 0.25s ease-in;</p>   -o-transition: background-color 0.25s ease-in;</p>   transition: background-color 0.25s ease-in; }</p> </p>#evolt a:first-child:hover, #evolt a:nth-of-type(2):hover, #evolt a:last-child:hover</p> { background-color: #fff; }</p> </p>#evolt a:first-child:before, #evolt a:first-child:after, #evolt a:nth-of-type(2):before, #evolt a:nth-of-type(2):after, #evolt a:last-child:before, #evolt a:last-child:after</p> { content: "";</p>   position: absolute;</p>   margin: 0;</p>   padding: 0;</p>   border: 4px solid #000;</p>   -webkit-transition: background-color 0.25s ease-in;</p>   -moz-transition: background-color 0.25s ease-in;</p>   -ms-transition: background-color 0.25s ease-in;</p>   -o-transition: background-color 0.25s ease-in;</p>   transition: background-color 0.25s ease-in; }</p> </p>#evolt a:first-child</p> { width: 95px;</p>   height: 110px;</p>   margin: 110px 0 0 100px;</p>   background-color: #f99;</p>   -webkit-transform: skew(0, -30deg);</p>   -moz-transform: skew(0, -30deg);</p>   -ms-transform: skew(0, -30deg);</p>   -o-transform: skew(0, -30deg);</p>   transform: skew(0, -30deg); }</p> </p>#evolt a:first-child:before, #evolt a:first-child:after</p> { left: -103px;</p>   top: -61px;</p>   width: 95px;</p>   height: 110px;</p>   background-color: #f00; }</p> </p>#evolt a:first-child:hover:before, #evolt a:first-child:hover:after</p> { background-color: #f99; }</p> </p>#evolt a:first-child:before</p> { -webkit-transform: skew(0, 49deg);</p>   -moz-transform: skew(0, 49deg);</p>   -ms-transform: skew(0, 49deg);</p>   -o-transform: skew(0, 49deg);</p>   transform: skew(0, 49deg); }</p> </p>#evolt a:first-child:after</p> { top: -119px;</p>   left: -53px;</p>   width: 94px;</p>   -webkit-transform: skew(41deg, 0);</p>   -moz-transform: skew(41deg, 0);</p>   -ms-transform: skew(41deg, 0);</p>   -o-transform: skew(41deg, 0);</p>   transform: skew(41deg, 0); }</p> </p>#evolt a:nth-of-type(2)</p> { width: 95px;</p>   height: 110px;</p>   margin: 110px 0 0 -4px;</p>   background-color: #9f9;</p>   -webkit-transform: skew(0, 30deg);</p>   -moz-transform: skew(0, 30deg);</p>   -ms-transform: skew(0, 30deg);</p>   -o-transform: skew(0, 30deg);</p>   transform: skew(0, 30deg); }</p> </p>#evolt a:nth-of-type(2):before, #evolt a:nth-of-type(2):after</p> { left: 95px;</p>   top: -61px;</p>   width: 95px;</p>   height: 110px;</p>   background-color: #0f0; }</p> </p>#evolt a:nth-of-type(2):hover:before, #evolt a:nth-of-type(2):hover:after</p> { background-color: #9f9; }</p> </p>#evolt a:nth-of-type(2):before</p> { -webkit-transform: skew(0, -49deg);</p>   -moz-transform: skew(0, -49deg);</p>   -ms-transform: skew(0, -49deg);</p>   -o-transform: skew(0, -49deg);</p>   transform: skew(0, -49deg); }</p> </p>#evolt a:nth-of-type(2):after</p> { top: -119px;</p>   left: 47px;</p>   width: 94px;</p>   -webkit-transform: skew(-41deg, 0);</p>   -moz-transform: skew(-41deg, 0);</p>   -ms-transform: skew(-41deg, 0);</p>   -o-transform: skew(-41deg, 0);</p>   transform: skew(-41deg, 0); }</p> </p>#evolt a:last-child</p> { clear: left;</p>   width: 110px;</p>   height: 95px;</p>   margin: -25px 0 0 142px;</p>   background-color: #99f;</p>   -webkit-transform: rotate(30deg) skew(-30deg, 0);</p>   -moz-transform: rotate(30deg) skew(-30deg, 0);</p>   -ms-transform: rotate(30deg) skew(-30deg, 0);</p>   -o-transform: rotate(30deg) skew(-30deg, 0);</p>   transform: rotate(30deg) skew(-30deg, 0); }</p> </p>#evolt a:last-child:before, #evolt a:last-child:after</p> { left: 36px;</p>   top: 108px;</p>   width: 145px;</p>   height: 70px;</p>   background-color: #00f; }</p> </p>#evolt a:last-child:hover:before, #evolt a:last-child:hover:after</p> { background-color: #99f; }</p> </p>#evolt a:last-child:before</p> { -webkit-transform: rotate(41deg) skew(-49deg, 0);</p>   -moz-transform: rotate(41deg) skew(-49deg, 0);</p>   -ms-transform: rotate(41deg) skew(-49deg, 0);</p>   -o-transform: rotate(41deg) skew(-49deg, 0);</p>   transform: rotate(41deg) skew(-49deg, 0); }</p> </p>#evolt a:last-child:after</p> { left: 93px;</p>   top: 58px;</p>   width: 145px;</p>   height: 70px;</p>   -webkit-transform: rotate(41deg) skew(41deg, 0);</p>   -moz-transform: rotate(41deg) skew(41deg, 0);</p>   -ms-transform: rotate(41deg) skew(41deg, 0);</p>   -o-transform: rotate(41deg) skew(41deg, 0);</p>   transform: rotate(41deg) skew(41deg, 0); }</p> </p>#evolt br { display: none; }</p>--></p></style></p><p><p id="evolt"></p><a href="http://evolt.org">evolt.org</a><br></p><a href="http://lists.evolt.org">lists.evolt.org</a><br></p><a href="http://browsers.evolt.org">browsers.evolt.org</a></p></p></p><p><p style="clear:both; margin-top:450px;"></p>I wanted each hyperlink to correspond to the lighter-colored face of its cube, especially since I am using a CSS transition to slowly highlight the face on hover. As a result, I ended up creating three different cubes using a combination of CSS generated content, rotations, skews, and some selectors that, thanks to a typo, had me scratching my head for some time.</p></p></p><p><p></p>Unfortunately because of the floats and negative margins, that last paragraph had to be pushed down 450px to keep the cubes from overlapping the content.</p></p></p><p><p></p>To spare you wading through the code of the page to find the CSS block, here it is in its entirety:</p></p></p><p><pre></p>#evolt a:first-child, #evolt a:nth-of-type(2), #evolt a:last-child</p> { display: block;</p>   position: relative;</p>   float: left;</p>   text-indent: -1000px;</p>   padding: 0;</p>   border: 4px solid #000;</p>   -webkit-transition: background-color 0.25s ease-in;</p>   -moz-transition: background-color 0.25s ease-in;</p>   -ms-transition: background-color 0.25s ease-in;</p>   -o-transition: background-color 0.25s ease-in;</p>   transition: background-color 0.25s ease-in; }</p> </p>#evolt a:first-child:hover, #evolt a:nth-of-type(2):hover, #evolt a:last-child:hover</p> { background-color: #fff; }</p> </p>#evolt a:first-child:before, #evolt a:first-child:after, #evolt a:nth-of-type(2):before, #evolt a:nth-of-type(2):after, #evolt a:last-child:before, #evolt a:last-child:after</p> { content: "";</p>   position: absolute;</p>   margin: 0;</p>   padding: 0;</p>   border: 4px solid #000;</p>   -webkit-transition: background-color 0.25s ease-in;</p>   -moz-transition: background-color 0.25s ease-in;</p>   -ms-transition: background-color 0.25s ease-in;</p>   -o-transition: background-color 0.25s ease-in;</p>   transition: background-color 0.25s ease-in; }</p> </p>#evolt a:first-child</p> { width: 95px;</p>   height: 110px;</p>   margin: 110px 0 0 100px;</p>   background-color: #f99;</p>   -webkit-transform: skew(0, -30deg);</p>   -moz-transform: skew(0, -30deg);</p>   -ms-transform: skew(0, -30deg);</p>   -o-transform: skew(0, -30deg);</p>   transform: skew(0, -30deg); }</p> </p>#evolt a:first-child:before, #evolt a:first-child:after</p> { left: -103px;</p>   top: -61px;</p>   width: 95px;</p>   height: 110px;</p>   background-color: #f00; }</p> </p>#evolt a:first-child:hover:before, #evolt a:first-child:hover:after</p> { background-color: #f99; }</p> </p>#evolt a:first-child:before</p> { -webkit-transform: skew(0, 49deg);</p>   -moz-transform: skew(0, 49deg);</p>   -ms-transform: skew(0, 49deg);</p>   -o-transform: skew(0, 49deg);</p>   transform: skew(0, 49deg); }</p> </p>#evolt a:first-child:after</p> { top: -119px;</p>   left: -53px;</p>   width: 94px;</p>   -webkit-transform: skew(41deg, 0);</p>   -moz-transform: skew(41deg, 0);</p>   -ms-transform: skew(41deg, 0);</p>   -o-transform: skew(41deg, 0);</p>   transform: skew(41deg, 0); }</p> </p>#evolt a:nth-of-type(2)</p> { width: 95px;</p>   height: 110px;</p>   margin: 110px 0 0 -4px;</p>   background-color: #9f9;</p>   -webkit-transform: skew(0, 30deg);</p>   -moz-transform: skew(0, 30deg);</p>   -ms-transform: skew(0, 30deg);</p>   -o-transform: skew(0, 30deg);</p>   transform: skew(0, 30deg); }</p> </p>#evolt a:nth-of-type(2):before, #evolt a:nth-of-type(2):after</p> { left: 95px;</p>   top: -61px;</p>   width: 95px;</p>   height: 110px;</p>   background-color: #0f0; }</p> </p>#evolt a:nth-of-type(2):hover:before, #evolt a:nth-of-type(2):hover:after</p> { background-color: #9f9; }</p> </p>#evolt a:nth-of-type(2):before</p> { -webkit-transform: skew(0, -49deg);</p>   -moz-transform: skew(0, -49deg);</p>   -ms-transform: skew(0, -49deg);</p>   -o-transform: skew(0, -49deg);</p>   transform: skew(0, -49deg); }</p> </p>#evolt a:nth-of-type(2):after</p> { top: -119px;</p>   left: 47px;</p>   width: 94px;</p>   -webkit-transform: skew(-41deg, 0);</p>   -moz-transform: skew(-41deg, 0);</p>   -ms-transform: skew(-41deg, 0);</p>   -o-transform: skew(-41deg, 0);</p>   transform: skew(-41deg, 0); }</p> </p>#evolt a:last-child</p> { clear: left;</p>   width: 110px;</p>   height: 95px;</p>   margin: -25px 0 0 142px;</p>   background-color: #99f;</p>   -webkit-transform: rotate(30deg) skew(-30deg, 0);</p>   -moz-transform: rotate(30deg) skew(-30deg, 0);</p>   -ms-transform: rotate(30deg) skew(-30deg, 0);</p>   -o-transform: rotate(30deg) skew(-30deg, 0);</p>   transform: rotate(30deg) skew(-30deg, 0); }</p> </p>#evolt a:last-child:before, #evolt a:last-child:after</p> { left: 36px;</p>   top: 108px;</p>   width: 145px;</p>   height: 70px;</p>   background-color: #00f; }</p> </p>#evolt a:last-child:hover:before, #evolt a:last-child:hover:after</p> { background-color: #99f; }</p> </p>#evolt a:last-child:before</p> { -webkit-transform: rotate(41deg) skew(-49deg, 0);</p>   -moz-transform: rotate(41deg) skew(-49deg, 0);</p>   -ms-transform: rotate(41deg) skew(-49deg, 0);</p>   -o-transform: rotate(41deg) skew(-49deg, 0);</p>   transform: rotate(41deg) skew(-49deg, 0); }</p> </p>#evolt a:last-child:after</p> { left: 93px;</p>   top: 58px;</p>   width: 145px;</p>   height: 70px;</p>   -webkit-transform: rotate(41deg) skew(41deg, 0);</p>   -moz-transform: rotate(41deg) skew(41deg, 0);</p>   -ms-transform: rotate(41deg) skew(41deg, 0);</p>   -o-transform: rotate(41deg) skew(41deg, 0);</p>   transform: rotate(41deg) skew(41deg, 0); }</p> </p>#evolt br { display: none; }</p></pre></p><p><p></p>As you can see, I am leaning on vendor prefixes for the transformations, but I was pleased to see that all my selectors and styles applied across the range of browsers I stated above — even Internet Explorer 9. In IE8, it's just a string of links (because the <code>br</code> tag is hidden) and the first link has the light red background. Otherwise it degrades very gracefully for IE8.</p></p></p><p><p></p>Even better, it looks awesome in Lynx &#8212; just a list of links.</p></p></p><p><p></p>I probably could have approached the styles differently, and I could have used an ordered or unordered list for the links, but this was just an experiment to see how simple I could keep everything. You are, of course, welcome to make comments, suggestions and corrections in the comments.</p></p>
+<p>
+    While spending some time hacking through experiments with CSS3, I ran across this <a href="http://jsfiddle.net/chriscoyier/EcQVT/">example of a hexagon using only CSS</a> as <a href="http://twitter.com/#!/chriscoyier/status/81716989885820928">tweeted by Chris Coyier</a>. As I looked at it, I figured that since a hexagon defines the shape of each evolt.org cube I could just co-opt this and build the evolt.org logo using the example. Except I realized that the method he used for the hexagon does not translate to drawing a cube with lines and one differently-colored face.
+    </p>
+    
+    <p>
+    So I set out to re-create the evolt.org logo using the bare minimum mark-up and many of the new styles available in CSS3. In addition, I wanted to make sure that the links themselves rendered fine in a text browser (mostly because I still surf in Lynx).
+    </p>
+    
+    <p>
+    I started with this block of links:
+    </p> 
+    
+    <p>
+    <a href="http://evolt.org/">evolt.org</a><br>
+    <a href="http://lists.evolt.org/">lists.evolt.org</a><br>
+    <a href="http://browsers.evolt.org/">browsers.evolt.org</a>
+    </p>
+    
+    <p>
+    Using this very simple mark-up (using only one <code>id</code> attribute for the block and no other attributes or unnecessary elements):
+    </p>
+    
+    <pre>&lt;p id="evolt"&gt;
+    &lt;a href="http://evolt.org"&gt;evolt.org&lt;/a&gt;&lt;br&gt;
+    &lt;a href="http://lists.evolt.org"&gt;lists.evolt.org&lt;/a&gt;&gt;&lt;br&gt;
+    &lt;a href="http://browsers.evolt.org"&gt;browsers.evolt.org&lt;/a&gt;
+    &lt;/p&gt;</pre>
+    
+    <p>
+    With the magic of CSS (2 and 3) I was able to create this totally sweet logo (must be using Internet Explorer 9, recent versions of Firefox, Chrome, Opera, Safari to see the cubes):
+    </p>
+    
+    <style type="text/css">
+    <!--
+    #evolt a:first-child, #evolt a:nth-of-type(2), #evolt a:last-child
+     { display: block;
+       position: relative;
+       float: left;
+       text-indent: -1000px;
+       padding: 0;
+       border: 4px solid #000;
+       -webkit-transition: background-color 0.25s ease-in;
+       -moz-transition: background-color 0.25s ease-in;
+       -ms-transition: background-color 0.25s ease-in;
+       -o-transition: background-color 0.25s ease-in;
+       transition: background-color 0.25s ease-in; }
+     
+    #evolt a:first-child:hover, #evolt a:nth-of-type(2):hover, #evolt a:last-child:hover
+     { background-color: #fff; }
+     
+    #evolt a:first-child:before, #evolt a:first-child:after, #evolt a:nth-of-type(2):before, #evolt a:nth-of-type(2):after, #evolt a:last-child:before, #evolt a:last-child:after
+     { content: "";
+       position: absolute;
+       margin: 0;
+       padding: 0;
+       border: 4px solid #000;
+       -webkit-transition: background-color 0.25s ease-in;
+       -moz-transition: background-color 0.25s ease-in;
+       -ms-transition: background-color 0.25s ease-in;
+       -o-transition: background-color 0.25s ease-in;
+       transition: background-color 0.25s ease-in; }
+     
+    #evolt a:first-child
+     { width: 95px;
+       height: 110px;
+       margin: 110px 0 0 100px;
+       background-color: #f99;
+       -webkit-transform: skew(0, -30deg);
+       -moz-transform: skew(0, -30deg);
+       -ms-transform: skew(0, -30deg);
+       -o-transform: skew(0, -30deg);
+       transform: skew(0, -30deg); }
+     
+    #evolt a:first-child:before, #evolt a:first-child:after
+     { left: -103px;
+       top: -61px;
+       width: 95px;
+       height: 110px;
+       background-color: #f00; }
+     
+    #evolt a:first-child:hover:before, #evolt a:first-child:hover:after
+     { background-color: #f99; }
+     
+    #evolt a:first-child:before
+     { -webkit-transform: skew(0, 49deg);
+       -moz-transform: skew(0, 49deg);
+       -ms-transform: skew(0, 49deg);
+       -o-transform: skew(0, 49deg);
+       transform: skew(0, 49deg); }
+     
+    #evolt a:first-child:after
+     { top: -119px;
+       left: -53px;
+       width: 94px;
+       -webkit-transform: skew(41deg, 0);
+       -moz-transform: skew(41deg, 0);
+       -ms-transform: skew(41deg, 0);
+       -o-transform: skew(41deg, 0);
+       transform: skew(41deg, 0); }
+     
+    #evolt a:nth-of-type(2)
+     { width: 95px;
+       height: 110px;
+       margin: 110px 0 0 -4px;
+       background-color: #9f9;
+       -webkit-transform: skew(0, 30deg);
+       -moz-transform: skew(0, 30deg);
+       -ms-transform: skew(0, 30deg);
+       -o-transform: skew(0, 30deg);
+       transform: skew(0, 30deg); }
+     
+    #evolt a:nth-of-type(2):before, #evolt a:nth-of-type(2):after
+     { left: 95px;
+       top: -61px;
+       width: 95px;
+       height: 110px;
+       background-color: #0f0; }
+     
+    #evolt a:nth-of-type(2):hover:before, #evolt a:nth-of-type(2):hover:after
+     { background-color: #9f9; }
+     
+    #evolt a:nth-of-type(2):before
+     { -webkit-transform: skew(0, -49deg);
+       -moz-transform: skew(0, -49deg);
+       -ms-transform: skew(0, -49deg);
+       -o-transform: skew(0, -49deg);
+       transform: skew(0, -49deg); }
+     
+    #evolt a:nth-of-type(2):after
+     { top: -119px;
+       left: 47px;
+       width: 94px;
+       -webkit-transform: skew(-41deg, 0);
+       -moz-transform: skew(-41deg, 0);
+       -ms-transform: skew(-41deg, 0);
+       -o-transform: skew(-41deg, 0);
+       transform: skew(-41deg, 0); }
+     
+    #evolt a:last-child
+     { clear: left;
+       width: 110px;
+       height: 95px;
+       margin: -25px 0 0 142px;
+       background-color: #99f;
+       -webkit-transform: rotate(30deg) skew(-30deg, 0);
+       -moz-transform: rotate(30deg) skew(-30deg, 0);
+       -ms-transform: rotate(30deg) skew(-30deg, 0);
+       -o-transform: rotate(30deg) skew(-30deg, 0);
+       transform: rotate(30deg) skew(-30deg, 0); }
+     
+    #evolt a:last-child:before, #evolt a:last-child:after
+     { left: 36px;
+       top: 108px;
+       width: 145px;
+       height: 70px;
+       background-color: #00f; }
+     
+    #evolt a:last-child:hover:before, #evolt a:last-child:hover:after
+     { background-color: #99f; }
+     
+    #evolt a:last-child:before
+     { -webkit-transform: rotate(41deg) skew(-49deg, 0);
+       -moz-transform: rotate(41deg) skew(-49deg, 0);
+       -ms-transform: rotate(41deg) skew(-49deg, 0);
+       -o-transform: rotate(41deg) skew(-49deg, 0);
+       transform: rotate(41deg) skew(-49deg, 0); }
+     
+    #evolt a:last-child:after
+     { left: 93px;
+       top: 58px;
+       width: 145px;
+       height: 70px;
+       -webkit-transform: rotate(41deg) skew(41deg, 0);
+       -moz-transform: rotate(41deg) skew(41deg, 0);
+       -ms-transform: rotate(41deg) skew(41deg, 0);
+       -o-transform: rotate(41deg) skew(41deg, 0);
+       transform: rotate(41deg) skew(41deg, 0); }
+     
+    #evolt br { display: none; }
+    -->
+    </style>
+    
+    <p id="evolt">
+    <a href="http://evolt.org/">evolt.org</a><br>
+    <a href="http://lists.evolt.org/">lists.evolt.org</a><br>
+    <a href="http://browsers.evolt.org/">browsers.evolt.org</a>
+    </p>
+    
+    <p style="clear:both; margin-top:450px;">
+    I wanted each hyperlink to correspond to the lighter-colored face of its cube, especially since I am using a CSS transition to slowly highlight the face on hover. As a result, I ended up creating three different cubes using a combination of CSS generated content, rotations, skews, and some selectors that, thanks to a typo, had me scratching my head for some time.
+    </p>
+    
+    <p>
+    Unfortunately because of the floats and negative margins, that last paragraph had to be pushed down 450px to keep the cubes from overlapping the content.
+    </p>
+    
+    <p>
+    To spare you wading through the code of the page to find the CSS block, here it is in its entirety:
+    </p>
+    
+    <pre>
+    #evolt a:first-child, #evolt a:nth-of-type(2), #evolt a:last-child
+     { display: block;
+       position: relative;
+       float: left;
+       text-indent: -1000px;
+       padding: 0;
+       border: 4px solid #000;
+       -webkit-transition: background-color 0.25s ease-in;
+       -moz-transition: background-color 0.25s ease-in;
+       -ms-transition: background-color 0.25s ease-in;
+       -o-transition: background-color 0.25s ease-in;
+       transition: background-color 0.25s ease-in; }
+     
+    #evolt a:first-child:hover, #evolt a:nth-of-type(2):hover, #evolt a:last-child:hover
+     { background-color: #fff; }
+     
+    #evolt a:first-child:before, #evolt a:first-child:after, #evolt a:nth-of-type(2):before, #evolt a:nth-of-type(2):after, #evolt a:last-child:before, #evolt a:last-child:after
+     { content: "";
+       position: absolute;
+       margin: 0;
+       padding: 0;
+       border: 4px solid #000;
+       -webkit-transition: background-color 0.25s ease-in;
+       -moz-transition: background-color 0.25s ease-in;
+       -ms-transition: background-color 0.25s ease-in;
+       -o-transition: background-color 0.25s ease-in;
+       transition: background-color 0.25s ease-in; }
+     
+    #evolt a:first-child
+     { width: 95px;
+       height: 110px;
+       margin: 110px 0 0 100px;
+       background-color: #f99;
+       -webkit-transform: skew(0, -30deg);
+       -moz-transform: skew(0, -30deg);
+       -ms-transform: skew(0, -30deg);
+       -o-transform: skew(0, -30deg);
+       transform: skew(0, -30deg); }
+     
+    #evolt a:first-child:before, #evolt a:first-child:after
+     { left: -103px;
+       top: -61px;
+       width: 95px;
+       height: 110px;
+       background-color: #f00; }
+     
+    #evolt a:first-child:hover:before, #evolt a:first-child:hover:after
+     { background-color: #f99; }
+     
+    #evolt a:first-child:before
+     { -webkit-transform: skew(0, 49deg);
+       -moz-transform: skew(0, 49deg);
+       -ms-transform: skew(0, 49deg);
+       -o-transform: skew(0, 49deg);
+       transform: skew(0, 49deg); }
+     
+    #evolt a:first-child:after
+     { top: -119px;
+       left: -53px;
+       width: 94px;
+       -webkit-transform: skew(41deg, 0);
+       -moz-transform: skew(41deg, 0);
+       -ms-transform: skew(41deg, 0);
+       -o-transform: skew(41deg, 0);
+       transform: skew(41deg, 0); }
+     
+    #evolt a:nth-of-type(2)
+     { width: 95px;
+       height: 110px;
+       margin: 110px 0 0 -4px;
+       background-color: #9f9;
+       -webkit-transform: skew(0, 30deg);
+       -moz-transform: skew(0, 30deg);
+       -ms-transform: skew(0, 30deg);
+       -o-transform: skew(0, 30deg);
+       transform: skew(0, 30deg); }
+     
+    #evolt a:nth-of-type(2):before, #evolt a:nth-of-type(2):after
+     { left: 95px;
+       top: -61px;
+       width: 95px;
+       height: 110px;
+       background-color: #0f0; }
+     
+    #evolt a:nth-of-type(2):hover:before, #evolt a:nth-of-type(2):hover:after
+     { background-color: #9f9; }
+     
+    #evolt a:nth-of-type(2):before
+     { -webkit-transform: skew(0, -49deg);
+       -moz-transform: skew(0, -49deg);
+       -ms-transform: skew(0, -49deg);
+       -o-transform: skew(0, -49deg);
+       transform: skew(0, -49deg); }
+     
+    #evolt a:nth-of-type(2):after
+     { top: -119px;
+       left: 47px;
+       width: 94px;
+       -webkit-transform: skew(-41deg, 0);
+       -moz-transform: skew(-41deg, 0);
+       -ms-transform: skew(-41deg, 0);
+       -o-transform: skew(-41deg, 0);
+       transform: skew(-41deg, 0); }
+     
+    #evolt a:last-child
+     { clear: left;
+       width: 110px;
+       height: 95px;
+       margin: -25px 0 0 142px;
+       background-color: #99f;
+       -webkit-transform: rotate(30deg) skew(-30deg, 0);
+       -moz-transform: rotate(30deg) skew(-30deg, 0);
+       -ms-transform: rotate(30deg) skew(-30deg, 0);
+       -o-transform: rotate(30deg) skew(-30deg, 0);
+       transform: rotate(30deg) skew(-30deg, 0); }
+     
+    #evolt a:last-child:before, #evolt a:last-child:after
+     { left: 36px;
+       top: 108px;
+       width: 145px;
+       height: 70px;
+       background-color: #00f; }
+     
+    #evolt a:last-child:hover:before, #evolt a:last-child:hover:after
+     { background-color: #99f; }
+     
+    #evolt a:last-child:before
+     { -webkit-transform: rotate(41deg) skew(-49deg, 0);
+       -moz-transform: rotate(41deg) skew(-49deg, 0);
+       -ms-transform: rotate(41deg) skew(-49deg, 0);
+       -o-transform: rotate(41deg) skew(-49deg, 0);
+       transform: rotate(41deg) skew(-49deg, 0); }
+     
+    #evolt a:last-child:after
+     { left: 93px;
+       top: 58px;
+       width: 145px;
+       height: 70px;
+       -webkit-transform: rotate(41deg) skew(41deg, 0);
+       -moz-transform: rotate(41deg) skew(41deg, 0);
+       -ms-transform: rotate(41deg) skew(41deg, 0);
+       -o-transform: rotate(41deg) skew(41deg, 0);
+       transform: rotate(41deg) skew(41deg, 0); }
+     
+    #evolt br { display: none; }
+    </pre>
+    
+    <p>
+    As you can see, I am leaning on vendor prefixes for the transformations, but I was pleased to see that all my selectors and styles applied across the range of browsers I stated above — even Internet Explorer 9. In IE8, it's just a string of links (because the <code>br</code> tag is hidden) and the first link has the light red background. Otherwise it degrades very gracefully for IE8.
+    </p>
+    
+    <p>
+    Even better, it looks awesome in Lynx &#8212; just a list of links.
+    </p>
+    
+    <p>
+    I probably could have approached the styles differently, and I could have used an ordered or unordered list for the links, but this was just an experiment to see how simple I could keep everything. You are, of course, welcome to make comments, suggestions and corrections in the comments.
+    </p>
